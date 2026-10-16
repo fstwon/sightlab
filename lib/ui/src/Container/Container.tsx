@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import styles from './Container.module.css';
+import styles from './Container.module.scss';
 
 type ContainerProps = HTMLAttributes<HTMLElement> & {
   as?: 'div' | 'main' | 'section' | 'article';

@@ -3,10 +3,8 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--sl-loaded-font-sans' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--sl-loaded-font-mono' });
-import '@sightlab/design-tokens/tokens.css';
-import '@sightlab/design-tokens/reset.css';
-import '@sightlab/design-tokens/typography.css';
-import './globals.css';
+import '@sightlab/styles/index.scss';
+import './globals.scss';
 
 export const metadata: Metadata = {
   title: 'Sightlab',
