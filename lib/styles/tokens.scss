@@ -1,0 +1,67 @@
+:root {
+  /* Figma Foundations / Editorial Lab · Light */
+  --sl-color-neutral-0: #ffffff;
+  --sl-color-neutral-50: #f7f7f4;
+  --sl-color-neutral-100: #f0f0eb;
+  --sl-color-neutral-200: #e2e2dd;
+  --sl-color-neutral-500: #686b70;
+  --sl-color-neutral-900: #181a1b;
+  --sl-color-purple-50: #ede8fa;
+  --sl-color-purple-600: #6535d8;
+  --sl-color-orange-100: #fbf0de;
+  --sl-color-orange-500: #f2a74b;
+  --sl-color-green-600: #27845b;
+  --sl-color-red-600: #c94a4a;
+  --sl-color-code-900: #202225;
+
+  --sl-color-bg-canvas: var(--sl-color-neutral-50);
+  --sl-color-bg-surface: var(--sl-color-neutral-0);
+  --sl-color-bg-subtle: var(--sl-color-neutral-100);
+  --sl-color-bg-code: var(--sl-color-code-900);
+  --sl-color-bg-brand-soft: var(--sl-color-purple-50);
+  --sl-color-bg-accent-soft: var(--sl-color-orange-100);
+  --sl-color-text-primary: var(--sl-color-neutral-900);
+  --sl-color-text-secondary: var(--sl-color-neutral-500);
+  --sl-color-text-inverse: var(--sl-color-neutral-0);
+  --sl-color-text-brand: var(--sl-color-purple-600);
+  --sl-color-border-default: var(--sl-color-neutral-200);
+  --sl-color-action-primary: var(--sl-color-purple-600);
+  --sl-color-accent-default: var(--sl-color-orange-500);
+  --sl-color-status-success: var(--sl-color-green-600);
+  --sl-color-status-danger: var(--sl-color-red-600);
+
+  --sl-font-sans: var(--sl-loaded-font-sans, 'Inter'), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --sl-font-mono: var(--sl-loaded-font-mono, 'JetBrains Mono'), monospace;
+  --sl-font-display: 48px;
+  --sl-font-h1: 38px;
+  --sl-font-h2: 28px;
+  --sl-font-h3: 20px;
+  --sl-font-body-lg: 18px;
+  --sl-font-body: 16px;
+  --sl-font-body-sm: 14px;
+  --sl-font-label: 13px;
+  --sl-font-code: 14px;
+
+  --sl-spacing-2xs: 4px;
+  --sl-spacing-xs: 8px;
+  --sl-spacing-sm: 12px;
+  --sl-spacing-md: 16px;
+  --sl-spacing-lg: 24px;
+  --sl-spacing-xl: 32px;
+  --sl-spacing-2xl: 48px;
+  --sl-spacing-3xl: 64px;
+
+  --sl-radius-none: 0;
+  --sl-radius-sm: 6px;
+  --sl-radius-md: 12px;
+  --sl-radius-lg: 18px;
+  --sl-radius-full: 999px;
+
+  --sl-shadow-small: 0 1px 3px 0 #0000000f;
+  --sl-shadow-medium: 0 6px 18px -4px #00000014;
+
+  --sl-layout-canvas-desktop: 1440px;
+  --sl-layout-content-max: 1328px;
+  --sl-layout-prose-max: 720px;
+  --sl-layout-gutter: clamp(20px, 4vw, 56px);
+}
