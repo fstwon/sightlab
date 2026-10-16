@@ -16,12 +16,16 @@
   transition: opacity 150ms ease;
 }
 
-.button:hover:not(:disabled) { opacity: 0.88; }
-.button:focus-visible {
+.button:hover:not(:disabled),
+.button[data-story-state='hover'] { opacity: 0.88; }
+.button:focus-visible,
+.button[data-story-state='focus'] {
   outline: 3px solid var(--sl-color-action-primary);
   outline-offset: 2px;
 }
 .button:disabled { opacity: 0.38; cursor: not-allowed; }
+.button.danger[data-story-state='hover'],
+.button.danger:hover:not(:disabled) { opacity: 0.82; }
 
 .primary {
   color: var(--sl-color-text-inverse);
