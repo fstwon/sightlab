@@ -1,7 +1,0 @@
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--sl-color-bg-canvas); color: var(--sl-color-text-primary); font-family: var(--sl-font-sans); }
-button, input, textarea, select { font: inherit; }
-img, svg { max-width: 100%; }
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--sl-color-action-primary); outline-offset: 3px; }
