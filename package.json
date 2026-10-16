@@ -12,13 +12,15 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "storybook": "pnpm --filter @sightlab/storybook storybook",
+    "storybook:build": "pnpm --filter @sightlab/storybook storybook:build"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^15.5.0",
     "@sightlab/eslint": "workspace:*",
     "@sightlab/prettier": "workspace:*",
     "@sightlab/typescript": "workspace:*",
-    "@next/eslint-plugin-next": "^15.5.0",
     "eslint": "^9.0.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.0.0",
