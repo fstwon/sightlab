@@ -6,6 +6,7 @@ build/
 out/
 .next/
 coverage/
+storybook-static/
 .env
 .env.*
 !.env.example
