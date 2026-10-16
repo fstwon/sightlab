@@ -18,8 +18,8 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@sightlab/config-eslint": "workspace:*",
-    "@sightlab/config-typescript": "workspace:*",
+    "@sightlab/eslint": "workspace:*",
+    "@sightlab/typescript": "workspace:*",
     "@types/node": "^22.0.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",

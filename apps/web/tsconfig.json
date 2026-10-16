@@ -1,5 +1,5 @@
 {
-  "extends": "@sightlab/config-typescript/next",
+  "extends": "@sightlab/typescript/next",
   "compilerOptions": {
     "baseUrl": ".",
     "plugins": [

@@ -1,5 +1,5 @@
 {
-  "name": "@sightlab/config-typescript",
+  "name": "@sightlab/typescript",
   "version": "0.0.0",
   "private": true,
   "exports": {

@@ -1,3 +1,3 @@
-import base from '@sightlab/config-eslint/base';
+import base from '@sightlab/eslint/base';
 
 export default base;

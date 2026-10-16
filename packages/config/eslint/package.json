@@ -1,5 +1,5 @@
 {
-  "name": "@sightlab/config-eslint",
+  "name": "@sightlab/eslint",
   "version": "0.0.0",
   "private": true,
   "type": "module",

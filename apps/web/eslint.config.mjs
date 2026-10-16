@@ -1,3 +1,3 @@
-import next from '@sightlab/config-eslint/next';
+import next from '@sightlab/eslint/next';
 
 export default next;

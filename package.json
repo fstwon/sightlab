@@ -15,9 +15,9 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "@sightlab/config-eslint": "workspace:*",
-    "@sightlab/config-prettier": "workspace:*",
-    "@sightlab/config-typescript": "workspace:*",
+    "@sightlab/eslint": "workspace:*",
+    "@sightlab/prettier": "workspace:*",
+    "@sightlab/typescript": "workspace:*",
     "@next/eslint-plugin-next": "^15.5.0",
     "eslint": "^9.0.0",
     "eslint-plugin-react-hooks": "^5.2.0",

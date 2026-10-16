@@ -1,3 +1,3 @@
-import config from '@sightlab/config-prettier' with { type: 'json' };
+import config from '@sightlab/prettier' with { type: 'json' };
 
 export default config;
