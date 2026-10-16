@@ -1,4 +1,4 @@
-# @sightlab/vite-config
+# @sightlab/vite
 
 프레임워크에 종속되지 않는 공통 Vite 설정 패키지입니다. React, Vue 등 프레임워크 전용 플러그인은 포함하지 않습니다.
 
@@ -9,7 +9,7 @@ Vite를 사용하는 워크스페이스 패키지에서 아래 의존성을 추�
 ```json
 {
   "devDependencies": {
-    "@sightlab/vite-config": "workspace:*",
+    "@sightlab/vite": "workspace:*",
     "vite": "^7.0.0"
   }
 }
@@ -18,7 +18,7 @@ Vite를 사용하는 워크스페이스 패키지에서 아래 의존성을 추�
 해당 패키지의 `vite.config.js`에서 공통 설정을 가져옵니다.
 
 ```js
-import { createViteConfig } from '@sightlab/vite-config';
+import { createViteConfig } from '@sightlab/vite';
 
 export default createViteConfig({
   server: {

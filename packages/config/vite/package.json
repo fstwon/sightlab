@@ -1,5 +1,5 @@
 {
-  "name": "@sightlab/vite-config",
+  "name": "@sightlab/vite",
   "version": "0.0.0",
   "private": true,
   "type": "module",
