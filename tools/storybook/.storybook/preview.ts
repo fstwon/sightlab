@@ -1,7 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
-import '@sightlab/design-tokens/tokens.css';
-import '@sightlab/design-tokens/reset.css';
-import '@sightlab/design-tokens/typography.css';
+import '@sightlab/styles/index.scss';
 
 const preview: Preview = {
   parameters: {
