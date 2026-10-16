@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import '../shared/styles/tokens.css';
-import '../shared/styles/reset.css';
-import '../shared/styles/typography.css';
+import '@sightlab/design-tokens/tokens.css';
+import '@sightlab/design-tokens/reset.css';
+import '@sightlab/design-tokens/typography.css';
 import './globals.css';
 
 export const metadata: Metadata = {

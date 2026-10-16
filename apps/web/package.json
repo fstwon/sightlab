@@ -12,7 +12,9 @@
   "dependencies": {
     "next": "^15.5.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "@sightlab/design-tokens": "workspace:*",
+    "@sightlab/ui": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
