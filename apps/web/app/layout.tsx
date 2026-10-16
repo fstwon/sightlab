@@ -6,7 +6,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', vari
 import '@sightlab/design-tokens/tokens.css';
 import '@sightlab/design-tokens/reset.css';
 import '@sightlab/design-tokens/typography.css';
-import './globals.css';
+import './globals.scss';
 
 export const metadata: Metadata = {
   title: 'Sightlab',
