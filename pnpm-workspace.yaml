@@ -3,3 +3,4 @@ packages:
   - 'lib/*'
   - 'packages/config/*'
   - 'experiments/*'
+  - 'tools/*'
