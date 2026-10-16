@@ -9,7 +9,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "test": "turbo run lint & turbo run test & turbo run build"
+    "test": "turbo run test"
   },
   "devDependencies": {
     "turbo": "^2.5.5"
