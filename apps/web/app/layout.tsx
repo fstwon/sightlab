@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import '../shared/styles/tokens.css';
+import '../shared/styles/reset.css';
+import '../shared/styles/typography.css';
 import './globals.css';
 
 export const metadata: Metadata = {
