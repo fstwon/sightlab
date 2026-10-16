@@ -1,0 +1,11 @@
+{
+  "name": "@sightlab/styles",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./index.scss": "./index.scss",
+    "./tokens.scss": "./tokens.scss",
+    "./reset.scss": "./reset.scss",
+    "./typography.scss": "./typography.scss"
+  }
+}
