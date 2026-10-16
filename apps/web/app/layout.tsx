@@ -9,8 +9,8 @@ import '@sightlab/design-tokens/typography.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Sightlab | Experiments',
-  description: '개별 기술 실험을 탐색하고 실행하는 Sightlab 미리보기',
+  title: 'Sightlab',
+  description: '개발 실험과 기술 기록을 위한 Sightlab',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
