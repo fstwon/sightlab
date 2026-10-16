@@ -7,7 +7,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@sightlab/design-tokens": "workspace:*",
+    "@sightlab/styles": "workspace:*",
     "@sightlab/ui": "workspace:*"
   },
   "devDependencies": {
