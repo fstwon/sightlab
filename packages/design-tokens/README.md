@@ -4,4 +4,4 @@
 
 `@sightlab/design-tokens/tokens.css`, `reset.css`, `typography.css`를 필요한 앱에서 선택적으로 import합니다.
 
-Radius 및 Elevation의 Figma 세부 값은 추가 검증 대상이며 웹 폰트는 아직 로딩하지 않습니다.
+Figma 변수 기준 Radius, Elevation, Typography line-height 및 letter-spacing을 반영했습니다. Inter / JetBrains Mono 웹 폰트의 실제 로딩 설정은 별도 검증이 필요합니다.
