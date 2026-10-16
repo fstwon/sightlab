@@ -1,3 +1,3 @@
 # Prettier 공통 설정
 
-공통 포맷 옵션을 `index.json`에 보관합니다. 루트 `.prettierrc.json`은 동일 옵션을 적용합니다.
+`index.json`에 공통 포맷 옵션을 정의하고, 루트 `prettier.config.mjs`에서 가져옵니다.
