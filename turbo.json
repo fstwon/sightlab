@@ -8,7 +8,9 @@
       "outputs": [
         "dist/**",
         "build/**",
-        "out/**"
+        "out/**",
+        ".next/**",
+        "!.next/cache/**"
       ]
     },
     "dev": {
@@ -18,8 +20,17 @@
     "lint": {
       "outputs": []
     },
+    "typecheck": {
+      "dependsOn": [
+        "^typecheck"
+      ],
+      "outputs": []
+    },
     "test": {
       "outputs": []
+    },
+    "format": {
+      "cache": false
     }
   }
 }

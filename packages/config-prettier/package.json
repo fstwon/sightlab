@@ -1,0 +1,8 @@
+{
+  "name": "@sightlab/config-prettier",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./index.json"
+  }
+}

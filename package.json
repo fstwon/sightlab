@@ -9,9 +9,20 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "turbo": "^2.5.5"
+    "@sightlab/config-eslint": "workspace:*",
+    "@sightlab/config-prettier": "workspace:*",
+    "@sightlab/config-typescript": "workspace:*",
+    "@next/eslint-plugin-next": "^15.5.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.5.5",
+    "typescript-eslint": "^8.0.0"
   }
 }
