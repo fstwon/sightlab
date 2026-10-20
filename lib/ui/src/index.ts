@@ -10,3 +10,5 @@ export { FilterSelect } from './FilterSelect/FilterSelect';
 export type { FilterSelectProps, FilterSelectOption } from './FilterSelect/FilterSelect';
 export { TagBadge } from './TagBadge/TagBadge';
 export type { TagBadgeProps, TagBadgeVariant } from './TagBadge/TagBadge';
+export { NoteCard } from './NoteCard/NoteCard';
+export type { NoteCardProps } from './NoteCard/NoteCard';
