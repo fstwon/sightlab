@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Hover: Story = {
-  args: { 'data-story-state': 'hover' },
+  render: (args) => <NoteCard {...args} data-story-state="hover" />,
 };
 
 export const Overflow: Story = {
