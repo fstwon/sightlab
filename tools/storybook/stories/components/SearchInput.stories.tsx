@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Focus: Story = {
-  render: (args) => <SearchInput {...args} autoFocus />,
+  render: (args) => <SearchInput {...args} data-story-state="focus" />,
 };
 
 export const Filled: Story = {
@@ -28,7 +28,7 @@ export const AllStates: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: 'var(--sl-spacing-lg)' }}>
       <SearchInput placeholder="노트 검색" />
-      <SearchInput placeholder="노트 검색" autoFocus />
+      <SearchInput placeholder="노트 검색" data-story-state="focus" />
       <SearchInput defaultValue="React" />
       <SearchInput placeholder="노트 검색" disabled />
     </div>
