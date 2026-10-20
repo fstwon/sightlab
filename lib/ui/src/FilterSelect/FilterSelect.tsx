@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import type { SelectHTMLAttributes } from 'react';
+import { Icon } from '../Icon/Icon';
 import styles from './FilterSelect.module.scss';
 
 export type FilterSelectOption = {
@@ -31,7 +32,7 @@ export const FilterSelect = forwardRef<HTMLSelectElement, FilterSelectProps>(fun
           </option>
         ))}
       </select>
-      <span className={styles.chevron} aria-hidden="true">⌄</span>
+      <Icon name="chevron-down" size={16} className={styles.chevron} />
     </span>
   );
 });
