@@ -3,9 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/generated.ts"
-  },
-  "scripts": {
-    "icons:generate": "node scripts/generate-icons.mjs"
+    "./menu": "./svg/menu.svg",
+    "./close": "./svg/close.svg",
+    "./search": "./svg/search.svg",
+    "./filter": "./svg/filter.svg",
+    "./chevron-up": "./svg/chevron-up.svg",
+    "./chevron-down": "./svg/chevron-down.svg",
+    "./chevron-left": "./svg/chevron-left.svg",
+    "./chevron-right": "./svg/chevron-right.svg",
+    "./arrow-up": "./svg/arrow-up.svg",
+    "./arrow-left": "./svg/arrow-left.svg",
+    "./arrow-right": "./svg/arrow-right.svg",
+    "./copy": "./svg/copy.svg",
+    "./check": "./svg/check.svg",
+    "./external-link": "./svg/external-link.svg",
+    "./refresh": "./svg/refresh.svg",
+    "./more": "./svg/more.svg"
   }
 }
