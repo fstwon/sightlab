@@ -6,3 +6,5 @@ export { SearchInput } from './SearchInput/SearchInput';
 export type { SearchInputProps } from './SearchInput/SearchInput';
 export { Icon } from './Icon/Icon';
 export type { IconName, IconProps } from './Icon/Icon';
+export { FilterSelect } from './FilterSelect/FilterSelect';
+export type { FilterSelectProps, FilterSelectOption } from './FilterSelect/FilterSelect';
