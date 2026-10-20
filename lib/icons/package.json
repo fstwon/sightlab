@@ -19,5 +19,11 @@
     "./external-link": "./svg/external-link.svg",
     "./refresh": "./svg/refresh.svg",
     "./more": "./svg/more.svg"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.1.0"
   }
 }
