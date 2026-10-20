@@ -9,7 +9,7 @@ const config: StorybookConfig = {
     config.esbuild = { ...config.esbuild, jsx: 'automatic' };
     config.plugins = [
       ...(config.plugins ?? []),
-      svgr({ include: '**/*.svg', svgrOptions: { titleProp: true } }),
+      svgr({ svgrOptions: { titleProp: true } }),
     ];
     return config;
   },
