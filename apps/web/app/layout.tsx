@@ -2,7 +2,11 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--sl-loaded-font-sans' });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--sl-loaded-font-mono' });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--sl-loaded-font-mono',
+});
 import '@sightlab/styles/index.scss';
 import './globals.scss';
 

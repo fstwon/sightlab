@@ -22,12 +22,12 @@ function StateExamples({ variant }: { variant: ButtonVariant }) {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sl-spacing-lg)' }}>
       {states.map((state) => (
         <div key={state} style={{ display: 'grid', gap: 'var(--sl-spacing-xs)' }}>
-          <span style={{ fontSize: 'var(--sl-font-label)', color: 'var(--sl-color-text-secondary)' }}>{state}</span>
-          <Button
-            variant={variant}
-            disabled={state === 'disabled'}
-            data-story-state={state}
+          <span
+            style={{ fontSize: 'var(--sl-font-label)', color: 'var(--sl-color-text-secondary)' }}
           >
+            {state}
+          </span>
+          <Button variant={variant} disabled={state === 'disabled'} data-story-state={state}>
             Button
           </Button>
         </div>

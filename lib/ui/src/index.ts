@@ -4,3 +4,5 @@ export { Button } from './Button/Button';
 export type { ButtonProps, ButtonVariant } from './Button/Button';
 export { SearchInput } from './SearchInput/SearchInput';
 export type { SearchInputProps } from './SearchInput/SearchInput';
+export { Icon } from './Icon/Icon';
+export type { IconName, IconProps } from './Icon/Icon';

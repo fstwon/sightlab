@@ -7,6 +7,19 @@ type ContainerProps = HTMLAttributes<HTMLElement> & {
   children: ReactNode;
 };
 
-export function Container({ as: Tag = 'div', size = 'content', className, children, ...props }: ContainerProps) {
-  return <Tag className={[styles.container, styles[size], className].filter(Boolean).join(' ')} {...props}>{children}</Tag>;
+export function Container({
+  as: Tag = 'div',
+  size = 'content',
+  className,
+  children,
+  ...props
+}: ContainerProps) {
+  return (
+    <Tag
+      className={[styles.container, styles[size], className].filter(Boolean).join(' ')}
+      {...props}
+    >
+      {children}
+    </Tag>
+  );
 }

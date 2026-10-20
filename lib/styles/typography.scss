@@ -1,9 +1,31 @@
-.sl-type-display { font: 700 var(--sl-font-display)/54px var(--sl-font-sans); letter-spacing: -1px; }
-.sl-type-h1 { font: 700 var(--sl-font-h1)/46px var(--sl-font-sans); letter-spacing: -0.6px; }
-.sl-type-h2 { font: 700 var(--sl-font-h2)/36px var(--sl-font-sans); letter-spacing: -0.3px; }
-.sl-type-h3 { font: 600 var(--sl-font-h3)/28px var(--sl-font-sans); }
-.sl-type-body-lg { font: 400 var(--sl-font-body-lg)/30px var(--sl-font-sans); }
-.sl-type-body { font: 400 var(--sl-font-body)/26px var(--sl-font-sans); }
-.sl-type-body-sm { font: 400 var(--sl-font-body-sm)/22px var(--sl-font-sans); }
-.sl-type-label { font: 500 var(--sl-font-label)/18px var(--sl-font-sans); letter-spacing: 0.1px; }
-.sl-type-code { font: 400 var(--sl-font-code)/23px var(--sl-font-mono); }
+.sl-type-display {
+  font: 700 var(--sl-font-display)/54px var(--sl-font-sans);
+  letter-spacing: -1px;
+}
+.sl-type-h1 {
+  font: 700 var(--sl-font-h1)/46px var(--sl-font-sans);
+  letter-spacing: -0.6px;
+}
+.sl-type-h2 {
+  font: 700 var(--sl-font-h2)/36px var(--sl-font-sans);
+  letter-spacing: -0.3px;
+}
+.sl-type-h3 {
+  font: 600 var(--sl-font-h3)/28px var(--sl-font-sans);
+}
+.sl-type-body-lg {
+  font: 400 var(--sl-font-body-lg)/30px var(--sl-font-sans);
+}
+.sl-type-body {
+  font: 400 var(--sl-font-body)/26px var(--sl-font-sans);
+}
+.sl-type-body-sm {
+  font: 400 var(--sl-font-body-sm)/22px var(--sl-font-sans);
+}
+.sl-type-label {
+  font: 500 var(--sl-font-label)/18px var(--sl-font-sans);
+  letter-spacing: 0.1px;
+}
+.sl-type-code {
+  font: 400 var(--sl-font-code)/23px var(--sl-font-mono);
+}

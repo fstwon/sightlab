@@ -30,7 +30,8 @@
   --sl-color-status-success: var(--sl-color-green-600);
   --sl-color-status-danger: var(--sl-color-red-600);
 
-  --sl-font-sans: var(--sl-loaded-font-sans, 'Inter'), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --sl-font-sans:
+    var(--sl-loaded-font-sans, 'Inter'), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --sl-font-mono: var(--sl-loaded-font-mono, 'JetBrains Mono'), monospace;
   --sl-font-display: 48px;
   --sl-font-h1: 38px;

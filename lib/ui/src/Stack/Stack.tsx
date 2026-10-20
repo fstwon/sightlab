@@ -9,5 +9,17 @@ type StackProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export function Stack({ direction = 'column', gap = 'md', style, children, ...props }: StackProps) {
-  return <div {...props} style={{ display: 'flex', flexDirection: direction, gap: `var(--sl-spacing-${gap})`, ...style }}>{children}</div>;
+  return (
+    <div
+      {...props}
+      style={{
+        display: 'flex',
+        flexDirection: direction,
+        gap: `var(--sl-spacing-${gap})`,
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
 }

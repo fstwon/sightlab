@@ -15,8 +15,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const items = ['First', 'Second', 'Third'].map((label) => (
-  <div key={label} style={{ padding: 16, background: 'var(--sl-color-bg-subtle)', border: '1px solid var(--sl-color-border-default)' }}>{label}</div>
+  <div
+    key={label}
+    style={{
+      padding: 16,
+      background: 'var(--sl-color-bg-subtle)',
+      border: '1px solid var(--sl-color-border-default)',
+    }}
+  >
+    {label}
+  </div>
 ));
 
 export const Column: Story = { render: (args) => <Stack {...args}>{items}</Stack> };
-export const Row: Story = { args: { direction: 'row', gap: 'lg' }, render: (args) => <Stack {...args}>{items}</Stack> };
+export const Row: Story = {
+  args: { direction: 'row', gap: 'lg' },
+  render: (args) => <Stack {...args}>{items}</Stack>,
+};
