@@ -4,7 +4,7 @@
   justify-content: center;
   box-sizing: border-box;
   min-height: 32px;
-  padding-inline: 12px;
+  padding-inline: var(--sl-spacing-sm);
   border: 2px solid transparent;
   border-radius: var(--sl-radius-full);
   font-family: var(--sl-font-sans);
@@ -12,6 +12,17 @@
   font-weight: 500;
   line-height: normal;
   white-space: nowrap;
+
+  &.selected {
+    &.neutral,
+    &.brand {
+      border-color: var(--sl-color-action-primary);
+    }
+
+    &.accent {
+      border-color: var(--sl-color-accent-default);
+    }
+  }
 }
 
 .neutral {
@@ -27,13 +38,4 @@
 .accent {
   background: var(--sl-color-bg-accent-soft);
   color: var(--sl-color-text-primary);
-}
-
-.selected.neutral,
-.selected.brand {
-  border-color: var(--sl-color-action-primary);
-}
-
-.selected.accent {
-  border-color: var(--sl-color-accent-default);
 }
