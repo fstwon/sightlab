@@ -1,3 +1,4 @@
+/// <reference path="./svg.d.ts" />
 import type { SVGProps } from 'react';
 import Menu from '@sightlab/icons/menu';
 import Close from '@sightlab/icons/close';
@@ -55,8 +56,7 @@ export function Icon({ name, size = 24, title, 'aria-label': ariaLabel, ...props
       aria-label={accessibleName}
       aria-hidden={accessibleName ? undefined : true}
       focusable="false"
-    >
-      {title && <title>{title}</title>}
-    </Component>
+      title={title}
+    />
   );
 }
