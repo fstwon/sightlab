@@ -1,21 +1,21 @@
 /// <reference path="./svg.d.ts" />
 import type { SVGProps } from 'react';
-import Menu from '@sightlab/icons/menu';
-import Close from '@sightlab/icons/close';
-import Search from '@sightlab/icons/search';
-import Filter from '@sightlab/icons/filter';
-import ChevronUp from '@sightlab/icons/chevron-up';
-import ChevronDown from '@sightlab/icons/chevron-down';
-import ChevronLeft from '@sightlab/icons/chevron-left';
-import ChevronRight from '@sightlab/icons/chevron-right';
-import ArrowUp from '@sightlab/icons/arrow-up';
-import ArrowLeft from '@sightlab/icons/arrow-left';
-import ArrowRight from '@sightlab/icons/arrow-right';
-import Copy from '@sightlab/icons/copy';
-import Check from '@sightlab/icons/check';
-import ExternalLink from '@sightlab/icons/external-link';
-import Refresh from '@sightlab/icons/refresh';
-import More from '@sightlab/icons/more';
+import Menu from '@sightlab/icons/menu?react';
+import Close from '@sightlab/icons/close?react';
+import Search from '@sightlab/icons/search?react';
+import Filter from '@sightlab/icons/filter?react';
+import ChevronUp from '@sightlab/icons/chevron-up?react';
+import ChevronDown from '@sightlab/icons/chevron-down?react';
+import ChevronLeft from '@sightlab/icons/chevron-left?react';
+import ChevronRight from '@sightlab/icons/chevron-right?react';
+import ArrowUp from '@sightlab/icons/arrow-up?react';
+import ArrowLeft from '@sightlab/icons/arrow-left?react';
+import ArrowRight from '@sightlab/icons/arrow-right?react';
+import Copy from '@sightlab/icons/copy?react';
+import Check from '@sightlab/icons/check?react';
+import ExternalLink from '@sightlab/icons/external-link?react';
+import Refresh from '@sightlab/icons/refresh?react';
+import More from '@sightlab/icons/more?react';
 
 const icons = {
   menu: Menu,
