@@ -42,7 +42,7 @@ export function NoteCard({
         )}
       </div>
       <p className={styles.meta}>
-        <time dateTime={date}>{date}</time>
+        <time dateTime={date}>{date.replaceAll('-', '.')}</time>
         <span aria-hidden="true"> · </span>
         <span>{readingMinutes} min</span>
       </p>
