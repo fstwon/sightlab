@@ -9,8 +9,12 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(functi
   ref,
 ) {
   return (
-    <div className={[styles.wrapper, disabled && styles.disabled, className].filter(Boolean).join(' ')}>
-      <span className={styles.icon} aria-hidden="true">⌕</span>
+    <div
+      className={[styles.wrapper, disabled && styles.disabled, className].filter(Boolean).join(' ')}
+    >
+      <span className={styles.icon} aria-hidden="true">
+        ⌕
+      </span>
       <input
         {...props}
         ref={ref}

@@ -7,7 +7,10 @@ const config: StorybookConfig = {
   framework: '@storybook/react-vite',
   viteFinal: async (config) => {
     config.esbuild = { ...config.esbuild, jsx: 'automatic' };
-    config.plugins = [...(config.plugins ?? []), svgr({ include: '**/*.svg', svgrOptions: { titleProp: true } })];
+    config.plugins = [
+      ...(config.plugins ?? []),
+      svgr({ include: '**/*.svg', svgrOptions: { titleProp: true } }),
+    ];
     return config;
   },
 };

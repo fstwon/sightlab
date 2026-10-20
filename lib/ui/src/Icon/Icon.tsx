@@ -18,10 +18,10 @@ import Refresh from '@sightlab/icons/refresh';
 import More from '@sightlab/icons/more';
 
 const icons = {
-  'menu': Menu,
-  'close': Close,
-  'search': Search,
-  'filter': Filter,
+  menu: Menu,
+  close: Close,
+  search: Search,
+  filter: Filter,
   'chevron-up': ChevronUp,
   'chevron-down': ChevronDown,
   'chevron-left': ChevronLeft,
@@ -29,11 +29,11 @@ const icons = {
   'arrow-up': ArrowUp,
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
-  'copy': Copy,
-  'check': Check,
+  copy: Copy,
+  check: Check,
   'external-link': ExternalLink,
-  'refresh': Refresh,
-  'more': More,
+  refresh: Refresh,
+  more: More,
 };
 
 export type IconName = keyof typeof icons;
