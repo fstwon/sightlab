@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import type { InputHTMLAttributes } from 'react';
+import { Icon } from '../Icon/Icon';
 import styles from './SearchInput.module.scss';
 
 export type SearchInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
@@ -12,9 +13,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(functi
     <div
       className={[styles.wrapper, disabled && styles.disabled, className].filter(Boolean).join(' ')}
     >
-      <span className={styles.icon} aria-hidden="true">
-        ⌕
-      </span>
+      <Icon name="search" size={20} className={styles.icon} />
       <input
         {...props}
         ref={ref}
