@@ -8,3 +8,5 @@ export { Icon } from './Icon/Icon';
 export type { IconName, IconProps } from './Icon/Icon';
 export { FilterSelect } from './FilterSelect/FilterSelect';
 export type { FilterSelectProps, FilterSelectOption } from './FilterSelect/FilterSelect';
+export { TagBadge } from './TagBadge/TagBadge';
+export type { TagBadgeProps, TagBadgeVariant } from './TagBadge/TagBadge';
