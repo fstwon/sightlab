@@ -93,7 +93,6 @@ closes #123
 - Windows 배치 파일(`.bat`, `.cmd`)은 CRLF를 사용합니다.
 - 상세 규칙은 `.gitattributes`를 따릅니다.
 
-
 ## 코드 작성 규칙
 
 - React 컴포넌트와 컴포넌트 파일명은 PascalCase를 사용합니다.
