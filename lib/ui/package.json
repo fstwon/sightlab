@@ -9,9 +9,15 @@
     "react": "^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.0"
+    "@types/react": "^19.1.0",
+    "@sightlab/typescript": "workspace:*",
+    "typescript": "^5.9.0"
   },
   "dependencies": {
     "@sightlab/icons": "workspace:*"
+  },
+  "scripts": {
+    "lint": "eslint src --config ../../eslint.config.mjs",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   }
 }

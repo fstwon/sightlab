@@ -4,7 +4,7 @@ import { Stack } from '@sightlab/ui';
 const meta = {
   title: 'Components/Stack',
   component: Stack,
-  args: { direction: 'column', gap: 'md' },
+  args: { direction: 'column', gap: 'md', children: 'Stack items' },
   argTypes: {
     direction: { control: 'radio', options: ['row', 'column'] },
     gap: { control: 'select', options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'] },
