@@ -19,12 +19,7 @@ export function TagBadge({
   return (
     <span
       {...props}
-      className={[
-        styles.badge,
-        styles[variant],
-        selected && styles.selected,
-        className,
-      ]
+      className={[styles.badge, styles[variant], selected && styles.selected, className]
         .filter(Boolean)
         .join(' ')}
     >
