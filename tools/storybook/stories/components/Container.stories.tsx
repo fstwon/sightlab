@@ -4,7 +4,7 @@ import { Container } from '@sightlab/ui';
 const meta = {
   title: 'Components/Container',
   component: Container,
-  args: { size: 'content' },
+  args: { size: 'content', children: 'Content container' },
   argTypes: {
     size: { control: 'radio', options: ['content', 'prose'] },
     as: { control: 'select', options: ['div', 'main', 'section', 'article'] },
