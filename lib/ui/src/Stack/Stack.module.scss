@@ -1,0 +1,43 @@
+.stack {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.gap2xs {
+  gap: var(--sl-spacing-2xs);
+}
+
+.gapXs {
+  gap: var(--sl-spacing-xs);
+}
+
+.gapSm {
+  gap: var(--sl-spacing-sm);
+}
+
+.gapMd {
+  gap: var(--sl-spacing-md);
+}
+
+.gapLg {
+  gap: var(--sl-spacing-lg);
+}
+
+.gapXl {
+  gap: var(--sl-spacing-xl);
+}
+
+.gap2xl {
+  gap: var(--sl-spacing-2xl);
+}
+
+.gap3xl {
+  gap: var(--sl-spacing-3xl);
+}
