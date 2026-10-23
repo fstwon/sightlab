@@ -6,7 +6,6 @@
   width: 100%;
   max-width: 368px;
   min-height: 410px;
-  height: 410px;
   padding: var(--sl-spacing-lg);
   border: 1px solid var(--sl-color-border-default);
   border-radius: var(--sl-radius-lg);
@@ -14,7 +13,6 @@
   color: inherit;
   font-family: var(--sl-font-sans);
   text-decoration: none;
-  overflow: hidden;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 
   &:hover,
@@ -106,7 +104,8 @@
   overflow: hidden;
 
   > * {
-    flex-shrink: 0;
+    flex: 1 1 0;
+    min-width: 0;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -130,7 +129,6 @@
   gap: var(--sl-spacing-sm);
   max-width: 342px;
   min-height: 310px;
-  height: 310px;
   padding: var(--sl-spacing-md);
   border-radius: var(--sl-radius-md);
 
