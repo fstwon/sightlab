@@ -1,9 +1,22 @@
 {
   "extends": "@sightlab/typescript/react",
   "compilerOptions": {
-    "types": ["react", "react-dom"],
+    "types": [
+      "react",
+      "react-dom"
+    ],
     "allowImportingTsExtensions": true
   },
-  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "stories/**/*.ts", "stories/**/*.tsx"],
-  "exclude": ["node_modules", "storybook-static"]
+  "include": [
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "stories/**/*.ts",
+    "stories/**/*.tsx",
+    "../../lib/ui/src/styles.d.ts",
+    "../../lib/ui/src/Icon/svg.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "storybook-static"
+  ]
 }
