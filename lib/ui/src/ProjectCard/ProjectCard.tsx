@@ -2,7 +2,10 @@ import type { AnchorHTMLAttributes } from 'react';
 import { TagBadge } from '../TagBadge/TagBadge';
 import styles from './ProjectCard.module.scss';
 
-export type ProjectCardProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children' | 'title'> & {
+export type ProjectCardProps = Omit<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  'children' | 'title'
+> & {
   href: string;
   index: string;
   category: string;
