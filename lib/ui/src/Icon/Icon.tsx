@@ -1,4 +1,3 @@
-/// <reference path="./svg.d.ts" />
 import type { SVGProps } from 'react';
 import Menu from '@sightlab/icons/menu?react';
 import Close from '@sightlab/icons/close?react';
