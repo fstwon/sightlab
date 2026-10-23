@@ -12,3 +12,5 @@ export { TagBadge } from './TagBadge/TagBadge';
 export type { TagBadgeProps, TagBadgeVariant } from './TagBadge/TagBadge';
 export { NoteCard } from './NoteCard/NoteCard';
 export type { NoteCardProps } from './NoteCard/NoteCard';
+export { ProjectCard } from './ProjectCard/ProjectCard';
+export type { ProjectCardProps } from './ProjectCard/ProjectCard';
