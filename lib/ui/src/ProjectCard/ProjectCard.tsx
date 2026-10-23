@@ -10,6 +10,8 @@ export type ProjectCardProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'ch
   description: string;
   tags: readonly string[];
   connectedNotes: number;
+  /** Storybook 등에서 모바일 시안을 독립적으로 검증할 때 사용합니다. */
+  size?: 'responsive' | 'mobile';
 };
 
 export function ProjectCard({
@@ -20,6 +22,7 @@ export function ProjectCard({
   description,
   tags,
   connectedNotes,
+  size = 'responsive',
   className,
   ...props
 }: ProjectCardProps) {
@@ -30,6 +33,7 @@ export function ProjectCard({
     <a
       {...props}
       href={href}
+      data-size={size}
       className={[styles.card, className].filter(Boolean).join(' ')}
     >
       <div className={styles.thumbnail} aria-hidden="true">
@@ -40,13 +44,19 @@ export function ProjectCard({
       <p className={styles.description}>{description}</p>
       {tags.length > 0 && (
         <div className={styles.tags} aria-label="기술 태그">
-          {visibleTags.map((tag, i) => (
-            <TagBadge key={`${tag}-${i}`} variant="neutral">
-              {tag}
-            </TagBadge>
-          ))}
+          <div className={styles.tagItems}>
+            {visibleTags.map((tag, i) => (
+              <TagBadge key={`${tag}-${i}`} variant="neutral">
+                {tag}
+              </TagBadge>
+            ))}
+          </div>
           {remainingTags > 0 && (
-            <TagBadge variant="neutral" aria-label={`추가 태그 ${remainingTags}개`}>
+            <TagBadge
+              className={styles.tagOverflow}
+              variant="neutral"
+              aria-label={`추가 태그 ${remainingTags}개`}
+            >
               +{remainingTags}
             </TagBadge>
           )}
