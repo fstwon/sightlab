@@ -14,39 +14,47 @@
   line-height: 20px;
   cursor: pointer;
   transition: opacity 150ms ease;
-}
 
-.button:hover:not(:disabled),
-.button[data-story-state='hover'] {
-  opacity: 0.88;
-}
-.button:focus-visible,
-.button[data-story-state='focus'] {
-  outline: 3px solid var(--sl-color-action-primary);
-  outline-offset: 2px;
-}
-.button:disabled {
-  opacity: 0.38;
-  cursor: not-allowed;
-}
-.button.danger[data-story-state='hover'],
-.button.danger:hover:not(:disabled) {
-  opacity: 0.82;
+  &:hover:not(:disabled),
+  &[data-story-state='hover'] {
+    opacity: 0.88;
+  }
+
+  &:focus-visible,
+  &[data-story-state='focus'] {
+    outline: 3px solid var(--sl-color-action-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+
+  &.danger {
+    &:hover:not(:disabled),
+    &[data-story-state='hover'] {
+      opacity: 0.82;
+    }
+  }
 }
 
 .primary {
   color: var(--sl-color-text-inverse);
   background: var(--sl-color-action-primary);
 }
+
 .secondary {
   color: var(--sl-color-text-primary);
   background: var(--sl-color-bg-surface);
   border-color: var(--sl-color-border-default);
 }
+
 .ghost {
   color: var(--sl-color-text-brand);
   background: transparent;
 }
+
 .danger {
   color: var(--sl-color-text-inverse);
   background: var(--sl-color-status-danger);
