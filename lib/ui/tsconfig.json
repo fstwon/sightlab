@@ -1,0 +1,16 @@
+{
+  "extends": "@sightlab/typescript/react",
+  "compilerOptions": {
+    "types": [
+      "react"
+    ],
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
