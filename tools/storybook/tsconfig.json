@@ -1,0 +1,20 @@
+{
+  "extends": "@sightlab/typescript/react",
+  "compilerOptions": {
+    "types": [
+      "react",
+      "react-dom"
+    ],
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "stories/**/*.ts",
+    "stories/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "storybook-static"
+  ]
+}
