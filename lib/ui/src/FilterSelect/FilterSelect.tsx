@@ -18,7 +18,9 @@ export const FilterSelect = forwardRef<HTMLSelectElement, FilterSelectProps>(fun
   ref,
 ) {
   return (
-    <span className={[styles.wrapper, disabled && styles.disabled, className].filter(Boolean).join(' ')}>
+    <span
+      className={[styles.wrapper, disabled && styles.disabled, className].filter(Boolean).join(' ')}
+    >
       <select
         {...props}
         ref={ref}

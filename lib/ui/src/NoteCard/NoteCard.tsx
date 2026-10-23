@@ -23,10 +23,7 @@ export function NoteCard({
   const remainingTags = Math.max(0, tags.length - visibleTags.length);
 
   return (
-    <article
-      {...props}
-      className={[styles.card, className].filter(Boolean).join(' ')}
-    >
+    <article {...props} className={[styles.card, className].filter(Boolean).join(' ')}>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.summary}>{summary}</p>
       <div className={styles.tags} aria-label="태그">
