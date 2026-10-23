@@ -10,7 +10,7 @@ export type ProjectCardProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'ch
   description: string;
   tags: readonly string[];
   connectedNotes: number;
-  /** Storybook 등에서 모바일 시안을 독립적으로 검증할 때 사용합니다. */
+  /** 반응형 기본 동작 또는 좁은 컨테이너에서 모바일 카드 형태를 명시적으로 적용합니다. */
   size?: 'responsive' | 'mobile';
 };
 
