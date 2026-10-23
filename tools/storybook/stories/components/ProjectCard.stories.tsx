@@ -30,17 +30,28 @@ export const TagOverflow: Story = {
   },
 };
 
-export const Mobile: Story = {
-  parameters: {
-    viewport: { defaultViewport: 'mobile1' },
+export const LongTags: Story = {
+  args: {
+    tags: ['VeryLongTechnologyTagWithoutSpaces', 'AnotherVeryLongTechnologyTag', 'Testing'],
   },
 };
 
+export const Mobile: Story = {
+  args: { size: 'mobile' },
+  render: (args) => (
+    <div style={{ width: 342, maxWidth: '100%' }}>
+      <ProjectCard {...args} />
+    </div>
+  ),
+};
+
 export const MobilePressed: Story = {
-  parameters: {
-    viewport: { defaultViewport: 'mobile1' },
-  },
-  render: (args) => <ProjectCard {...args} data-story-state="pressed" />,
+  args: { size: 'mobile' },
+  render: (args) => (
+    <div style={{ width: 342, maxWidth: '100%' }}>
+      <ProjectCard {...args} data-story-state="pressed" />
+    </div>
+  ),
 };
 
 export const AllStates: Story = {
