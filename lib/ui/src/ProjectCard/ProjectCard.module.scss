@@ -6,6 +6,7 @@
   width: 100%;
   max-width: 368px;
   min-height: 410px;
+  height: 410px;
   padding: var(--sl-spacing-lg);
   border: 1px solid var(--sl-color-border-default);
   border-radius: var(--sl-radius-lg);
@@ -13,6 +14,7 @@
   color: inherit;
   font-family: var(--sl-font-sans);
   text-decoration: none;
+  overflow: hidden;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 
   &:hover,
@@ -60,8 +62,12 @@
 }
 
 .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   width: 100%;
   margin: 0;
+  overflow: hidden;
   overflow-wrap: anywhere;
   color: var(--sl-color-text-primary);
   font-size: 24px;
@@ -88,11 +94,27 @@
   align-items: center;
   gap: var(--sl-spacing-xs);
   width: 100%;
+  min-width: 0;
+}
+
+.tagItems {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--sl-spacing-xs);
+  min-width: 0;
   overflow: hidden;
 
   > * {
     flex-shrink: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+}
+
+.tagOverflow {
+  flex: 0 0 auto;
 }
 
 .connectedNotes {
@@ -104,25 +126,26 @@
   line-height: 16px;
 }
 
-@media (max-width: 600px) {
-  .card {
-    gap: var(--sl-spacing-sm);
-    max-width: 342px;
-    min-height: 310px;
-    padding: var(--sl-spacing-md);
-    border-radius: var(--sl-radius-md);
+@mixin mobile-card {
+  gap: var(--sl-spacing-sm);
+  max-width: 342px;
+  min-height: 310px;
+  height: 310px;
+  padding: var(--sl-spacing-md);
+  border-radius: var(--sl-radius-md);
 
-    &:active,
-    &[data-story-state='pressed'] {
-      border-color: var(--sl-color-action-primary);
-      background: var(--sl-color-bg-brand-soft);
+  &:active,
+  &[data-story-state='pressed'] {
+    border-color: var(--sl-color-action-primary);
+    background: var(--sl-color-bg-brand-soft);
 
-      .thumbnail {
-        background: var(--sl-color-bg-surface);
-      }
+    .thumbnail {
+      background: var(--sl-color-bg-surface);
     }
   }
+}
 
+@mixin mobile-children {
   .thumbnail {
     height: 130px;
     padding-inline: 14px;
@@ -155,6 +178,18 @@
   .connectedNotes {
     font-size: 11px;
     line-height: 15px;
+  }
+}
+
+.card[data-size='mobile'] {
+  @include mobile-card;
+  @include mobile-children;
+}
+
+@media (max-width: 600px) {
+  .card {
+    @include mobile-card;
+    @include mobile-children;
   }
 }
 
