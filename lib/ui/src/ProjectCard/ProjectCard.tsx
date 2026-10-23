@@ -30,12 +30,7 @@ export function ProjectCard({
   const remainingTags = Math.max(0, tags.length - visibleTags.length);
 
   return (
-    <a
-      {...props}
-      href={href}
-      data-size={size}
-      className={[styles.card, className].filter(Boolean).join(' ')}
-    >
+    <a {...props} href={href} data-size={size} className={[styles.card, className].filter(Boolean).join(' ')}>
       <div className={styles.thumbnail} aria-hidden="true">
         <span className={styles.index}>{index}</span>
         <span className={styles.category}>{category}</span>
