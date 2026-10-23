@@ -13,7 +13,9 @@
   color: inherit;
   font-family: var(--sl-font-sans);
   text-decoration: none;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 
   &:hover,
   &:focus-visible,
