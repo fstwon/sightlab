@@ -62,9 +62,7 @@ export function ProjectCard({
           )}
         </div>
       )}
-      <span className={styles.connectedNotes}>
-        {connectedNotes} connected notes
-      </span>
+      <span className={styles.connectedNotes}>{connectedNotes} connected notes</span>
     </a>
   );
 }
