@@ -36,6 +36,15 @@ export const LongTags: Story = {
   },
 };
 
+export const LongContent: Story = {
+  args: {
+    title: '매우 긴 프로젝트 제목을 가진 실험 프로젝트의 레이아웃 검증',
+    description:
+      '긴 설명이 여러 줄로 이어지는 경우에도 카드 내용과 연결된 노트 수가 잘리지 않는지 확인하기 위한 예시입니다.',
+    tags: ['React', 'TypeScript', 'Architecture'],
+  },
+};
+
 export const Mobile: Story = {
   args: { size: 'mobile' },
   render: (args) => (
