@@ -1,0 +1,95 @@
+name: Experiment Monorepo Integration PoC
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/experiment-monorepo-integration.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: corepack enable
+      - run: corepack prepare pnpm@9.15.9 --activate
+      - name: Add temporary experiment packages to real workspace
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p experiments/poc-react/src experiments/poc-vue/src experiments/poc-typescript/src
+          cat > experiments/poc-react/package.json <<'EOF'
+          {"name":"@sightlab/poc-react","private":true,"type":"module","scripts":{"build":"vite build"},"dependencies":{"react":"^19.1.0","react-dom":"^19.1.0"},"devDependencies":{"@sightlab/vite":"workspace:*","vite":"^7.0.0","@vitejs/plugin-react":"^4.5.0"}}
+          EOF
+          cat > experiments/poc-react/vite.config.js <<'EOF'
+          import { createViteConfig } from '@sightlab/vite';
+          import react from '@vitejs/plugin-react';
+          export default createViteConfig({ plugins: [react()] });
+          EOF
+          cat > experiments/poc-react/index.html <<'EOF'
+          <div id="root"></div><script type="module" src="/src/main.jsx"></script>
+          EOF
+          cat > experiments/poc-react/src/main.jsx <<'EOF'
+          import React from 'react';
+          import { createRoot } from 'react-dom/client';
+          createRoot(document.getElementById('root')).render(React.createElement('p', null, 'React PoC'));
+          EOF
+          cat > experiments/poc-vue/package.json <<'EOF'
+          {"name":"@sightlab/poc-vue","private":true,"type":"module","scripts":{"build":"vite build"},"dependencies":{"vue":"^3.5.0"},"devDependencies":{"@sightlab/vite":"workspace:*","vite":"^7.0.0","@vitejs/plugin-vue":"^6.0.0"}}
+          EOF
+          cat > experiments/poc-vue/vite.config.js <<'EOF'
+          import { createViteConfig } from '@sightlab/vite';
+          import vue from '@vitejs/plugin-vue';
+          export default createViteConfig({ plugins: [vue()] });
+          EOF
+          cat > experiments/poc-vue/index.html <<'EOF'
+          <div id="app"></div><script type="module" src="/src/main.js"></script>
+          EOF
+          cat > experiments/poc-vue/src/main.js <<'EOF'
+          import { createApp, h } from 'vue';
+          createApp({ render: () => h('p', 'Vue PoC') }).mount('#app');
+          EOF
+          cat > experiments/poc-typescript/package.json <<'EOF'
+          {"name":"@sightlab/poc-typescript","private":true,"type":"module","scripts":{"build":"tsc -p tsconfig.json","start":"node dist/index.js"},"devDependencies":{"typescript":"^5.9.0"}}
+          EOF
+          cat > experiments/poc-typescript/tsconfig.json <<'EOF'
+          {"compilerOptions":{"target":"ES2022","module":"NodeNext","moduleResolution":"NodeNext","outDir":"dist","strict":true},"include":["src/**/*.ts"]}
+          EOF
+          cat > experiments/poc-typescript/src/index.ts <<'EOF'
+          console.log('Sightlab TypeScript PoC:', 2 + 3);
+          EOF
+      - name: Install with temporary packages
+        run: pnpm install --no-frozen-lockfile
+      - name: Verify workspace discovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm --filter @sightlab/poc-react exec vite --version
+          pnpm --filter @sightlab/poc-vue exec vite --version
+          pnpm --filter @sightlab/poc-typescript exec tsc --version
+      - name: Verify web-only build does not build experiments
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm exec turbo run build --filter='@sightlab/web...'
+          test ! -d experiments/poc-react/dist
+          test ! -d experiments/poc-vue/dist
+          test ! -d experiments/poc-typescript/dist
+      - name: Verify independent builds and shared Vite config
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm --filter @sightlab/poc-react build
+          test -f experiments/poc-react/dist/index.html
+          test ! -d experiments/poc-vue/dist
+          test ! -d experiments/poc-typescript/dist
+          pnpm --filter @sightlab/poc-vue build
+          test -f experiments/poc-vue/dist/index.html
+          test ! -d experiments/poc-typescript/dist
+          pnpm --filter @sightlab/poc-typescript build
+          test "$(pnpm --filter @sightlab/poc-typescript start | tail -n 1)" = "Sightlab TypeScript PoC: 5"
+      - name: Verify root build includes experiments
+        run: pnpm build
