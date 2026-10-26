@@ -1,0 +1,68 @@
+name: Experiment Workspace PoC
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/experiment-workspace-poc.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: corepack enable
+      - run: corepack prepare pnpm@9.15.9 --activate
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Verify independent React, Vue and TypeScript packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$(mktemp -d)"
+          cd "$root"
+          printf "packages:\n  - 'experiments/*'\n" > pnpm-workspace.yaml
+          printf '{"name":"experiment-workspace-poc","private":true,"packageManager":"pnpm@9.15.9"}\n' > package.json
+          mkdir -p experiments/react/src experiments/vue/src experiments/typescript/src
+          cat > experiments/react/package.json <<'EOF'
+          {"name":"@poc/react","private":true,"scripts":{"build":"vite build"},"dependencies":{"react":"^19.1.0","react-dom":"^19.1.0"},"devDependencies":{"vite":"^7.0.0","@vitejs/plugin-react":"^4.5.0"}}
+          EOF
+          cat > experiments/react/index.html <<'EOF'
+          <div id="root"></div><script type="module" src="/src/main.jsx"></script>
+          EOF
+          cat > experiments/react/src/main.jsx <<'EOF'
+          import React from 'react';
+          import { createRoot } from 'react-dom/client';
+          createRoot(document.getElementById('root')).render(React.createElement('p', null, 'React PoC'));
+          EOF
+          cat > experiments/vue/package.json <<'EOF'
+          {"name":"@poc/vue","private":true,"scripts":{"build":"vite build"},"dependencies":{"vue":"^3.5.0"},"devDependencies":{"vite":"^7.0.0","@vitejs/plugin-vue":"^6.0.0"}}
+          EOF
+          cat > experiments/vue/index.html <<'EOF'
+          <div id="app"></div><script type="module" src="/src/main.js"></script>
+          EOF
+          cat > experiments/vue/src/main.js <<'EOF'
+          import { createApp, h } from 'vue';
+          createApp({ render: () => h('p', 'Vue PoC') }).mount('#app');
+          EOF
+          cat > experiments/typescript/package.json <<'EOF'
+          {"name":"@poc/typescript","private":true,"scripts":{"build":"tsc -p tsconfig.json","start":"node dist/index.js"},"devDependencies":{"typescript":"^5.9.0"}}
+          EOF
+          cat > experiments/typescript/tsconfig.json <<'EOF'
+          {"compilerOptions":{"target":"ES2022","module":"NodeNext","moduleResolution":"NodeNext","outDir":"dist","strict":true},"include":["src/**/*.ts"]}
+          EOF
+          cat > experiments/typescript/src/index.ts <<'EOF'
+          console.log('TypeScript PoC:', 2 + 3);
+          EOF
+          pnpm install
+          pnpm --filter @poc/react build
+          test -f experiments/react/dist/index.html
+          test ! -d experiments/vue/dist
+          test ! -d experiments/typescript/dist
+          pnpm --filter @poc/vue build
+          test -f experiments/vue/dist/index.html
+          test ! -d experiments/typescript/dist
+          pnpm --filter @poc/typescript build
+          test "$(pnpm --filter @poc/typescript start | tail -n 1)" = "TypeScript PoC: 5"
+          echo "PASS: React, Vue and non-UI TypeScript packages build independently."
