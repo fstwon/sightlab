@@ -79,6 +79,15 @@ importers:
         specifier: ^5.9.0
         version: 5.9.3
 
+  lib/content:
+    devDependencies:
+      '@sightlab/typescript':
+        specifier: workspace:*
+        version: link:../../packages/config/typescript
+      typescript:
+        specifier: ^5.9.0
+        version: 5.9.3
+
   lib/icons:
     devDependencies:
       react:
