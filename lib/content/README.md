@@ -32,3 +32,18 @@ slug는 파일명 또는 디렉터리명에서 생성.
 pnpm --filter @sightlab/content typecheck
 pnpm --filter @sightlab/content lint
 ```
+
+## 파일 탐색 및 파싱 (2-2)
+
+- `discoverFiles(rootDir)`: 저장소 루트에서 실험 JSON 및 Project/Note Markdown 탐색
+- `parseExperiment(filePath)`: JSON 파싱, 반환 타입 `unknown`
+- `parseMarkdown(filePath)`: Frontmatter와 Markdown 본문 분리, 메타데이터 타입 `unknown`
+- 콘텐츠 디렉터리가 없으면 빈 배열 반환
+- 실험 디렉터리에 `experiment.json`이 없으면 수집 대상에서 제외
+- 파싱 실패 시 파일 경로를 포함한 오류 발생
+
+파서 단계는 메타데이터의 유효성을 보장하지 않음. Zod 스키마 검증 및 slug 생성은 2-3에서 구현 예정.
+
+```bash
+pnpm --filter @sightlab/content test
+```
