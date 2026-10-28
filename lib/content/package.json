@@ -1,0 +1,17 @@
+{
+  "name": "@sightlab/content",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src --config ../../eslint.config.mjs",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@sightlab/typescript": "workspace:*",
+    "typescript": "^5.9.0"
+  }
+}
