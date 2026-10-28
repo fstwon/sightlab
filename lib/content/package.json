@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./collector": "./src/collector/discoverFiles.ts",
+    "./parsers/experiment": "./src/parsers/parseExperiment.ts",
+    "./parsers/markdown": "./src/parsers/parseMarkdown.ts"
   },
   "scripts": {
     "lint": "eslint src --config ../../eslint.config.mjs",
