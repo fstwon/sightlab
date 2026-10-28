@@ -8,10 +8,15 @@
   },
   "scripts": {
     "lint": "eslint src --config ../../eslint.config.mjs",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "test": "node --experimental-strip-types --test test/*.test.mjs"
   },
   "devDependencies": {
     "@sightlab/typescript": "workspace:*",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "@types/node": "^22.0.0"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
   }
 }
