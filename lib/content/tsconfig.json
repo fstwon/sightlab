@@ -1,4 +1,0 @@
-{
-  "extends": "@sightlab/typescript/base",
-  "include": ["src/**/*.ts"]
-}
