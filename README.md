@@ -1,6 +1,6 @@
 # Sightlab
 
-Sightlab은 개발 기술을 학습하고 실험 결과를 기록하기 위한 프로젝트입니다.
+Sightlab은 기술 기록과 프로젝트 포트폴리오를 제공하는 웹사이트입니다. 기술 스택별 프로젝트는 모노레포 내 독립 앱으로 구성하고 별도로 배포합니다. 콘텐츠 작성과 관리는 Notion을 활용할 예정입니다.
 
 ## 개발 환경
 
@@ -29,15 +29,15 @@ pnpm test
 - `apps/*`: 웹 애플리케이션
 - `lib/*`: 공유 UI 및 디자인 토큰
 - `packages/config/*`: 공통 개발 도구 설정
-- `experiments/*`: 독립적인 기술 실험
+- `tools/*`: Storybook 등 개발 도구
 
-Turborepo는 각 패키지의 스크립트를 실행합니다. Vite를 사용하지 않는 실험에는 Vite를 강제하지 않습니다.
+Turborepo는 각 워크스페이스 패키지의 스크립트를 실행합니다. 기술 스택별 프로젝트는 필요에 따라 `apps/*`에 추가하고 독립적으로 빌드·배포합니다.
 
 ## 공통 Vite 설정
 
-프레임워크 중립적인 설정 패키지 [`@sightlab/vite`](./packages/config/vite/README.md)를 제공합니다. 개별 실험에서 `vite`와 공통 설정 패키지를 명시적으로 설치한 뒤 필요한 설정을 확장합니다.
+프레임워크 중립적인 설정 패키지 [`@sightlab/vite`](./packages/config/vite/README.md)를 제공합니다. Vite 기반 앱에서 `vite`와 공통 설정 패키지를 명시적으로 설치한 뒤 필요한 설정을 확장합니다.
 
-현재 실행 가능한 앱과 실험 패키지는 아직 추가되지 않았습니다. 새 의존성이 추가된 경우 `pnpm install`을 통해 `pnpm-lock.yaml`을 갱신하고 설치·빌드·린트·테스트를 검증해야 합니다.
+현재 `apps/web`은 Sightlab 웹사이트의 기본 골격입니다. 새 의존성이 추가된 경우 `pnpm install`을 통해 `pnpm-lock.yaml`을 갱신하고 설치·빌드·린트·테스트를 검증해야 합니다.
 
 ## 개발 규칙
 

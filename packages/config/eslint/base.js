@@ -7,6 +7,7 @@ export default [
       '**/dist/**',
       '**/build/**',
       '**/coverage/**',
+      '**/storybook-static/**',
       '**/*.tsbuildinfo',
     ],
   },
