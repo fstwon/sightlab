@@ -12,3 +12,4 @@ storybook-static/
 !.env.example
 .DS_Store
 *.tsbuildinfo
+/apps/web/next-env.d.ts
