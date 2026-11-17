@@ -3,6 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "description": "Sightlab 디자인 토큰 (CSS 변수)",
+  "scripts": {
+    "lint:css": "stylelint \"src/**/*.css\""
+  },
+  "devDependencies": {
+    "@sightlab/stylelint-config": "workspace:*",
+    "stylelint": "^17.16.0"
+  },
   "files": [
     "src"
   ],
