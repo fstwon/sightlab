@@ -1,0 +1,11 @@
+/* 간격 단계. 여백·간격(gap)에 사용한다. */
+:root {
+  --sl-spacing-2xs: 4px;
+  --sl-spacing-xs: 8px;
+  --sl-spacing-sm: 12px;
+  --sl-spacing-md: 16px;
+  --sl-spacing-lg: 24px;
+  --sl-spacing-xl: 32px;
+  --sl-spacing-2xl: 48px;
+  --sl-spacing-3xl: 64px;
+}

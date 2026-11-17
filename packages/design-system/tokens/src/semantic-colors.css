@@ -1,0 +1,22 @@
+/* 역할 색. 컴포넌트·앱이 사용하는 색 토큰이며, 값은 원색을 참조한다. */
+:root {
+  --sl-color-bg-canvas: var(--sl-color-neutral-50);
+  --sl-color-bg-surface: var(--sl-color-neutral-0);
+  --sl-color-bg-subtle: var(--sl-color-neutral-100);
+  --sl-color-bg-code: var(--sl-color-code-900);
+  --sl-color-bg-brand-soft: var(--sl-color-purple-50);
+  --sl-color-bg-accent-soft: var(--sl-color-orange-100);
+
+  --sl-color-text-primary: var(--sl-color-neutral-900);
+  --sl-color-text-secondary: var(--sl-color-neutral-500);
+  --sl-color-text-inverse: var(--sl-color-neutral-0);
+  --sl-color-text-brand: var(--sl-color-purple-600);
+
+  --sl-color-border-default: var(--sl-color-neutral-200);
+
+  --sl-color-action-primary: var(--sl-color-purple-600);
+  --sl-color-accent-default: var(--sl-color-orange-500);
+
+  --sl-color-status-success: var(--sl-color-green-600);
+  --sl-color-status-danger: var(--sl-color-red-600);
+}

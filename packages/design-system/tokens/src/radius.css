@@ -1,0 +1,8 @@
+/* 모서리 둥글기 단계. */
+:root {
+  --sl-radius-none: 0;
+  --sl-radius-sm: 6px;
+  --sl-radius-md: 12px;
+  --sl-radius-lg: 18px;
+  --sl-radius-full: 999px;
+}

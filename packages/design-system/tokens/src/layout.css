@@ -1,0 +1,11 @@
+/* 화면 배치 기준값. */
+:root {
+  /* 콘텐츠 최대 폭 (Public 화면 기준) */
+  --sl-layout-content-max: 1200px;
+  /* 본문(글) 최대 폭 */
+  --sl-layout-prose-max: 720px;
+  /* 모바일 좌우 여백 */
+  --sl-layout-gutter-mobile: 24px;
+  /* 최소 터치 영역 */
+  --sl-layout-touch-target: 44px;
+}
