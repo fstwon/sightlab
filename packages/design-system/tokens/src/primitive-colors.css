@@ -1,6 +1,6 @@
 /* 원색 팔레트. 컴포넌트·앱은 직접 쓰지 않고 semantic-colors.css의 역할 색을 사용한다. */
 :root {
-  --sl-color-neutral-0: #ffffff;
+  --sl-color-neutral-0: #fff;
   --sl-color-neutral-50: #f7f7f4;
   --sl-color-neutral-100: #f0f0eb;
   --sl-color-neutral-200: #e2e2dd;
