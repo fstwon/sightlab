@@ -1,0 +1,16 @@
+{
+  "name": "@sightlab/typescript-config",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sightlab 앱·패키지가 확장하는 공용 TypeScript 설정",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "vite.json"
+  ],
+  "exports": {
+    "./base.json": "./base.json",
+    "./nextjs.json": "./nextjs.json",
+    "./vite.json": "./vite.json"
+  }
+}
