@@ -1,0 +1,5 @@
+/* 그림자. Figma 효과 스타일 Shadow/Small·Medium. */
+:root {
+  --sl-shadow-sm: 0 1px 3px 0 #0000000f;
+  --sl-shadow-md: 0 6px 18px -4px #00000014;
+}
