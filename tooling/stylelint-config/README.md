@@ -5,18 +5,24 @@ Sightlab의 CSS가 있는 앱·패키지가 확장하는 공용 Stylelint 설정
 
 ## 설정
 
-| 진입점                                   | export             | 대상              | 내용                                                                         |
-| ---------------------------------------- | ------------------ | ----------------- | ---------------------------------------------------------------------------- |
-| `@sightlab/stylelint-config/base`        | `baseConfig`       | 모든 CSS          | standard, 속성 순서 자동 정렬(recess-order), 토큰 강제, 정의 안 된 변수 검출 |
-| `@sightlab/stylelint-config/bem`         | `bemConfig`        | 공용 UI           | base + 클래스 이름 `sl-block__element--modifier`                             |
-| `@sightlab/stylelint-config/css-modules` | `cssModulesConfig` | 앱 `*.module.css` | base + CSS Modules 문법 + 클래스 이름 camelCase (`:global(.sl-*)` 참조 허용) |
+| 진입점                                   | export             | 대상                     | 내용                                                                         |
+| ---------------------------------------- | ------------------ | ------------------------ | ---------------------------------------------------------------------------- |
+| `@sightlab/stylelint-config/base`        | `baseConfig`       | 모든 CSS·SCSS            | standard, 속성 순서 자동 정렬(recess-order), 토큰 강제, 정의 안 된 변수 검출 |
+| `@sightlab/stylelint-config/bem`         | `bemConfig`        | 공용 UI                  | base + 클래스 이름 `sl-block__element--modifier`                             |
+| `@sightlab/stylelint-config/css-modules` | `cssModulesConfig` | 앱 `*.module.{css,scss}` | base + CSS Modules 문법 + 클래스 이름 camelCase (`:global(.sl-*)` 참조 허용) |
+
+`.scss` 파일에는 `overrides`로 `stylelint-config-standard-scss`(SCSS 문법, `stylelint-scss` 규칙)를 추가 적용한다.
+
+| 진입점                                    | export        | 용도                                                                                       |
+| ----------------------------------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| `@sightlab/stylelint-config/extend-rules` | `extendRules` | 소비 패키지에서 규칙을 덧붙일 때 사용. `.css`(최상위)와 `.scss`(overrides) 모두에 적용된다 |
 
 ## 사용법
 
 ```jsonc
 // package.json
 {
-  "scripts": { "lint:css": "stylelint \"**/*.css\"" },
+  "scripts": { "lint:css": "stylelint \"src/**/*.{css,scss}\"" },
   "devDependencies": {
     "@sightlab/stylelint-config": "workspace:*",
     "stylelint": "^17.16.0",
@@ -29,21 +35,21 @@ Sightlab의 CSS가 있는 앱·패키지가 확장하는 공용 Stylelint 설정
 import { fileURLToPath } from 'node:url';
 
 import { cssModulesConfig } from '@sightlab/stylelint-config/css-modules';
+import { extendRules } from '@sightlab/stylelint-config/extend-rules';
 
 // 토큰 진입점 하나만 넘기면 @import를 따라가 모든 --sl-* 변수를 인식한다.
 const TOKENS = fileURLToPath(import.meta.resolve('@sightlab/tokens'));
 
 /** @type {import('stylelint').Config} */
-export default {
-  ...cssModulesConfig,
+export default extendRules(cssModulesConfig, {
   rules: {
-    ...cssModulesConfig.rules,
     'csstools/value-no-unknown-custom-properties': [true, { importFrom: [TOKENS] }],
   },
-};
+});
 ```
 
 `importFrom` 경로는 실행 위치 기준으로 해석되므로 절대 경로를 넘긴다.
+`{ ...config, rules }`로 펼치면 `.scss`용 overrides에는 반영되지 않으므로 `extendRules`를 사용한다.
 
 ## 규칙
 
@@ -52,10 +58,13 @@ export default {
   `0`, `auto`, `none`, `inherit`, `transparent`, `currentColor` 등 키워드와 `calc()` 같은 함수는 허용한다.
 - **정의 안 된 변수** (`csstools/value-no-unknown-custom-properties`): 같은 파일·`@import`·`importFrom`에서
   정의를 찾지 못한 `var(--*)`를 오류로 처리한다.
+- **클래스 이름**: `.css`는 `selector-class-pattern`, `.scss`는 중첩(`&__label`, `&--primary`)을 합친 최종 이름으로 검사하는 `scss/selector-class-pattern`을 쓴다 (Stylelint 17의 기본 규칙은 중첩을 합치지 않음).
 - 속성 순서는 `stylelint --fix`로 자동 정렬된다.
 - standard에서 조정한 규칙: `import-notation: 'string'`(`@import './x.css'`), `custom-property-empty-line-before` 끔(변수 묶음 사이 빈 줄 허용).
 - extends·plugins는 이 패키지 안에서 절대 경로로 해석해 넘긴다(`resolve-module.js`). pnpm에서는 소비 패키지가 이 패키지의 의존성을 찾을 수 없기 때문.
 
 ## 참고
 
+- 토큰 강제 규칙은 Sass 변수(`$x`)도 허용한다. `$c: #fff; color: $c;`로 우회할 수 있으므로 공용 UI는 `var(--sl-*)`만 쓰는 규칙을 리뷰로 지킨다.
+- `stylelint-config-standard-scss`는 17.x를 사용한다 (18은 Stylelint 18 전용).
 - Stylelint 18은 `stylelint-config-recess-order`·`stylelint-config-css-modules`가 지원하지 않아 17을 사용한다.
