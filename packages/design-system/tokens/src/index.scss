@@ -1,0 +1,9 @@
+// 전체 진입점: 글꼴 + 모든 토큰. 앱 진입점에서 한 번만 불러온다.
+@use 'fonts';
+@use 'primitive-colors';
+@use 'semantic-colors';
+@use 'typography';
+@use 'spacing';
+@use 'radius';
+@use 'shadow';
+@use 'layout';

@@ -1,18 +1,13 @@
-import { fileURLToPath } from 'node:url';
-
 import { baseConfig } from '@sightlab/stylelint-config/base';
-
-// 진입점 하나만 넘기면 @import를 따라 모든 토큰 파일의 정의를 읽는다.
-const TOKENS_ENTRY = fileURLToPath(new URL('./src/index.css', import.meta.url));
+import { extendRules } from '@sightlab/stylelint-config/extend-rules';
 
 /** @type {import('stylelint').Config} */
-export default {
-  ...baseConfig,
+export default extendRules(baseConfig, {
   rules: {
-    ...baseConfig.rules,
-    // 토큰 파일은 원래 값을 정의하는 곳이므로 var() 강제를 끈다.
+    // 토큰 원본은 실제 값을 정의하는 곳이므로 var() 강제를 끈다.
     'scale-unlimited/declaration-strict-value': null,
-    // 역할 색이 원색 파일의 변수를 참조하므로 진입점 기준으로 정의를 찾는다.
-    'csstools/value-no-unknown-custom-properties': [true, { importFrom: [TOKENS_ENTRY] }],
+    // 변수 이름을 #{} 보간으로 만들어 정적 검사가 불가능하다.
+    // 역할 색의 원색 참조는 semantic-colors.scss의 @error가 빌드 시 검사한다.
+    'csstools/value-no-unknown-custom-properties': null,
   },
-};
+});

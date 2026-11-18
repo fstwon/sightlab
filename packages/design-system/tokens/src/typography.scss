@@ -1,0 +1,16 @@
+// 글꼴·글자 스타일 → :root { --sl-font-family-*, --sl-text-<역할>-<속성> }
+@use 'sass:meta';
+@use 'sass/typography' as *;
+
+:root {
+  @each $name, $families in $font-families {
+    // meta.inspect: 보간(#{})은 문자열 따옴표를 없애므로 글꼴 이름의 따옴표를 유지하려고 사용
+    --sl-font-family-#{$name}: #{meta.inspect($families)};
+  }
+
+  @each $role, $props in $text-roles {
+    @each $prop, $value in $props {
+      --sl-text-#{$role}-#{$prop}: #{$value};
+    }
+  }
+}

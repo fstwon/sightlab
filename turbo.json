@@ -10,7 +10,9 @@
       "persistent": true
     },
     "lint": {},
-    "lint:css": {},
+    "lint:css": {
+      "dependsOn": ["^build"]
+    },
     "typecheck": {},
     "test": {}
   }

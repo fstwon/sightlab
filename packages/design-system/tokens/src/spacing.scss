@@ -1,0 +1,8 @@
+// $spacing → :root { --sl-spacing-<이름> }
+@use 'sass/spacing' as *;
+
+:root {
+  @each $name, $value in $spacing {
+    --sl-spacing-#{$name}: #{$value};
+  }
+}

@@ -1,0 +1,17 @@
+// 원색 팔레트. 컴포넌트·앱은 직접 쓰지 않고 역할 색($semantic-colors)을 사용한다.
+// --sl-color-<이름> 으로 출력된다.
+$primitive-colors: (
+  neutral-0: #fff,
+  neutral-50: #f7f7f4,
+  neutral-100: #f0f0eb,
+  neutral-200: #e2e2dd,
+  neutral-500: #686b70,
+  neutral-900: #181a1b,
+  purple-50: #ede8fa,
+  purple-600: #6535d8,
+  orange-100: #fbf0de,
+  orange-500: #f2a74b,
+  green-600: #27845b,
+  red-600: #c94a4a,
+  code-900: #202225,
+);

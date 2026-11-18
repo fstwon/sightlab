@@ -1,4 +1,0 @@
-/* 글꼴 진입점. --sl-font-family-* 토큰이 가리키는 글꼴의 @font-face를 모두 불러온다. */
-@import './font-faces/suit.css';
-@import './font-faces/pretendard.css';
-@import './font-faces/jetbrains-mono.css';

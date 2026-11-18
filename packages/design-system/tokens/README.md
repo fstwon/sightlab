@@ -1,7 +1,7 @@
 # @sightlab/tokens
 
-Sightlab 디자인 토큰. Figma 변수(`--sl-*`)를 그대로 옮긴 **CSS 변수 파일이 원본**이며,
-Sass나 특정 프레임워크 없이 모든 앱에서 사용할 수 있다.
+Sightlab 디자인 토큰. Figma 변수(`--sl-*`)를 **SCSS map 원본**에 정의하고,
+패키지 빌드에서 `:root` CSS 변수로 컴파일해 배포한다. 앱은 컴파일된 CSS를 쓰므로 Sass가 없어도 된다.
 
 ## 사용법
 
@@ -10,46 +10,88 @@ Sass나 특정 프레임워크 없이 모든 앱에서 사용할 수 있다.
 { "dependencies": { "@sightlab/tokens": "workspace:*" } }
 ```
 
-```css
-/* CSS (번들러 또는 postcss-import) */
-@import '@sightlab/tokens';
+### 1. 토큰 CSS: 앱 진입점에서 한 번만
 
-.note-title {
+`:root` 변수와 `@font-face`를 **출력**하므로 앱 전체에서 한 번만 불러온다
+(컴포넌트·CSS Module마다 불러오면 같은 CSS가 중복된다). 순서는 tokens → ui → 앱 스타일.
+
+```ts
+// JS 번들러 (Next.js app/layout.tsx, Vite main.ts)
+import '@sightlab/tokens';
+```
+
+```css
+/* CSS @import (번들러 또는 postcss-import) */
+@import '@sightlab/tokens';
+```
+
+### 2. 화면 스타일: `var(--sl-*)`만 사용
+
+```css
+.noteTitle {
   color: var(--sl-color-text-primary);
   font-size: var(--sl-text-h2-size);
 }
 ```
 
+### 3. Sass 전용 API: 필요한 파일마다 (출력 없음)
+
+토큰 map을 Sass 계산·반복에 쓸 때만 사용한다. CSS를 출력하지 않으므로 여러 파일에서 `@use` 해도 중복되지 않는다.
+
 ```scss
-// Sass (Dart Sass 1.71+ pkg: importer)
-@use 'pkg:@sightlab/tokens';
+@use 'sass:map';
+@use 'pkg:@sightlab/tokens/sass' as tokens; // Dart Sass 1.71+ NodePackageImporter
+
+.grid {
+  gap: map.get(tokens.$spacing, md);
+}
 ```
 
-```ts
-// JS 번들러 (Next.js, Vite)
-import '@sightlab/tokens';
-```
+Sass에서 `@use 'pkg:@sightlab/tokens'`로 토큰 CSS를 불러오지 않는다.
+Sass는 `url()`을 재작성하지 않아 글꼴 경로가 깨진다 (Vite에서 확인). 토큰 CSS는 1번 방식으로만 불러온다.
 
-필요한 종류만 불러올 수도 있다: `@sightlab/tokens/spacing.css`.
-역할 색 파일은 원색을 참조하므로 `semantic-colors.css`는 `primitive-colors.css`와 함께 불러온다.
+## exports
+
+| 진입점                                       | 파일                   | 출력                                 |
+| -------------------------------------------- | ---------------------- | ------------------------------------ |
+| `@sightlab/tokens`                           | `dist/index.css`       | 글꼴 + 모든 토큰 (앱 진입점에서 1회) |
+| `@sightlab/tokens/<종류>.css`                | `dist/<종류>.css`      | 종류별 토큰 (선택)                   |
+| `@sightlab/tokens/sass`                      | `src/sass/_index.scss` | 없음 (Sass map)                      |
+| `@sightlab/tokens/fonts/<글꼴>/<파일>.woff2` | `fonts/…`              | 글꼴 파일 (preload 등 직접 참조)     |
+
+Vite 8(JS·CSS import)과 Next.js 16 Turbopack(JS import, `./<종류>.css` 포함)에서
+`dist` CSS로 연결되고 글꼴 파일이 함께 내보내지는 것을 확인했다.
 
 ## 파일
 
-| 파일                   | 접두사                                     | 내용                                                |
-| ---------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `primitive-colors.css` | `--sl-color-<색>-<단계>`                   | 원색 팔레트                                         |
-| `semantic-colors.css`  | `--sl-color-<역할>-<이름>`                 | 역할 색 (bg, text, border, action, accent, status)  |
-| `typography.css`       | `--sl-font-family-*`, `--sl-text-<역할>-*` | 글꼴, 역할별 size·line-height·weight·letter-spacing |
-| `spacing.css`          | `--sl-spacing-*`                           | 2xs(4) ~ 3xl(64)                                    |
-| `radius.css`           | `--sl-radius-*`                            | none, sm, md, lg, full                              |
-| `shadow.css`           | `--sl-shadow-*`                            | sm, md                                              |
-| `layout.css`           | `--sl-layout-*`                            | 콘텐츠·본문 최대 폭, 모바일 여백, 터치 영역         |
-| `fonts.css`            |                                            | 글꼴 `@font-face` 진입점 (`font-faces/*.css`)       |
-| `index.css`            |                                            | 전체 진입점 (글꼴 포함)                             |
+| 원본 (`src/sass/`, 출력 없음) | 출력 (`src/` → `dist/`) | CSS 변수                                       |
+| ----------------------------- | ----------------------- | ---------------------------------------------- |
+| `_primitive-colors.scss`      | `primitive-colors.css`  | `--sl-color-<색>-<단계>`                       |
+| `_semantic-colors.scss`       | `semantic-colors.css`   | `--sl-color-<역할>` → `var(--sl-color-<원색>)` |
+| `_typography.scss`            | `typography.css`        | `--sl-font-family-*`, `--sl-text-<역할>-*`     |
+| `_spacing.scss`               | `spacing.css`           | `--sl-spacing-*` (2xs 4 ~ 3xl 64)              |
+| `_radius.scss`                | `radius.css`            | `--sl-radius-*` (none, sm, md, lg, full)       |
+| `_shadow.scss`                | `shadow.css`            | `--sl-shadow-*` (sm, md)                       |
+| `_layout.scss`                | `layout.css`            | `--sl-layout-*`                                |
+|                               | `fonts.css`             | `@font-face` (`_font-*.scss`)                  |
+|                               | `index.css`             | 글꼴 + 위 전체                                 |
+
+- 값은 `src/sass/_*.scss`의 map에서만 수정한다. 출력 파일은 map을 `@each`로 돌며 변수를 만든다.
+- 역할 색이 없는 원색 이름을 참조하면 `@error`로 빌드가 실패한다.
+- 그림자는 8자리 hex를 그대로 출력하려고 문자열로 둔다 (Sass가 색으로 해석하면 `rgba()`로 바꿈).
+
+## 빌드
+
+```bash
+pnpm --filter @sightlab/tokens build   # src → dist (sass)
+pnpm --filter @sightlab/tokens dev     # 변경 감시
+```
+
+루트 `turbo run build`는 tokens를 이를 쓰는 패키지·앱보다 먼저 빌드한다. `dist/`는 커밋하지 않는다.
 
 ## 글꼴
 
-`index.css`가 `fonts.css`를 포함하므로 `@import '@sightlab/tokens'` 한 줄로 글꼴까지 불러온다.
+`index.css`가 `fonts.css`를 포함하므로 `import '@sightlab/tokens'` 한 줄로 글꼴까지 불러온다.
 글꼴 파일은 패키지 `fonts/`에 직접 포함한다(직접 호스팅). 번들러가 `url()`의 파일을 함께 내보낸다.
 
 | 글꼴                | 역할                  | 출처 (복사한 버전)                                          | 파일                                              |
@@ -59,13 +101,13 @@ import '@sightlab/tokens';
 | JetBrains Mono      | 코드                  | `@fontsource-variable/jetbrains-mono` 5.3.0 `files`         | latin·latin-ext 정체 2개                          |
 
 - 라이선스: 모두 SIL Open Font License 1.1, 각 `fonts/<글꼴>/LICENSE`.
-- 갱신: 위 패키지의 새 버전에서 woff2를 같은 이름으로 복사하고, Pretendard·JetBrains Mono는 공식 CSS의 `unicode-range`를 `src/font-faces/*.css`에 반영한다. 이 표의 버전을 함께 수정한다.
-- 글꼴 파일을 직접 참조할 때: `@sightlab/tokens/fonts/suit/SUIT-Variable.woff2` (예: `<link rel="preload">`).
+- 갱신: 위 패키지의 새 버전에서 woff2를 같은 이름으로 복사하고, Pretendard·JetBrains Mono는 공식 CSS의 `unicode-range`를 `src/_font-*.scss`에 반영한다. 이 표의 버전을 함께 수정한다.
+- `_font-*.scss`는 `src/` 바로 아래에 둔다. `url('../fonts/…')`이 `src/`와 `dist/` 어디서든 패키지의 `fonts/`를 가리키게 하기 위해서다.
 
 ## 규칙
 
 - 컴포넌트와 앱은 **역할 색만** 사용한다. 원색은 역할 색 정의에만 쓴다.
 - 글자 스타일 역할: `display`, `h1`~`h3`, `body-lg`, `body`, `body-sm`, `label`, `code`.
 - 글자 크기·줄 높이는 rem(16px 기준), 그 외 길이는 px.
-- 다크 모드는 아직 없다 (Figma에 Light만 정의).
+- 다크 모드는 아직 없다 (Figma에 Light만 정의). breakpoint는 아직 정의하지 않았다 (web 화면 작업 때 결정).
 - 값을 바꿀 때는 Figma 변수를 먼저 수정하고 이 파일에 반영한다.

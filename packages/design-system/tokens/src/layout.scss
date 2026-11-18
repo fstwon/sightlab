@@ -1,0 +1,8 @@
+// $layout → :root { --sl-layout-<이름> }
+@use 'sass/layout' as *;
+
+:root {
+  @each $name, $value in $layout {
+    --sl-layout-#{$name}: #{$value};
+  }
+}

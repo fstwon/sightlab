@@ -1,0 +1,8 @@
+// $shadow → :root { --sl-shadow-<이름> }
+@use 'sass/shadow' as *;
+
+:root {
+  @each $name, $value in $shadow {
+    --sl-shadow-#{$name}: #{$value};
+  }
+}

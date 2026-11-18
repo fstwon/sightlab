@@ -1,0 +1,8 @@
+// $radius → :root { --sl-radius-<이름> }
+@use 'sass/radius' as *;
+
+:root {
+  @each $name, $value in $radius {
+    --sl-radius-#{$name}: #{$value};
+  }
+}

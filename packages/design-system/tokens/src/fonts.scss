@@ -1,0 +1,5 @@
+// 글꼴 진입점. --sl-font-family-* 토큰이 가리키는 글꼴의 @font-face를 모두 출력한다.
+// url('../fonts/…')은 src/와 dist/ 어디서 읽어도 패키지의 fonts/를 가리키도록 src/ 바로 아래에 둔다.
+@use 'font-suit';
+@use 'font-pretendard';
+@use 'font-jetbrains-mono';
