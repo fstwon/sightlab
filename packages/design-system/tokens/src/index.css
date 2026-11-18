@@ -1,4 +1,5 @@
 /* 모든 토큰을 불러오는 진입점. 원색이 역할 색보다 먼저 와야 한다. */
+@import './fonts.css';
 @import './primitive-colors.css';
 @import './semantic-colors.css';
 @import './typography.css';

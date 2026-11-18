@@ -11,13 +11,15 @@
     "stylelint": "^17.16.0"
   },
   "files": [
-    "src"
+    "src",
+    "fonts"
   ],
   "sideEffects": [
     "*.css"
   ],
   "exports": {
     ".": "./src/index.css",
-    "./*.css": "./src/*.css"
+    "./*.css": "./src/*.css",
+    "./fonts/*": "./fonts/*"
   }
 }
