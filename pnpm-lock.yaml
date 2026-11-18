@@ -194,6 +194,22 @@ importers:
         specifier: ^17.16.0
         version: 17.16.0(supports-color@10.2.2)(typescript@6.0.3)
 
+  packages/design-system/ui:
+    dependencies:
+      '@sightlab/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+    devDependencies:
+      '@sightlab/stylelint-config':
+        specifier: workspace:*
+        version: link:../../../tooling/stylelint-config
+      sass:
+        specifier: ^1.108.2
+        version: 1.108.2
+      stylelint:
+        specifier: ^17.16.0
+        version: 17.16.0(supports-color@10.2.2)(typescript@6.0.3)
+
   tooling/eslint-config:
     dependencies:
       '@eslint/js':

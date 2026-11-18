@@ -1,0 +1,6 @@
+// 키보드 focus 표시. :focus-visible 안에서 사용한다.
+// Figma는 안쪽 3px 테두리지만 action-primary 배경(primary 버튼)에서 보이지 않아 바깥 링으로 표시한다.
+@mixin focus-ring {
+  outline: 3px solid var(--sl-color-action-primary);
+  outline-offset: 2px;
+}
