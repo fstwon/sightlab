@@ -1,0 +1,100 @@
+# @sightlab/icons
+
+Sightlab 공용 아이콘. Figma Icon Library의 아이콘을 **SVG 파일 그대로** 배포한다.
+빌드 단계가 없고, 아이콘을 컴포넌트로 감싸는 일(React 등)은 각 앱에서 한다.
+
+## 사용법
+
+```jsonc
+// package.json
+{ "dependencies": { "@sightlab/icons": "workspace:*" } }
+```
+
+아이콘 색은 `currentColor`이므로, 사용 방식에 따라 글자색을 따라가는지가 다르다.
+
+| 방식       | 글자색 따라가기 | 용도                      |
+| ---------- | --------------- | ------------------------- |
+| 인라인 SVG | 됨              | 기본. 버튼·링크 안 아이콘 |
+| CSS mask   | 됨              | 마크업을 바꾸기 어려울 때 |
+| `<img>`    | 안 됨 (검정)    | 색이 바뀌지 않는 장식용   |
+
+### 인라인 SVG
+
+번들러로 SVG 내용을 문자열로 불러와 마크업에 넣는다. 방식은 앱마다 고른다.
+
+```ts
+// Vite
+import searchIcon from '@sightlab/icons/search.svg?raw';
+button.insertAdjacentHTML('afterbegin', searchIcon);
+```
+
+Next.js(React)는 SVGR 등 앱의 설정으로 컴포넌트화한다.
+
+### CSS mask
+
+```ts
+// Vite: 파일 URL을 CSS 변수로 넘긴다
+import searchIconUrl from '@sightlab/icons/search.svg?url';
+icon.style.setProperty('--icon', `url(${searchIconUrl})`);
+```
+
+```css
+.icon {
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+}
+```
+
+CSS `url()` 안에 패키지 경로(`@sightlab/icons/…`)를 직접 쓰는 방식은 번들러마다 해석이 달라 쓰지 않는다.
+
+### `<img>`
+
+```ts
+// Vite
+import searchIconUrl from '@sightlab/icons/search.svg?url';
+```
+
+```html
+<img src="…/search.svg" alt="" width="24" height="24" />
+```
+
+## exports
+
+| 진입점                       | 파일             |
+| ---------------------------- | ---------------- |
+| `@sightlab/icons/<이름>.svg` | `svg/<이름>.svg` |
+
+## 아이콘
+
+| 파일                | Figma             |
+| ------------------- | ----------------- |
+| `menu.svg`          | Icon/Menu         |
+| `close.svg`         | Icon/Close        |
+| `search.svg`        | Icon/Search       |
+| `filter.svg`        | Icon/Filter       |
+| `chevron-up.svg`    | Icon/ChevronUp    |
+| `chevron-down.svg`  | Icon/ChevronDown  |
+| `chevron-left.svg`  | Icon/ChevronLeft  |
+| `chevron-right.svg` | Icon/ChevronRight |
+| `arrow-up.svg`      | Icon/ArrowUp      |
+| `arrow-left.svg`    | Icon/ArrowLeft    |
+| `arrow-right.svg`   | Icon/ArrowRight   |
+| `copy.svg`          | Icon/Copy         |
+| `check.svg`         | Icon/Check        |
+| `external-link.svg` | Icon/ExternalLink |
+| `refresh.svg`       | Icon/Refresh      |
+| `more.svg`          | Icon/More         |
+
+## 제작 규칙
+
+- `viewBox="0 0 24 24"`, `width`·`height` 24
+- 선 아이콘: `fill="none"`, `stroke="currentColor"`, `stroke-width="1.75"` (점으로 된 `more`만 `fill="currentColor"`)
+- 파일 이름은 kebab-case, Figma `Icon/<Name>`에 대응 (`Icon/ChevronDown` → `chevron-down.svg`)
+- 새 아이콘은 Figma Icon Library에 먼저 추가하고 같은 규칙으로 내보낸다
+
+## 접근성
+
+- 의미가 있는 아이콘(텍스트 없는 버튼 등)은 버튼에 `aria-label`을 붙이거나 숨김 텍스트를 함께 둔다
+- 장식용 아이콘은 `aria-hidden="true"`(인라인 SVG) 또는 `alt=""`(`<img>`)
