@@ -1,0 +1,31 @@
+{
+  "name": "@sightlab/ui",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sightlab 공용 UI (컴포넌트별 BEM, SCSS 원본·CSS 배포)",
+  "scripts": {
+    "build": "sass --no-source-map src:dist",
+    "dev": "sass --no-source-map --watch src:dist",
+    "lint:css": "stylelint \"src/**/*.scss\""
+  },
+  "dependencies": {
+    "@sightlab/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@sightlab/stylelint-config": "workspace:*",
+    "sass": "^1.108.2",
+    "stylelint": "^17.16.0"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./dist/index.css",
+    "./*.css": "./dist/*.css",
+    "./sass": "./src/sass/_index.scss"
+  }
+}
