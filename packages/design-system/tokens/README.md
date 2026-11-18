@@ -44,7 +44,23 @@ import '@sightlab/tokens';
 | `radius.css`           | `--sl-radius-*`                            | none, sm, md, lg, full                              |
 | `shadow.css`           | `--sl-shadow-*`                            | sm, md                                              |
 | `layout.css`           | `--sl-layout-*`                            | 콘텐츠·본문 최대 폭, 모바일 여백, 터치 영역         |
-| `index.css`            |                                            | 전체 진입점                                         |
+| `fonts.css`            |                                            | 글꼴 `@font-face` 진입점 (`font-faces/*.css`)       |
+| `index.css`            |                                            | 전체 진입점 (글꼴 포함)                             |
+
+## 글꼴
+
+`index.css`가 `fonts.css`를 포함하므로 `@import '@sightlab/tokens'` 한 줄로 글꼴까지 불러온다.
+글꼴 파일은 패키지 `fonts/`에 직접 포함한다(직접 호스팅). 번들러가 `url()`의 파일을 함께 내보낸다.
+
+| 글꼴                | 역할                  | 출처 (복사한 버전)                                          | 파일                                              |
+| ------------------- | --------------------- | ----------------------------------------------------------- | ------------------------------------------------- |
+| SUIT Variable       | 본문·UI 주 글꼴       | `@sun-typeface/suit` 2.0.5 `fonts/variable/woff2`           | 단일 파일 (약 610KB)                              |
+| Pretendard Variable | SUIT에 없는 글자 대체 | `pretendard` 1.3.9 `dist/web/variable/woff2-dynamic-subset` | 범위별 92개, `unicode-range`로 필요한 범위만 받음 |
+| JetBrains Mono      | 코드                  | `@fontsource-variable/jetbrains-mono` 5.3.0 `files`         | latin·latin-ext 정체 2개                          |
+
+- 라이선스: 모두 SIL Open Font License 1.1, 각 `fonts/<글꼴>/LICENSE`.
+- 갱신: 위 패키지의 새 버전에서 woff2를 같은 이름으로 복사하고, Pretendard·JetBrains Mono는 공식 CSS의 `unicode-range`를 `src/font-faces/*.css`에 반영한다. 이 표의 버전을 함께 수정한다.
+- 글꼴 파일을 직접 참조할 때: `@sightlab/tokens/fonts/suit/SUIT-Variable.woff2` (예: `<link rel="preload">`).
 
 ## 규칙
 

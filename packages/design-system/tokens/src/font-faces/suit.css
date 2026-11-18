@@ -1,0 +1,11 @@
+/*
+ * SUIT Variable (@sun-typeface/suit 2.0.5, OFL-1.1, fonts/suit/LICENSE)
+ * 본문·UI 주 글꼴. 공식 배포본에 범위별 분할 파일이 없어 단일 파일로 제공한다.
+ */
+@font-face {
+  font-family: 'SUIT Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('../../fonts/suit/SUIT-Variable.woff2') format('woff2');
+  font-display: swap;
+}
