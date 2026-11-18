@@ -1,0 +1,6 @@
+// 그림자 (Figma 효과 스타일 Shadow/Small·Medium). --sl-shadow-<이름>
+// 문자열로 둔다: Sass가 색으로 해석하면 8자리 hex(#0000000f)를 rgba()로 바꿔 출력하기 때문.
+$shadow: (
+  sm: '0 1px 3px 0 #0000000f',
+  md: '0 6px 18px -4px #00000014',
+);

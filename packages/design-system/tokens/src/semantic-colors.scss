@@ -1,0 +1,15 @@
+// 역할 색 → :root { --sl-color-<역할>: var(--sl-color-<원색>) }
+@use 'sass:map';
+@use 'sass/primitive-colors' as *;
+@use 'sass/semantic-colors' as *;
+
+:root {
+  @each $role, $primitive in $semantic-colors {
+    // 없는 원색 이름을 참조하면 빌드를 실패시켜 오타를 막는다.
+    @if not map.has-key($primitive-colors, $primitive) {
+      @error 'semantic color "#{$role}" references unknown primitive "#{$primitive}"';
+    }
+
+    --sl-color-#{$role}: var(--sl-color-#{$primitive});
+  }
+}

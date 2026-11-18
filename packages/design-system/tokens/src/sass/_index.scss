@@ -1,0 +1,11 @@
+// Sass 전용 API (CSS 출력 없음). 어느 파일에서 @use 해도 중복 출력되지 않는다.
+//   @use 'pkg:@sightlab/tokens/sass' as tokens;
+//   tokens.$spacing, tokens.$text-roles ...
+// 화면 스타일의 값은 var(--sl-*)를 쓰고, 이 map은 Sass 계산·반복이 필요할 때만 사용한다.
+@forward 'primitive-colors';
+@forward 'semantic-colors';
+@forward 'typography';
+@forward 'spacing';
+@forward 'radius';
+@forward 'shadow';
+@forward 'layout';

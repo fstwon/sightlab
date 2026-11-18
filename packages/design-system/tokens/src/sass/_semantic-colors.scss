@@ -1,0 +1,19 @@
+// 역할 색. 값은 $primitive-colors의 키(원색 이름)이며,
+// --sl-color-<역할> 은 var(--sl-color-<원색>) 을 참조하도록 출력된다.
+$semantic-colors: (
+  bg-canvas: neutral-50,
+  bg-surface: neutral-0,
+  bg-subtle: neutral-100,
+  bg-code: code-900,
+  bg-brand-soft: purple-50,
+  bg-accent-soft: orange-100,
+  text-primary: neutral-900,
+  text-secondary: neutral-500,
+  text-inverse: neutral-0,
+  text-brand: purple-600,
+  border-default: neutral-200,
+  action-primary: purple-600,
+  accent-default: orange-500,
+  status-success: green-600,
+  status-danger: red-600,
+);

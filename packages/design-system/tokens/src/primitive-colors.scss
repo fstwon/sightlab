@@ -1,0 +1,8 @@
+// 원색 → :root { --sl-color-<이름> }
+@use 'sass/primitive-colors' as *;
+
+:root {
+  @each $name, $value in $primitive-colors {
+    --sl-color-#{$name}: #{$value};
+  }
+}

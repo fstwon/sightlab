@@ -2,15 +2,19 @@
   "name": "@sightlab/tokens",
   "version": "0.0.0",
   "private": true,
-  "description": "Sightlab 디자인 토큰 (CSS 변수)",
+  "description": "Sightlab 디자인 토큰 (SCSS 원본, CSS 변수 배포)",
   "scripts": {
-    "lint:css": "stylelint \"src/**/*.css\""
+    "build": "sass --no-source-map src:dist",
+    "dev": "sass --no-source-map --watch src:dist",
+    "lint:css": "stylelint \"src/**/*.scss\""
   },
   "devDependencies": {
     "@sightlab/stylelint-config": "workspace:*",
+    "sass": "^1.108.2",
     "stylelint": "^17.16.0"
   },
   "files": [
+    "dist",
     "src",
     "fonts"
   ],
@@ -18,8 +22,9 @@
     "*.css"
   ],
   "exports": {
-    ".": "./src/index.css",
-    "./*.css": "./src/*.css",
+    ".": "./dist/index.css",
+    "./sass": "./src/sass/_index.scss",
+    "./*.css": "./dist/*.css",
     "./fonts/*": "./fonts/*"
   }
 }
