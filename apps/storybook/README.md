@@ -46,24 +46,24 @@ src/
 
 빌드 설정은 `vercel.json`에 있다.
 
-| 설정             | 값                                                                     |
-| ---------------- | ---------------------------------------------------------------------- |
-| Build Command    | `turbo run build` (Root Directory 기준으로 이 앱과 의존 패키지만 빌드) |
-| Output Directory | `storybook-static`                                                     |
-| Install Command  | Vercel 자동 감지 (`pnpm install`)                                      |
+| 설정             | 값                                                                             |
+| ---------------- | ------------------------------------------------------------------------------ |
+| Build Command    | `turbo run build` (Root Directory 기준으로 이 앱과 의존 패키지만 빌드)         |
+| Output Directory | `storybook-static`                                                             |
+| Install Command  | Vercel 자동 감지 (`pnpm install`, pnpm 버전은 루트 `packageManager`의 12.21.0) |
 
 Vercel 대시보드 설정 (프로젝트 생성 시 1회):
 
-| 설정                                     | 값                                                           |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| Root Directory                           | `apps/storybook`                                             |
-| Include files outside the root directory | 켬 (공용 패키지 빌드에 필요)                                 |
-| Framework Preset                         | Other (`vercel.json`이 빌드 명령·출력 폴더 지정)             |
-| Node.js Version                          | 26.x (루트 `engines.node`)                                   |
-| 환경변수 `ENABLE_EXPERIMENTAL_COREPACK`  | `1` (`packageManager`의 pnpm 12.21.0 사용, 없으면 9·10 사용) |
-| Skip unaffected projects                 | 켬 (이 앱·의존 패키지에 변경이 없으면 빌드 생략)             |
+| 설정                                     | 값                                               |
+| ---------------------------------------- | ------------------------------------------------ |
+| Root Directory                           | `apps/storybook`                                 |
+| Include files outside the root directory | 켬 (공용 패키지 빌드에 필요)                     |
+| Framework Preset                         | Other (`vercel.json`이 빌드 명령·출력 폴더 지정) |
+| Node.js Version                          | 26.x (루트 `engines.node`)                       |
+| Skip unaffected projects                 | 켬 (이 앱·의존 패키지에 변경이 없으면 빌드 생략) |
 
 배포 로그에서 pnpm 버전(12.21.0)과 빌드 순서(tokens → ui → storybook)를 확인한다.
+Vercel이 `package.json`의 `packageManager`를 읽어 pnpm 버전을 정하므로 Corepack 환경변수는 필요 없다 (첫 배포 로그로 확인).
 PR마다 미리보기 URL이 생기고, `main` 병합 시 운영 URL이 갱신된다.
 
 ## 참고
