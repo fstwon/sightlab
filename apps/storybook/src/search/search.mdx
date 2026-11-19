@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as SearchStories from './search.stories';
+
+<Meta of={SearchStories} />
+
+# Search
+
+Notes 목록에서 제목·요약·태그로 글을 찾는 검색 입력란.
+원본: `@sightlab/ui` `search.scss` · Figma 02 Components / Search Input (node 35:16)
+
+<Canvas of={SearchStories.Default} />
+
+<Controls of={SearchStories.Default} />
+
+## 마크업
+
+```html
+<form role="search" action="/notes">
+  <label class="sl-search">
+    <svg class="sl-search__icon" aria-hidden="true"><!-- @sightlab/icons search.svg --></svg>
+    <input
+      class="sl-search__input"
+      type="search"
+      name="q"
+      placeholder="노트 검색"
+      aria-label="노트 검색"
+    />
+  </label>
+</form>
+```
+
+| 요소                                             | 필수 | 설명                                                                 |
+| ------------------------------------------------ | ---- | -------------------------------------------------------------------- |
+| `<label class="sl-search">`                      | 필수 | 루트. 아이콘·빈 공간을 눌러도 입력란에 focus                         |
+| `sl-search__icon`                                | 필수 | `@sightlab/icons`의 `search.svg` 인라인, `aria-hidden="true"`, 20×20 |
+| `<input class="sl-search__input" type="search">` | 필수 | 입력란. `aria-label` 필수                                            |
+| `<form role="search">`                           | 앱   | 검색 영역을 알리고 제출을 처리. 앱이 감싼다                          |
+
+## 상태
+
+| 상태    | 표현                                                                                         |
+| ------- | -------------------------------------------------------------------------------------------- |
+| 기본    | 1px `border-default` 테두리, 안내 문구는 `text-secondary`                                    |
+| Focus   | 입력란 focus 시 테두리가 `action-primary` 2px로 보임 (크기 변화 없음). 클릭·키보드 모두 표시 |
+| 값 있음 | 입력값은 `text-primary` (별도 수정자 없음)                                                   |
+| 비활성  | `sl-search--disabled` + `<input disabled>`                                                   |
+
+<Canvas of={SearchStories.Filled} />
+<Canvas of={SearchStories.Disabled} />
+
+## 접근성
+
+- 입력란에는 보이는 라벨이 없으므로 `aria-label`을 반드시 둔다.
+- 검색 영역은 `<form role="search">`로 감싼다 (앱 몫).
+- 브라우저 기본 지우기(×) 버튼은 숨긴다. 지우기가 필요하면 디자인을 추가해 별도로 만든다.
+- 아이콘과 글자 사이 간격은 `--sl-spacing-xs`(8px)를 쓴다 (Figma 10px에 맞는 토큰이 없음).
