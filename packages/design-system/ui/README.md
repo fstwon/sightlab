@@ -60,6 +60,7 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 | 컴포넌트 | 원본          | 루트 클래스 | 수정자                                                          |
 | -------- | ------------- | ----------- | --------------------------------------------------------------- |
 | Button   | `button.scss` | `sl-button` | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled` |
+| Tag      | `tag.scss`    | `sl-tag`    | `--brand`, `--accent`, `--selected`                             |
 
 마크업·변형·상태·접근성 규칙은 Storybook Docs(`apps/storybook`)가 정식 문서다. 각 SCSS 파일 상단 주석에 해당 문서 위치를 적는다.
 
