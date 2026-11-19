@@ -1,0 +1,68 @@
+// Pagination (Figma 02 Components / Pagination, node 48:9)
+// 마크업·상태·접근성 규칙: Storybook "Components/Pagination" 문서 (apps/storybook/src/pagination/pagination.mdx)
+// 어떤 번호를 보여 주고 어디에 말줄임을 둘지는 앱이 계산한다. 여기서는 모양만 정한다.
+@use 'sass/focus-ring' as *;
+
+.sl-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-body-sm-size);
+  line-height: var(--sl-text-body-sm-line-height);
+  list-style: none;
+
+  &__item {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sl-layout-touch-target);
+    height: var(--sl-layout-touch-target);
+    font-weight: 600;
+    color: var(--sl-color-text-primary);
+    text-decoration: none;
+    background: var(--sl-color-bg-surface);
+    border: 1px solid var(--sl-color-border-default);
+    border-radius: var(--sl-radius-full);
+
+    // 현재 페이지·이동할 수 없는 항목에는 hover 표시를 하지 않는다 (Figma에 없어 추가).
+    &:hover:not(.sl-pagination__item--current, .sl-pagination__item--disabled) {
+      background: var(--sl-color-bg-subtle);
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // 테두리 색을 배경과 같게 해 크기는 그대로 두고 테두리만 보이지 않게 한다.
+  &__item--current {
+    color: var(--sl-color-text-inverse);
+    background: var(--sl-color-action-primary);
+    border-color: var(--sl-color-action-primary);
+  }
+
+  &__item--disabled {
+    cursor: default;
+    opacity: 0.35;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: var(--sl-layout-touch-target);
+    color: var(--sl-color-text-secondary);
+  }
+}

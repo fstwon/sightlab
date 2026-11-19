@@ -1,0 +1,79 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as PaginationStories from './pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+목록 아래에서 다른 페이지로 이동하는 링크 묶음. **모양만 제공**하며, 보여 줄 번호와 말줄임 위치는 앱이 계산한다.
+원본: `@sightlab/ui` `pagination.scss` · Figma 02 Components / Pagination (node 48:9)
+
+<Canvas of={PaginationStories.Start} />
+
+<Controls of={PaginationStories.Start} />
+
+## 마크업
+
+```html
+<nav aria-label="페이지">
+  <ol class="sl-pagination">
+    <li>
+      <a
+        class="sl-pagination__item sl-pagination__item--disabled"
+        role="link"
+        aria-disabled="true"
+        aria-label="이전 페이지"
+      >
+        <svg class="sl-pagination__icon" aria-hidden="true"><!-- arrow-left.svg --></svg>
+      </a>
+    </li>
+    <li>
+      <a class="sl-pagination__item sl-pagination__item--current" href="?page=1" aria-current="page"
+        >1</a
+      >
+    </li>
+    <li><a class="sl-pagination__item" href="?page=2">2</a></li>
+    <li><span class="sl-pagination__ellipsis">…</span></li>
+    <li><a class="sl-pagination__item" href="?page=12">12</a></li>
+    <li>
+      <a class="sl-pagination__item" href="?page=2" aria-label="다음 페이지">
+        <svg class="sl-pagination__icon" aria-hidden="true"><!-- arrow-right.svg --></svg>
+      </a>
+    </li>
+  </ol>
+</nav>
+```
+
+| 요소                                     | 필수      | 설명                                                             |
+| ---------------------------------------- | --------- | ---------------------------------------------------------------- |
+| `<nav aria-label>`                       | 필수      | 탐색 영역. 이름(`aria-label`) 필수                               |
+| `<ol class="sl-pagination">`             | 필수      | 루트. 순서 있는 목록                                             |
+| `<a class="sl-pagination__item">`        | 필수      | 페이지 링크. 44×44 원. 주소는 `?page=N` 처럼 URL에 상태를 담는다 |
+| `sl-pagination__icon`                    | 이전/다음 | `arrow-left.svg`·`arrow-right.svg` 인라인, `aria-hidden="true"`  |
+| `aria-label`                             | 이전/다음 | 아이콘만 있는 링크의 이름 (`이전 페이지`·`다음 페이지`)          |
+| `<span class="sl-pagination__ellipsis">` | 생략 구간 | `…` 표시. 링크 아님                                              |
+
+## 상태
+
+| 상태           | 표현                                                                                               |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| 현재 페이지    | `sl-pagination__item--current` + `aria-current="page"`. 배경 `action-primary`, 글자 `text-inverse` |
+| 이동할 수 없음 | `sl-pagination__item--disabled` + `role="link"` + `aria-disabled="true"`, `href` 없음. 투명도 0.35 |
+| hover          | 배경 `bg-subtle` (Figma에 없어 추가. 현재·이동 불가 항목은 제외)                                   |
+| 키보드 focus   | `:focus-visible` 외곽 링                                                                           |
+
+<Canvas of={PaginationStories.Middle} />
+<Canvas of={PaginationStories.End} />
+
+## 앱이 할 일
+
+- 전체 페이지 수와 현재 페이지로 보여 줄 번호를 계산한다. 이 문서의 예시는 처음·끝 페이지와 현재 주변 3개를 보여 주고, 사이가 2페이지 이상 비면 말줄임을 넣는다.
+- 현재 페이지는 URL(`?page=N`)에서 읽는다. 링크라서 JS 없이 정적 HTML에서도 동작한다.
+- 페이지가 1개뿐이면 Pagination을 그리지 않는다.
+
+## 접근성
+
+- 현재 페이지는 `aria-current="page"`로 알린다. 스타일은 `--current` 수정자로만 건다.
+- 이동할 수 없는 이전/다음은 `href`를 빼서 Tab 순서에서 빠지게 하고, `role="link"`(href가 없으면 링크 역할이 사라지므로)와 `aria-disabled="true"`로 비활성 링크임을 알린다.
+- 모든 항목이 44×44로 최소 터치 영역을 충족한다.
