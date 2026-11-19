@@ -62,6 +62,8 @@ Sass는 `url()`을 재작성하지 않아 글꼴 경로가 깨진다 (Vite에서
 Vite 8(JS·CSS import)과 Next.js 16 Turbopack(JS import, `./<종류>.css` 포함)에서
 `dist` CSS로 연결되고 글꼴 파일이 함께 내보내지는 것을 확인했다.
 
+TypeScript 앱에서 `import '@sightlab/tokens'`(side-effect import)가 타입 검사를 통과하도록 `"."`에 빈 타입 선언(`index.d.ts`, `types` 조건)을 둔다.
+
 ## 파일
 
 | 원본 (`src/sass/`, 출력 없음) | 출력 (`src/` → `dist/`) | CSS 변수                                       |
