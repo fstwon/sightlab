@@ -59,6 +59,7 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 
 | 컴포넌트      | 원본                 | 루트 클래스        | 수정자                                                          |
 | ------------- | -------------------- | ------------------ | --------------------------------------------------------------- |
+| Breadcrumb    | `breadcrumb.scss`    | `sl-breadcrumb`    | `--compact` (요소 `__item`, `__link`, `__current`)              |
 | Button        | `button.scss`        | `sl-button`        | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled` |
 | Filter Select | `filter-select.scss` | `sl-filter-select` | `--open`, `--disabled` (요소 `__icon`)                          |
 | Search        | `search.scss`        | `sl-search`        | `--disabled` (요소 `__icon`, `__input`)                         |
@@ -68,9 +69,10 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 
 ## Sass API (`src/sass/`)
 
-| mixin        | 용도                                                                                              |
-| ------------ | ------------------------------------------------------------------------------------------------- |
-| `focus-ring` | `:focus-visible` 외곽 링 (3px, 간격 2px). Figma의 안쪽 테두리는 primary 배경에서 보이지 않아 변경 |
+| mixin                | 용도                                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| `focus-ring`         | `:focus-visible` 외곽 링 (3px, 간격 2px). Figma의 안쪽 테두리는 primary 배경에서 보이지 않아 변경 |
+| `breadcrumb-compact` | Breadcrumb 모바일 축약. 앱이 미디어 쿼리 안에서 `.sl-breadcrumb`에 적용                           |
 
 ## 빌드
 

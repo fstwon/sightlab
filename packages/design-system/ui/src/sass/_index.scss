@@ -2,3 +2,4 @@
 //   @use 'pkg:@sightlab/ui/sass' as ui;
 //   .x:focus-visible { @include ui.focus-ring; }
 @forward 'focus-ring';
+@forward 'breadcrumb-compact';

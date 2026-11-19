@@ -1,0 +1,60 @@
+// Breadcrumb (Figma 02 Components / Breadcrumb, node 48:5)
+// 마크업·변형·상태·접근성 규칙: Storybook "Components/Breadcrumb" 문서 (apps/storybook/src/breadcrumb/breadcrumb.mdx)
+@use 'sass/focus-ring' as *;
+@use 'sass/breadcrumb-compact' as *;
+
+.sl-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-body-sm-size);
+  line-height: var(--sl-text-body-sm-line-height);
+  color: var(--sl-color-text-secondary);
+  list-style: none;
+
+  &__item {
+    display: inline-flex;
+    gap: var(--sl-spacing-xs);
+    align-items: center;
+  }
+
+  // 구분자는 CSS로 그리고 낭독하지 않는다 (마크업에 넣지 않음)
+  &__item + &__item::before {
+    font-family: var(--sl-font-family-mono);
+    content: '/' / '';
+  }
+
+  &__link {
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    // 겉모습은 그대로 두고 누르는 영역만 위아래로 최소 터치 영역까지 넓힌다.
+    &::after {
+      position: absolute;
+      inset: calc((var(--sl-layout-touch-target) - 100%) / -2) 0;
+      content: '';
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__current {
+    font-weight: 600;
+    color: var(--sl-color-text-primary);
+  }
+
+  &--compact {
+    @include breadcrumb-compact;
+  }
+}
