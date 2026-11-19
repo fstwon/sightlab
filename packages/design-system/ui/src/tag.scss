@@ -1,0 +1,60 @@
+// Tag (Figma 02 Components / Tag Badge, node 37:16)
+// 마크업·변형·상태·접근성 규칙: Storybook "Components/Tag" 문서 (apps/storybook/src/tag/tag.mdx)
+@use 'sass/focus-ring' as *;
+
+// 선택 테두리 두께. 기본 상태에도 투명 테두리를 두어 선택 전후 크기·글자 위치가 같게 한다 (Figma 안쪽 테두리).
+$border-width: 2px;
+
+.sl-tag {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 calc(var(--sl-spacing-sm) - #{$border-width});
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-secondary);
+  letter-spacing: var(--sl-text-label-letter-spacing);
+  white-space: nowrap;
+  background-color: var(--sl-color-bg-subtle);
+  border: $border-width solid transparent;
+  border-radius: var(--sl-radius-full);
+
+  &--brand {
+    color: var(--sl-color-text-brand);
+    background-color: var(--sl-color-bg-brand-soft);
+  }
+
+  &--accent {
+    color: var(--sl-color-text-primary);
+    background-color: var(--sl-color-bg-accent-soft);
+  }
+
+  &--selected {
+    border-color: var(--sl-color-action-primary);
+  }
+
+  &--accent.sl-tag--selected {
+    border-color: var(--sl-color-accent-default);
+  }
+}
+
+// 필터 등 버튼으로 쓸 때: 기본 버튼 스타일 초기화, focus 표시, 터치 영역 44px 확보
+button.sl-tag {
+  cursor: pointer;
+
+  // 겉모습(32px)은 그대로 두고 누르는 영역만 최소 터치 영역까지 넓힌다.
+  &::before {
+    position: absolute;
+    inset: calc((var(--sl-layout-touch-target) - 100%) / -2) 0;
+    content: '';
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
