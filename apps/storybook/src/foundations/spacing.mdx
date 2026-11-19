@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import spacingCss from '@sightlab/tokens/spacing.css?raw';
+
+import { readCssVariables } from './read-css-variables';
+
+export const steps = readCssVariables(spacingCss, '--sl-spacing-');
+
+<Meta title="Foundations/Spacing" />
+
+# Spacing
+
+여백(margin·padding)과 간격(gap)에 쓰는 단계. 값은 `@sightlab/tokens`의 빌드 결과(`spacing.css`)에서 읽는다.
+
+<table>
+  <thead>
+    <tr>
+      <th>변수</th>
+      <th>값</th>
+      <th>길이</th>
+    </tr>
+  </thead>
+  <tbody>
+    {steps.map(({ name, value }) => (
+      <tr key={name}>
+        <td>
+          <code>{name}</code>
+        </td>
+        <td>{value}</td>
+        <td>
+          <div
+            style={{
+              width: `var(${name})`,
+              height: '16px',
+              backgroundColor: 'var(--sl-color-action-primary)',
+            }}
+          />
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

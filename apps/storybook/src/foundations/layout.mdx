@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import layoutCss from '@sightlab/tokens/layout.css?raw';
+
+import { readCssVariables } from './read-css-variables';
+
+export const items = readCssVariables(layoutCss, '--sl-layout-');
+
+export const usage = {
+  'content-max': '화면 콘텐츠 최대 폭 (Public 화면)',
+  'prose-max': '본문(글) 최대 폭',
+  'gutter-mobile': '모바일 좌우 여백',
+  'touch-target': '최소 터치 영역 (버튼 높이 등)',
+};
+
+<Meta title="Foundations/Layout" />
+
+# Layout
+
+화면 배치 기준값. 값은 `@sightlab/tokens`의 빌드 결과(`layout.css`)에서 읽는다.
+breakpoint는 아직 정의하지 않았다 (web 화면 작업 때 결정).
+
+<table>
+  <thead>
+    <tr>
+      <th>변수</th>
+      <th>값</th>
+      <th>쓰임</th>
+    </tr>
+  </thead>
+  <tbody>
+    {items.map(({ name, key, value }) => (
+      <tr key={name}>
+        <td>
+          <code>{name}</code>
+        </td>
+        <td>{value}</td>
+        <td>{usage[key] ?? ''}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

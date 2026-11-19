@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import radiusCss from '@sightlab/tokens/radius.css?raw';
+
+import { readCssVariables } from './read-css-variables';
+
+export const steps = readCssVariables(radiusCss, '--sl-radius-');
+
+<Meta title="Foundations/Radius" />
+
+# Radius
+
+모서리 둥글기 단계. 값은 `@sightlab/tokens`의 빌드 결과(`radius.css`)에서 읽는다.
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
+  {steps.map(({ name, key, value }) => (
+    <figure key={name} style={{ margin: 0, textAlign: 'center' }}>
+      <div
+        style={{
+          width: '96px',
+          height: '96px',
+          borderRadius: `var(${name})`,
+          backgroundColor: 'var(--sl-color-bg-brand-soft)',
+          border: '1px solid var(--sl-color-action-primary)',
+        }}
+      />
+      <figcaption>
+        <code>{key}</code> {value}
+      </figcaption>
+    </figure>
+  ))}
+</div>

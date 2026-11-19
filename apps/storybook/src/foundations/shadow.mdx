@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import shadowCss from '@sightlab/tokens/shadow.css?raw';
+
+import { readCssVariables } from './read-css-variables';
+
+export const steps = readCssVariables(shadowCss, '--sl-shadow-');
+
+<Meta title="Foundations/Shadow" />
+
+# Shadow
+
+그림자 단계 (Figma 효과 스타일 Shadow/Small·Medium). 값은 `@sightlab/tokens`의 빌드 결과(`shadow.css`)에서 읽는다.
+
+<div
+  style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '32px',
+    padding: '24px',
+    backgroundColor: 'var(--sl-color-bg-canvas)',
+  }}
+>
+  {steps.map(({ name, value }) => (
+    <figure key={name} style={{ margin: 0 }}>
+      <div
+        style={{
+          width: '200px',
+          height: '120px',
+          borderRadius: 'var(--sl-radius-md)',
+          backgroundColor: 'var(--sl-color-bg-surface)',
+          boxShadow: `var(${name})`,
+        }}
+      />
+      <figcaption>
+        <code>{name}</code>
+        <br />
+        <code>{value}</code>
+      </figcaption>
+    </figure>
+  ))}
+</div>
