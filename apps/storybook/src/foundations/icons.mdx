@@ -1,0 +1,32 @@
+import { IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
+
+import { ICONS } from './icons';
+
+<Meta title="Foundations/Icons" />
+
+# Icons
+
+`@sightlab/icons`의 SVG 파일. 24×24, `stroke="currentColor"`, 선 굵기 1.75이며 글자색을 따른다.
+
+<IconGallery>
+  {ICONS.map(({ name, svg }) => (
+    <IconItem key={name} name={name}>
+      <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: svg }} />
+    </IconItem>
+  ))}
+</IconGallery>
+
+## 사용 방식
+
+| 방식                                          | 글자색 따라가기 | 용도                      |
+| --------------------------------------------- | --------------- | ------------------------- |
+| 인라인 SVG (`@sightlab/icons/<이름>.svg?raw`) | 됨              | 기본. 버튼·링크 안 아이콘 |
+| CSS mask (`?url` → CSS 변수 → `mask`)         | 됨              | 마크업을 바꾸기 어려울 때 |
+| `<img src>` (`?url`)                          | 안 됨           | 색이 바뀌지 않는 장식용   |
+
+자세한 예시는 `@sightlab/icons` README를 따른다.
+
+## 접근성
+
+- 의미가 있는 아이콘(텍스트 없는 버튼 등)은 버튼에 `aria-label`을 붙이거나 숨김 텍스트를 함께 둔다.
+- 장식용 아이콘은 `aria-hidden="true"`(인라인 SVG) 또는 `alt=""`(`<img>`)를 쓴다.

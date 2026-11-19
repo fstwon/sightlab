@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import typographyCss from '@sightlab/tokens/typography.css?raw';
+
+import { groupTextRoles } from './group-text-roles';
+import { readCssVariables } from './read-css-variables';
+
+export const families = readCssVariables(typographyCss, '--sl-font-family-');
+export const roles = groupTextRoles(readCssVariables(typographyCss, '--sl-text-'));
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+값은 `@sightlab/tokens`의 빌드 결과(`typography.css`)에서 읽는다.
+크기·줄 높이는 rem(16px 기준), 자간은 px. 글꼴 파일은 토큰 패키지에 포함돼 있다.
+
+## 글꼴
+
+<table>
+  <thead>
+    <tr>
+      <th>변수</th>
+      <th>값</th>
+      <th>견본</th>
+    </tr>
+  </thead>
+  <tbody>
+    {families.map(({ name, value }) => (
+      <tr key={name}>
+        <td>
+          <code>{name}</code>
+        </td>
+        <td>
+          <code>{value}</code>
+        </td>
+        <td style={{ fontFamily: `var(${name})`, fontSize: '1rem' }}>
+          {'기술 실험 기록 Sightlab 0123 => !== ==='}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+## 글자 역할
+
+`--sl-text-<역할>-{size, line-height, weight, letter-spacing}` 네 변수를 함께 쓴다. `code`는 mono 글꼴과 함께 쓴다.
+
+<table>
+  <thead>
+    <tr>
+      <th>역할</th>
+      <th>size / line-height</th>
+      <th>weight</th>
+      <th>letter-spacing</th>
+      <th>견본</th>
+    </tr>
+  </thead>
+  <tbody>
+    {roles.map((r) => (
+      <tr key={r.role}>
+        <td>
+          <code>{r.role}</code>
+        </td>
+        <td>
+          {r.size} / {r['line-height']}
+        </td>
+        <td>{r.weight}</td>
+        <td>{r['letter-spacing']}</td>
+        <td
+          style={{
+            fontFamily:
+              r.role === 'code' ? 'var(--sl-font-family-mono)' : 'var(--sl-font-family-sans)',
+            fontSize: `var(--sl-text-${r.role}-size)`,
+            lineHeight: `var(--sl-text-${r.role}-line-height)`,
+            fontWeight: `var(--sl-text-${r.role}-weight)`,
+            letterSpacing: `var(--sl-text-${r.role}-letter-spacing)`,
+          }}
+        >
+          학습 기록 Notes
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

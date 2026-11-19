@@ -20,6 +20,7 @@ pnpm turbo run build --filter @sightlab/storybook   # tokens·ui 빌드 후 stor
   preview.ts     공용 CSS 불러오기(tokens → ui), 사이드바 순서, a11y
 src/
   introduction.mdx          시작 문서
+  foundations/              토큰·아이콘 문서 (값은 빌드된 토큰 CSS를 ?raw로 읽어 표시)
   <component>/
     <component>.stories.ts  변형·상태마다 스토리 1개
     <component>.mdx         규칙 문서 (정식 문서)
@@ -29,6 +30,8 @@ src/
 
 ## 작성 규칙
 
+- Foundations 문서는 값을 다시 적지 않는다. `@sightlab/tokens/<종류>.css?raw`를 `readCssVariables`로 읽어 표시하고, 견본은 `var(--sl-*)`로 그린다.
+- 아이콘 목록(`foundations/icons.ts`)은 공개 경로로 하나씩 불러오므로 아이콘을 추가하면 함께 수정한다.
 - 공용 패키지는 일반 의존성(`workspace:*`)으로만 쓰고, 다른 패키지의 내부 파일을 참조하지 않는다.
 - 스토리 `title`은 `Components/<컴포넌트>`, 변형·상태(BEM 수정자)마다 스토리 1개.
 - `render`는 규칙 문서의 마크업과 같은 HTML을 돌려준다.

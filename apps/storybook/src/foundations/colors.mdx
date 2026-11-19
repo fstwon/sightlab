@@ -1,0 +1,37 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/addon-docs/blocks';
+import primitiveCss from '@sightlab/tokens/primitive-colors.css?raw';
+import semanticCss from '@sightlab/tokens/semantic-colors.css?raw';
+
+import { readCssVariables } from './read-css-variables';
+
+export const primitives = readCssVariables(primitiveCss, '--sl-color-');
+export const semantics = readCssVariables(semanticCss, '--sl-color-');
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+값은 `@sightlab/tokens`의 빌드 결과(`primitive-colors.css`, `semantic-colors.css`)에서 읽는다.
+
+> 컴포넌트와 앱은 **역할 색(Semantic)만** 사용한다. 원색(Primitive)은 역할 색 정의에만 쓴다.
+
+## 역할 색 (Semantic)
+
+<ColorPalette>
+  {semantics.map(({ name, key, value }) => (
+    <ColorItem
+      key={name}
+      title={key}
+      subtitle={`${name} → ${value.replace('var(--sl-color-', '').replace(')', '')}`}
+      colors={{ [key]: `var(${name})` }}
+    />
+  ))}
+</ColorPalette>
+
+## 원색 (Primitive)
+
+<ColorPalette>
+  {primitives.map(({ name, key, value }) => (
+    <ColorItem key={name} title={key} subtitle={name} colors={{ [value]: `var(${name})` }} />
+  ))}
+</ColorPalette>
