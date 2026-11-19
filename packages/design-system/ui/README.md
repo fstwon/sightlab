@@ -53,13 +53,15 @@ import '@sightlab/ui';
 | `@sightlab/ui/<컴포넌트>.css` | `dist/<컴포넌트>.css`  | 컴포넌트 하나                     |
 | `@sightlab/ui/sass`           | `src/sass/_index.scss` | 없음 (mixin)                      |
 
+TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검사를 통과하도록 `"."`에 빈 타입 선언(`index.d.ts`, `types` 조건)을 둔다.
+
 ## 컴포넌트
 
 | 컴포넌트 | 원본          | 루트 클래스 | 수정자                                                          |
 | -------- | ------------- | ----------- | --------------------------------------------------------------- |
 | Button   | `button.scss` | `sl-button` | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled` |
 
-마크업·상태·접근성 규칙은 각 SCSS 파일 상단 주석에 있다. Storybook이 추가되면 Storybook Docs가 정식 문서가 된다.
+마크업·변형·상태·접근성 규칙은 Storybook Docs(`apps/storybook`)가 정식 문서다. 각 SCSS 파일 상단 주석에 해당 문서 위치를 적는다.
 
 ## Sass API (`src/sass/`)
 
@@ -84,5 +86,5 @@ turbo `lint:css`가 tokens를 먼저 빌드한다.
 - 변형·상태는 BEM 수정자로 표현 (`.sl-button--disabled`). aria 속성은 접근성용으로만 쓰고 스타일 선택자로 쓰지 않는다
 - hover·focus 같은 상호작용 상태는 가상 클래스(`:hover`, `:focus-visible`) 사용
 - 값은 `@sightlab/tokens`의 역할 토큰(`var(--sl-*)`)만 사용 (Sass 변수로 우회하지 않음)
-- 상단 규칙 주석은 `//`로 써서 배포 CSS에 남기지 않는다
+- 상단 주석은 `//`로 써서 배포 CSS에 남기지 않는다
 - JS 동작은 각 앱에서 구현

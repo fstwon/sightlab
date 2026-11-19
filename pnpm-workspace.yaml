@@ -2,3 +2,6 @@ packages:
   - apps/*
   - packages/design-system/*
   - tooling/*
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false

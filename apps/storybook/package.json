@@ -1,0 +1,30 @@
+{
+  "name": "@sightlab/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sightlab 디자인 시스템 Storybook (html-vite)",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006 --no-open",
+    "build": "storybook build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sightlab/icons": "workspace:*",
+    "@sightlab/tokens": "workspace:*",
+    "@sightlab/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@sightlab/eslint-config": "workspace:*",
+    "@sightlab/typescript-config": "workspace:*",
+    "@storybook/addon-a11y": "^10.6.7",
+    "@storybook/addon-docs": "^10.6.7",
+    "@storybook/html-vite": "^10.6.7",
+    "eslint": "^9.39.5",
+    "remark-gfm": "^4.0.1",
+    "storybook": "^10.6.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8"
+  }
+}

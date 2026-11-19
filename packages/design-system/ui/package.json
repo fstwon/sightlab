@@ -18,13 +18,17 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "index.d.ts"
   ],
   "sideEffects": [
     "*.css"
   ],
   "exports": {
-    ".": "./dist/index.css",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/index.css"
+    },
     "./*.css": "./dist/*.css",
     "./sass": "./src/sass/_index.scss"
   }

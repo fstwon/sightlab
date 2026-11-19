@@ -16,13 +16,17 @@
   "files": [
     "dist",
     "src",
-    "fonts"
+    "fonts",
+    "index.d.ts"
   ],
   "sideEffects": [
     "*.css"
   ],
   "exports": {
-    ".": "./dist/index.css",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/index.css"
+    },
     "./sass": "./src/sass/_index.scss",
     "./*.css": "./dist/*.css",
     "./fonts/*": "./fonts/*"
