@@ -39,6 +39,33 @@ src/
 - CSF 형식상 meta는 `export default`를 쓴다 (named export 규칙의 예외).
 - hover·focus는 스토리로 고정하지 않고 마우스·키보드로 확인한다.
 
+## 배포 (Vercel)
+
+이 앱은 Vercel 프로젝트 하나로 배포한다. 한 저장소에 앱마다 Vercel 프로젝트를 따로 연결하며
+(web은 `apps/web`을 Root Directory로 하는 별도 프로젝트), 도메인·환경변수·배포 기록은 프로젝트마다 따로 갖는다.
+
+빌드 설정은 `vercel.json`에 있다.
+
+| 설정             | 값                                                                     |
+| ---------------- | ---------------------------------------------------------------------- |
+| Build Command    | `turbo run build` (Root Directory 기준으로 이 앱과 의존 패키지만 빌드) |
+| Output Directory | `storybook-static`                                                     |
+| Install Command  | Vercel 자동 감지 (`pnpm install`)                                      |
+
+Vercel 대시보드 설정 (프로젝트 생성 시 1회):
+
+| 설정                                     | 값                                                           |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| Root Directory                           | `apps/storybook`                                             |
+| Include files outside the root directory | 켬 (공용 패키지 빌드에 필요)                                 |
+| Framework Preset                         | Other (`vercel.json`이 빌드 명령·출력 폴더 지정)             |
+| Node.js Version                          | 26.x (루트 `engines.node`)                                   |
+| 환경변수 `ENABLE_EXPERIMENTAL_COREPACK`  | `1` (`packageManager`의 pnpm 12.21.0 사용, 없으면 9·10 사용) |
+| Skip unaffected projects                 | 켬 (이 앱·의존 패키지에 변경이 없으면 빌드 생략)             |
+
+배포 로그에서 pnpm 버전(12.21.0)과 빌드 순서(tokens → ui → storybook)를 확인한다.
+PR마다 미리보기 URL이 생기고, `main` 병합 시 운영 URL이 갱신된다.
+
 ## 참고
 
 - MDX 문서 블록은 `@storybook/addon-docs`가 내부적으로 React로 그린다. React는 addon-docs의 의존성으로 설치되며, 이 앱의 코드는 React를 쓰지 않는다.
