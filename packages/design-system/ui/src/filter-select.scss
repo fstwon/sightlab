@@ -1,0 +1,57 @@
+// Filter Select (Figma 02 Components / Filter Select, node 36:16)
+// 펼침 버튼만 제공한다. 펼친 목록(패널)은 디자인이 정해지면 따로 만든다.
+// 마크업·상태·접근성 규칙: Storybook "Components/Filter Select" 문서 (apps/storybook/src/filter-select/filter-select.mdx)
+@use 'sass/focus-ring' as *;
+
+.sl-filter-select {
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: var(--sl-spacing-xs);
+  align-items: center;
+  justify-content: space-between;
+  height: var(--sl-layout-touch-target);
+  padding: 0 var(--sl-spacing-sm);
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-primary);
+  letter-spacing: var(--sl-text-label-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-border-default);
+  border-radius: var(--sl-radius-sm);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // 펼치지 않았고 비활성이 아닐 때만 hover 투명도 (Figma 0.86)
+  &:hover:not(:disabled, .sl-filter-select--disabled, .sl-filter-select--open) {
+    opacity: 0.86;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  // 펼침: 배경·테두리·글자색 변경, chevron을 위로 돌린다 (아이콘을 바꿔 끼우지 않음)
+  &--open {
+    color: var(--sl-color-text-brand);
+    background-color: var(--sl-color-bg-brand-soft);
+    border-color: var(--sl-color-action-primary);
+  }
+
+  &--open &__icon {
+    transform: rotate(180deg);
+  }
+
+  &:disabled,
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}

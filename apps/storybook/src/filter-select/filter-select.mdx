@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as FilterSelectStories from './filter-select.stories';
+
+<Meta of={FilterSelectStories} />
+
+# Filter Select
+
+목록 위에서 필터 옵션을 펼치는 버튼. **펼침 버튼만 제공**하며, 펼친 목록(패널)은 디자인이 정해지면 따로 만든다.
+원본: `@sightlab/ui` `filter-select.scss` · Figma 02 Components / Filter Select (node 36:16)
+
+<Canvas of={FilterSelectStories.Default} />
+
+<Controls of={FilterSelectStories.Default} />
+
+## 마크업
+
+```html
+<button
+  type="button"
+  class="sl-filter-select"
+  aria-expanded="false"
+  aria-controls="tag-filter-panel"
+>
+  <span>모든 태그</span>
+  <svg class="sl-filter-select__icon" aria-hidden="true">
+    <!-- @sightlab/icons chevron-down.svg -->
+  </svg>
+</button>
+```
+
+| 요소                                              | 필수           | 설명                                                                           |
+| ------------------------------------------------- | -------------- | ------------------------------------------------------------------------------ |
+| `<button type="button" class="sl-filter-select">` | 필수           | 루트. 폭은 앱 레이아웃이 정한다 (Figma 예시 180px)                             |
+| 라벨 `<span>`                                     | 필수           | 현재 필터 이름                                                                 |
+| `sl-filter-select__icon`                          | 필수           | `chevron-down.svg` 인라인, `aria-hidden="true"`, 16×16. 펼치면 CSS로 위로 회전 |
+| `aria-expanded`                                   | 필수           | 펼침 여부 (`true`·`false`)                                                     |
+| `aria-controls`                                   | 패널이 있을 때 | 펼쳐지는 패널의 `id`                                                           |
+
+## 상태
+
+| 상태         | 표현                                                                                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| 펼침         | `sl-filter-select--open` + `aria-expanded="true"`. 배경 `brand-soft`, 테두리 `action-primary`, 글자 `text-brand`, chevron 위로 |
+| hover        | 투명도 0.86 (펼침·비활성일 때는 적용 안 됨)                                                                                    |
+| 키보드 focus | `:focus-visible` 외곽 링                                                                                                       |
+| 비활성       | `disabled` 속성, 투명도 0.4                                                                                                    |
+
+<Canvas of={FilterSelectStories.Open} />
+<Canvas of={FilterSelectStories.Disabled} />
+
+## 접근성
+
+- 높이 44px로 최소 터치 영역을 충족한다.
+- 펼침 여부는 `aria-expanded`로 알린다. 스타일은 `sl-filter-select--open` 수정자로만 건다.
+- 펼침·접힘 동작과 패널은 앱에서 구현한다 (Esc로 닫기, 바깥 클릭 시 닫기 등).
+- 좌우 여백은 `--sl-spacing-sm`(12px)을 쓴다 (Figma 14px에 맞는 토큰이 없음).
