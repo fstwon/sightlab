@@ -1,0 +1,21 @@
+// Breadcrumb 모바일 축약: 처음·마지막 항목만 남기고 가운데를 "…"로 줄인다.
+// .sl-breadcrumb(ol)에 적용한다. 화면 폭 기준은 앱이 정하므로 앱이 미디어 쿼리 안에서 쓸 수 있게 mixin으로 둔다.
+//   @use 'pkg:@sightlab/ui/sass' as ui;
+//   @media (width < 600px) { .crumbs { @include ui.breadcrumb-compact; } }
+@mixin breadcrumb-compact {
+  // 세 번째부터 마지막 앞까지 숨김
+  .sl-breadcrumb__item:not(:first-child, :nth-child(2), :last-child) {
+    display: none;
+  }
+
+  // 두 번째 항목은 구분자(/)만 남기고 내용을 "…"로 바꾼다 (낭독 대상 아님)
+  .sl-breadcrumb__item:nth-child(2):not(:last-child) {
+    > * {
+      display: none;
+    }
+
+    &::after {
+      content: '…' / '';
+    }
+  }
+}

@@ -1,0 +1,76 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as BreadcrumbStories from './breadcrumb.stories';
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+현재 위치를 보여 주되 읽기 흐름을 방해하지 않는 보조 탐색.
+원본: `@sightlab/ui` `breadcrumb.scss` · Figma 02 Components / Breadcrumb (node 48:5)
+
+<Canvas of={BreadcrumbStories.Default} />
+
+<Controls of={BreadcrumbStories.Default} />
+
+## 마크업
+
+```html
+<nav aria-label="현재 위치">
+  <ol class="sl-breadcrumb">
+    <li class="sl-breadcrumb__item"><a class="sl-breadcrumb__link" href="/notes">Notes</a></li>
+    <li class="sl-breadcrumb__item">
+      <a class="sl-breadcrumb__link" href="/notes?tag=react">React</a>
+    </li>
+    <li class="sl-breadcrumb__item">
+      <span class="sl-breadcrumb__current" aria-current="page">Context API</span>
+    </li>
+  </ol>
+</nav>
+```
+
+| 요소                                                        | 필수        | 설명                                                 |
+| ----------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `<nav aria-label>`                                          | 필수        | 탐색 영역. 이름(`aria-label`) 필수                   |
+| `<ol class="sl-breadcrumb">`                                | 필수        | 루트. 순서 있는 목록                                 |
+| `<li class="sl-breadcrumb__item">`                          | 필수        | 항목. 구분자 `/`는 CSS가 그린다 (마크업에 넣지 않음) |
+| `<a class="sl-breadcrumb__link">`                           | 상위 항목   | 상위 위치 링크                                       |
+| `<span class="sl-breadcrumb__current" aria-current="page">` | 마지막 항목 | 현재 위치. 링크 아님                                 |
+
+## 변형
+
+| 수정자                   | 용도                                                          |
+| ------------------------ | ------------------------------------------------------------- |
+| (없음)                   | 전체 경로 표시. 좁으면 줄바꿈                                 |
+| `sl-breadcrumb--compact` | 처음·마지막 항목만 남기고 가운데를 `…`로 줄임 (항목 3개 이상) |
+
+<Canvas of={BreadcrumbStories.LongPath} />
+<Canvas of={BreadcrumbStories.Compact} />
+
+화면 폭에 따라 축약하려면 앱 스타일에서 mixin을 쓴다 (breakpoint는 앱이 정함).
+
+```scss
+@use 'pkg:@sightlab/ui/sass' as ui;
+
+@media (width < 600px) {
+  .crumbs {
+    @include ui.breadcrumb-compact;
+  }
+}
+```
+
+## 상태
+
+| 상태              | 표현                                       |
+| ----------------- | ------------------------------------------ |
+| 링크 hover        | 밑줄 (Figma에 없어 추가)                   |
+| 링크 키보드 focus | `:focus-visible` 외곽 링                   |
+| 현재 위치         | `__current` 요소. 굵기 600, `text-primary` |
+
+## 접근성
+
+- 구분자 `/`와 축약 `…`은 CSS 대체 텍스트를 비워 낭독하지 않는다.
+- 현재 위치는 `aria-current="page"`로 알린다. 스타일은 `__current` 클래스로만 건다.
+- 링크는 보이지 않는 영역으로 위아래 누르는 범위를 44px까지 넓힌다.
+- 축약하면 가운데 항목은 낭독 대상에서도 빠진다. 전체 경로가 중요한 화면에서는 축약하지 않는다.
+- 항목 간격은 `--sl-spacing-xs`(8px)를 쓴다 (Figma 10px에 맞는 토큰이 없음).
