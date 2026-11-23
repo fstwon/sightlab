@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { splitTags } from './split-tags';
+import { splitTags } from '@/shared/lib/split-tags';
 
 describe('splitTags', () => {
   it('최대 개수 이하면 모두 보이고 숨긴 개수는 0이다', () => {

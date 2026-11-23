@@ -1,0 +1,15 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma Project Card Tag (node 143:32). 모바일 카드에는 스택이 없어 md 이상에서만 보인다.
+.stack {
+  display: none;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include media-up(md) {
+    display: flex;
+  }
+}
