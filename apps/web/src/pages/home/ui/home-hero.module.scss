@@ -1,6 +1,6 @@
 @use '@sightlab/tokens/sass/breakpoints' as *;
 
-// 값: Figma PUBLIC-01 / Home(데스크톱)·MOBILE-01 / Home(모바일)의 히어로.
+// 값: Figma PUBLIC-01 / Home(데스크톱)·MOBILE-01 / Home(모바일)의 히어로. 머리말 글자는 PageHeader.
 // 데스크톱은 글(왼쪽)과 관찰 그래픽(오른쪽, 최대 420px)을 나란히, 모바일은 글만 세로로.
 // 글 칸은 제목 두 줄이 한 줄씩 들어가는 폭(Figma 358px)을 지키고, 좁아지면 그래픽이 줄어든다.
 .hero {
@@ -16,50 +16,11 @@
 .text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-// Figma mono 11(모바일)·12(데스크톱). 12px 이하 표기는 label 크기로 통일한다.
-.eyebrow {
-  margin: 0 0 var(--sl-spacing-sm);
-  font-family: var(--sl-font-family-mono);
-  font-size: var(--sl-text-label-size);
-  font-weight: var(--sl-text-label-weight);
-  line-height: var(--sl-text-label-line-height);
-  color: var(--sl-color-text-brand);
-  text-transform: uppercase;
-
-  @include media-up(md) {
-    margin-bottom: var(--sl-spacing-md);
-  }
-}
-
-// Figma 32(모바일)·44(데스크톱) Bold. 맞는 토큰이 없어 h1·display 크기에서 계산한다.
-.title {
-  margin: 0 0 var(--sl-spacing-md);
-  font-size: calc(var(--sl-text-h1-size) - 6px);
-  font-weight: var(--sl-text-display-weight);
-  line-height: 1.2;
-  letter-spacing: var(--sl-text-h1-letter-spacing);
-
-  @include media-up(md) {
-    margin-bottom: var(--sl-spacing-sm);
-    font-size: calc(var(--sl-text-display-size) - 4px);
-  }
-}
-
-// Figma 14/22(모바일)·17(데스크톱). 17px 토큰이 없어 body-lg(18)를 쓴다.
-.lead {
-  margin: 0 0 var(--sl-spacing-md);
-  font-size: var(--sl-text-body-sm-size);
-  line-height: var(--sl-text-body-sm-line-height);
-  color: var(--sl-color-text-secondary);
+  gap: var(--sl-spacing-md);
 
   @include media-up(md) {
     // Figma 소개 문장과 버튼 사이는 36px지만, 소개 줄 높이(30)가 Figma(21)보다 커서 32px로 맞춘다
-    margin-bottom: var(--sl-spacing-xl);
-    font-size: var(--sl-text-body-lg-size);
-    line-height: var(--sl-text-body-lg-line-height);
+    gap: var(--sl-spacing-xl);
   }
 }
 
@@ -68,7 +29,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--sl-spacing-sm);
-  align-self: stretch;
 
   :global(.sl-button) {
     height: calc(var(--sl-layout-touch-target) + 4px);

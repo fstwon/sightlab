@@ -1,5 +1,6 @@
-import { FeaturedNoteCard, getNotes } from '@/entities/note';
-import { getProjects } from '@/entities/project';
+import { FeaturedNoteCard } from '@/entities/note';
+import { getNotes } from '@/entities/note/server';
+import { getProjects } from '@/entities/project/server';
 
 import { selectHomeNotes } from '../lib/select-home-notes';
 import { HomeHero } from './home-hero';

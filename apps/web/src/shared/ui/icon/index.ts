@@ -1,4 +1,5 @@
 export {
+  ArrowLeftIcon,
   ArrowRightIcon,
   CloseIcon,
   type IconComponent,

@@ -1,0 +1,16 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 모바일은 현재 페이지만 남긴 번호 목록(Figma MOBILE-02, 324px), 데스크톱은 현재 앞뒤 1개씩.
+.desktop {
+  display: none;
+
+  @include media-up(md) {
+    display: flex;
+  }
+}
+
+.mobile {
+  @include media-up(md) {
+    display: none;
+  }
+}
