@@ -1,0 +1,38 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-02 / Notes. 개수 → 구분선(16px 아래) → 카드(24px 아래) → 페이지 번호(48px 아래).
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-lg);
+}
+
+// Figma Medium 13, text-brand. 아래 구분선은 border-default.
+.count {
+  padding-bottom: var(--sl-spacing-md);
+  margin: 0;
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-brand);
+  border-bottom: 1px solid var(--sl-color-border-default);
+}
+
+// 모바일 1열·간격 24, 데스크톱 3열·간격 48 (카드 368px)
+.grid {
+  display: grid;
+  gap: var(--sl-spacing-lg);
+  padding: 0;
+  margin: 0 0 var(--sl-spacing-lg);
+  list-style: none;
+
+  @include media-up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sl-spacing-2xl);
+  }
+}
+
+// 한 줄의 카드 높이를 맞춘다
+.item {
+  display: grid;
+}

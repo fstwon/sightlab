@@ -1,3 +1,4 @@
+import ArrowLeftSvg from '@sightlab/icons/arrow-left.svg';
 import ArrowRightSvg from '@sightlab/icons/arrow-right.svg';
 import LogoSymbolSvg from '@sightlab/icons/brand/logo-symbol.svg';
 import CloseSvg from '@sightlab/icons/close.svg';
@@ -9,6 +10,7 @@ import type { ComponentType, SVGProps } from 'react';
 // Next 기본 타입 선언은 *.svg를 any로 두므로 여기서 컴포넌트 타입을 붙여 공개한다.
 export type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
+export const ArrowLeftIcon = ArrowLeftSvg as IconComponent;
 export const ArrowRightIcon = ArrowRightSvg as IconComponent;
 export const CloseIcon = CloseSvg as IconComponent;
 export const MenuIcon = MenuSvg as IconComponent;
