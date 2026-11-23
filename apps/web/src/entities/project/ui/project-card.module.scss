@@ -1,0 +1,150 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 값: Figma Project Card (node 143:58).
+// 모바일: 여백 16, 간격 12, 모서리 md, 누르는 동안 배경 brand-soft·테두리 action-primary (State=Pressed)
+// 데스크톱: 여백 24, 간격 16, 모서리 lg, hover 시 테두리 action-primary·그림자 md (State=Hover)
+.card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-sm);
+  padding: var(--sl-spacing-md);
+  background-color: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-border-default);
+  border-radius: var(--sl-radius-md);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:has(.link:active) {
+    background-color: var(--sl-color-bg-brand-soft);
+    border-color: var(--sl-color-action-primary);
+  }
+
+  @include media-up(md) {
+    gap: var(--sl-spacing-md);
+    padding: var(--sl-spacing-lg);
+    border-radius: var(--sl-radius-lg);
+
+    // 누름 상태는 모바일 전용이라 데스크톱에서는 hover 모습을 유지한다
+    &:has(.link:active) {
+      background-color: var(--sl-color-bg-surface);
+    }
+
+    &:hover {
+      border-color: var(--sl-color-action-primary);
+      box-shadow: var(--sl-shadow-md);
+    }
+  }
+
+  &:has(.link:focus-visible) {
+    @include focus-ring;
+  }
+}
+
+// 미리보기 자리 표시: 번호 + 진행 상태. 화면에서는 맨 위에 보인다.
+.preview {
+  display: flex;
+
+  // Figma 번호와 진행 상태 사이 18px = 16 + 2
+  gap: calc(var(--sl-spacing-md) + 2px);
+  align-items: center;
+  order: -1;
+  height: 130px;
+
+  // Figma 모바일 좌우 14px = 12 + 2
+  padding: 0 calc(var(--sl-spacing-sm) + 2px);
+  background-color: var(--sl-color-bg-brand-soft);
+  border-radius: var(--sl-radius-md);
+
+  @include media-up(md) {
+    height: 160px;
+    padding: 0 var(--sl-spacing-xs);
+  }
+}
+
+.card:has(.link:active) .preview {
+  background-color: var(--sl-color-bg-surface);
+
+  @include media-up(md) {
+    background-color: var(--sl-color-bg-brand-soft);
+  }
+}
+
+// Figma 24px(모바일)·40px(데스크톱) mono Bold. 맞는 토큰이 없어 h2·display 크기에서 계산한다.
+.index {
+  font-family: var(--sl-font-family-mono);
+  font-size: calc(var(--sl-text-h2-size) - 4px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--sl-color-text-brand);
+
+  @include media-up(md) {
+    font-size: calc(var(--sl-text-display-size) - 8px);
+  }
+}
+
+// Figma 10·11px mono. 12px 이하 표기는 label 크기로 통일한다 (노트 카드 날짜와 같은 결정).
+.progress {
+  font-family: var(--sl-font-family-mono);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-secondary);
+  text-transform: uppercase;
+}
+
+// Figma 22/28(모바일)·24/30(데스크톱) Bold. 맞는 토큰이 없어 h3·h2 크기에서 계산한다.
+.title {
+  margin: 0;
+  font-size: calc(var(--sl-text-h3-size) + 2px);
+  font-weight: var(--sl-text-h2-weight);
+  line-height: 1.75rem;
+
+  @include media-up(md) {
+    font-size: calc(var(--sl-text-h2-size) - 4px);
+    line-height: 1.875rem;
+  }
+}
+
+.link {
+  color: var(--sl-color-text-primary);
+  text-decoration: none;
+
+  // 누르는 영역을 카드 전체로 넓힌다
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+// Figma 13/19(모바일)·14/21(데스크톱)
+.summary {
+  margin: 0;
+  font-size: var(--sl-text-label-size);
+  line-height: 1.1875rem;
+  color: var(--sl-color-text-secondary);
+
+  @include media-up(md) {
+    font-size: var(--sl-text-body-sm-size);
+    line-height: 1.3125rem;
+  }
+}
+
+// Figma 11·12px mono, text-brand. label 크기로 통일한다.
+.notes {
+  margin: 0;
+  font-family: var(--sl-font-family-mono);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-brand);
+}

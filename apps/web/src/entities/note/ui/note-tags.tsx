@@ -1,6 +1,6 @@
 import type { Label } from '@/shared/api/notion';
+import { splitTags } from '@/shared/lib/split-tags';
 
-import { splitTags } from '../lib/split-tags';
 import styles from './note-tags.module.scss';
 
 type NoteTagsProps = {
