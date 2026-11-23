@@ -60,3 +60,16 @@ export function readUrl(properties: PageProperties, name: string): string | null
 export function readNumber(properties: PageProperties, name: string): number | null {
   return getProperty(properties, name, 'number')?.number ?? null;
 }
+
+// 파일 속성의 파일 목록. Notion에 올린 파일(file)은 주소가 1시간 뒤 만료된다.
+export function readFiles(
+  properties: PageProperties,
+  name: string,
+): { name: string; url: string }[] {
+  return (
+    getProperty(properties, name, 'files')?.files.map((file) => ({
+      name: file.name,
+      url: file.type === 'file' ? file.file.url : file.external.url,
+    })) ?? []
+  );
+}

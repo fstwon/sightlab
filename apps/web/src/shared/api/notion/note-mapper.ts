@@ -1,7 +1,6 @@
 import type { PageObjectResponse } from '@notionhq/client';
 
-import { slugify } from '@/shared/lib/slugify';
-
+import { type MapResult, toLabel } from './mapping';
 import {
   readDate,
   readMultiSelect,
@@ -11,12 +10,7 @@ import {
   readSelect,
   readTitle,
 } from './properties';
-import type { Label, NoteSummary } from './types';
-
-// 매핑 결과. 필수 속성이 빠지면 어떤 속성이 빠졌는지 돌려준다 (호출한 쪽이 경고 후 제외).
-export type MapResult<T> = { ok: true; value: T } | { ok: false; missing: string[] };
-
-const toLabel = (name: string): Label => ({ name, slug: slugify(name) });
+import type { NoteSummary } from './types';
 
 // Notion Notes 페이지 → NoteSummary (D5 Notes 속성표 기준)
 export function mapNotePage(page: PageObjectResponse): MapResult<NoteSummary> {

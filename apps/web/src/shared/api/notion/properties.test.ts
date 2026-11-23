@@ -2,8 +2,10 @@ import type { PageObjectResponse } from '@notionhq/client';
 import { describe, expect, it } from 'vitest';
 
 import fixture from './__fixtures__/note-page-published.json';
+import projectFixture from './__fixtures__/project-page-published.json';
 import {
   readDate,
+  readFiles,
   readMultiSelect,
   readNumber,
   readRelationIds,
@@ -43,5 +45,14 @@ describe('Notion 속성 읽기', () => {
     expect(readTitle(properties, 'NotExists')).toBeNull();
     expect(readSelect(properties, 'Title')).toBeNull();
     expect(readMultiSelect(properties, 'Title')).toEqual([]);
+  });
+
+  it('files는 파일 이름과 주소 목록이다', () => {
+    const projectProperties = (projectFixture as unknown as PageObjectResponse).properties;
+
+    expect(readFiles(projectProperties, 'Preview')).toEqual([
+      { name: 'cover.png', url: 'https://files.example.com/project/cover.png' },
+    ]);
+    expect(readFiles(properties, 'NotExists')).toEqual([]);
   });
 });
