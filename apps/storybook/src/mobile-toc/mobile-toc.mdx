@@ -1,0 +1,69 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as MobileTocStories from './mobile-toc.stories';
+
+<Meta of={MobileTocStories} />
+
+# Mobile TOC
+
+모바일 노트 상세의 접고 펼치는 목차. 처음에는 접혀 있다. 항목은 TOC Item(`sl-toc-item`)을 그대로 쓴다.
+원본: `@sightlab/ui` `mobile-toc.scss` · Figma 02 Components / Mobile TOC (node 184:64)
+
+<Canvas of={MobileTocStories.Collapsed} />
+
+<Controls of={MobileTocStories.Collapsed} />
+
+## 마크업
+
+```html
+<details class="sl-mobile-toc">
+  <summary class="sl-mobile-toc__header">
+    <span>이 글의 목차</span>
+    <svg class="sl-mobile-toc__icon" aria-hidden="true">
+      <!-- @sightlab/icons chevron-down.svg -->
+    </svg>
+  </summary>
+  <nav class="sl-mobile-toc__body" aria-label="이 글의 목차">
+    <ol class="sl-mobile-toc__list">
+      <li>
+        <a class="sl-toc-item sl-toc-item--active" href="#context-split" aria-current="location"
+          >Context를 분리한 기준</a
+        >
+      </li>
+      <li><a class="sl-toc-item sl-toc-item--h3" href="#update-scope">상태 변경 범위</a></li>
+    </ol>
+  </nav>
+</details>
+```
+
+| 요소                                      | 필수 | 설명                                                                     |
+| ----------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| `<details class="sl-mobile-toc">`         | 필수 | 루트 카드. 펼치면 `open` 속성이 붙는다. 폭은 앱 레이아웃이 정한다        |
+| `<summary class="sl-mobile-toc__header">` | 필수 | 펼침 버튼 역할. 제목 `<span>`과 아이콘                                   |
+| `sl-mobile-toc__icon`                     | 필수 | `chevron-down.svg` 인라인, `aria-hidden="true"`, 18×18. 펼치면 위로 회전 |
+| `<nav class="sl-mobile-toc__body">`       | 필수 | 목록 영역. 이름(`aria-label`) 필수. 위쪽 구분선                          |
+| `<ol class="sl-mobile-toc__list">`        | 필수 | `sl-toc-item` 목록                                                       |
+
+## 상태
+
+| 상태         | 표현                                             |
+| ------------ | ------------------------------------------------ |
+| 접힘 (처음)  | 헤더만 표시. 높이 56px                           |
+| 펼침         | `<details open>`. chevron 위로, 구분선 아래 목록 |
+| 키보드 focus | 헤더 `:focus-visible` 외곽 링                    |
+
+<Canvas of={MobileTocStories.Expanded} />
+
+펼침 스타일은 `<details>`의 기본 상태 속성 `[open]`에 건다. 상태를 aria 속성으로 스타일하지 않는다는 규칙(D7-1)의 예외이며, `open`은 aria 속성이 아니라 HTML 기본 상태라서 허용한다.
+
+## 앱이 할 일
+
+- 모바일 폭에서만 보여 준다 (breakpoint는 앱이 정함). 데스크톱은 TOC Item 목록을 옆에 둔다.
+- 항목을 누르면 해당 제목으로 이동하고 주소의 `#hash`를 바꾼 뒤 목차를 접는다 (`open` 속성 제거).
+- 스크롤 위치에 따라 현재 위치 항목(`--active`, `aria-current`)을 바꾼다.
+
+## 접근성
+
+- `<summary>`가 펼침 버튼 역할을 하며, 펼침 여부는 브라우저가 낭독한다. 별도 `aria-expanded`를 붙이지 않는다.
+- 헤더 높이 56px로 최소 터치 영역을 충족한다.
+- 목록 여백은 `--sl-spacing-sm`(12px), 항목 간격은 `--sl-spacing-2xs`(4px)를 쓴다 (Figma 위 여백 10px·간격 2px에 맞는 토큰이 없음).

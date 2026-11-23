@@ -1,0 +1,63 @@
+// Mobile TOC (Figma 02 Components / Mobile TOC, node 184:64)
+// 마크업·상태·접근성 규칙: Storybook "Components/Mobile TOC" 문서 (apps/storybook/src/mobile-toc/mobile-toc.mdx)
+// <details>/<summary>로 JS 없이 펼치고 접는다. 항목은 sl-toc-item을 그대로 쓴다.
+// 자동 접기·hash 갱신·현재 위치 계산과 모바일 폭에서만 보이게 하는 일은 앱이 한다.
+@use 'sass/focus-ring' as *;
+
+.sl-mobile-toc {
+  font-family: var(--sl-font-family-sans);
+  background: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-border-default);
+  border-radius: var(--sl-radius-md);
+
+  &__header {
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--sl-spacing-xs);
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+    padding: 0 var(--sl-spacing-md);
+    font-size: var(--sl-text-body-sm-size);
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: var(--sl-color-text-primary);
+    cursor: pointer;
+    list-style: none;
+    border-radius: var(--sl-radius-md);
+
+    // 브라우저 기본 펼침 표시(▶)를 숨긴다 (Safari는 ::-webkit-details-marker)
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  &__body {
+    padding: var(--sl-spacing-sm);
+    border-top: 1px solid var(--sl-color-border-default);
+  }
+
+  &__list {
+    display: grid;
+    gap: var(--sl-spacing-2xs);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  // 펼침은 <details>의 기본 상태 속성 open을 쓴다 (aria 속성이 아니므로 D7-1의 예외).
+  // chevron을 위로 돌린다 (아이콘을 바꿔 끼우지 않음).
+  &[open] &__icon {
+    transform: rotate(180deg);
+  }
+}
