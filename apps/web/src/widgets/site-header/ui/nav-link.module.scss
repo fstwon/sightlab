@@ -1,14 +1,6 @@
 @use '@sightlab/ui/sass/focus-ring' as *;
 
-// 값: Figma Component / Navigation (node 39:14). 14px 굵기 500, 항목 간격 28px.
-.list {
-  display: flex;
-  gap: calc(var(--sl-spacing-lg) + var(--sl-spacing-2xs));
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
+// 값: Figma Component / Navigation (node 39:14). 14px 굵기 500, hover text-primary, 현재 text-brand.
 .link {
   font-size: var(--sl-text-body-sm-size);
   font-weight: var(--sl-text-label-weight);

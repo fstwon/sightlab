@@ -1,0 +1,65 @@
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 값: Figma MOBILE-00 / Navigation Open 메뉴 항목.
+// 높이 72px, 왼쪽 3px 현재 표시 막대 + 12px 뒤에 글자, 오른쪽 24px에 화살표.
+.item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+  padding-right: var(--sl-spacing-lg);
+  color: var(--sl-color-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sl-color-border-default);
+
+  &::before {
+    align-self: stretch;
+    width: 3px;
+    content: '';
+  }
+
+  // 한 줄을 꽉 채우는 항목이라 링을 안쪽에 그린다
+  &:focus-visible {
+    @include focus-ring;
+
+    outline-offset: -3px;
+  }
+}
+
+.itemActive {
+  color: var(--sl-color-action-primary);
+
+  &::before {
+    background-color: var(--sl-color-action-primary);
+  }
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--sl-spacing-2xs);
+  margin-left: var(--sl-spacing-sm);
+}
+
+.order {
+  font-family: var(--sl-font-family-mono);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-brand);
+}
+
+.label {
+  font-size: var(--sl-text-h3-size);
+  font-weight: 700;
+  line-height: var(--sl-text-h3-line-height);
+}
+
+.arrow {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--sl-color-text-primary);
+}
