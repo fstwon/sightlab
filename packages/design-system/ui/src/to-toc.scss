@@ -1,0 +1,47 @@
+// To TOC Action (Figma 02 Components / To TOC Action, node 185:78)
+// 마크업·상태·접근성 규칙: Storybook "Components/To TOC Action" 문서 (apps/storybook/src/to-toc/to-toc.mdx)
+// 모바일 노트 상세에서 목차로 돌아가는 떠 있는 링크. 화면 오른쪽 아래에 고정한다.
+// 모바일 폭에서만 보이기, 보일 시점, 누른 뒤 Mobile TOC 펼치기는 앱이 한다.
+@use 'sass/focus-ring' as *;
+
+.sl-to-toc {
+  position: fixed;
+  right: var(--sl-spacing-lg);
+  bottom: calc(var(--sl-spacing-lg) + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: var(--sl-spacing-xs);
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
+  height: 3rem;
+  padding: 0 var(--sl-spacing-md);
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-body-sm-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: 1.25rem;
+  color: var(--sl-color-text-primary);
+  text-decoration: none;
+  background: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-text-brand);
+  border-radius: var(--sl-radius-full);
+  box-shadow: var(--sl-shadow-md);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // 눌림: 배경·글자 변경, 그림자 없음 (Figma Pressed)
+  &:active {
+    font-weight: 600;
+    color: var(--sl-color-text-brand);
+    background: var(--sl-color-bg-brand-soft);
+    box-shadow: none;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+  }
+}
