@@ -1,0 +1,35 @@
+// 값: Figma Brand / Logo Final (node 54:6). 심볼 36px, 글자 28px(h2 크기) 굵게.
+.logo {
+  display: inline-flex;
+  gap: var(--sl-spacing-sm);
+  align-items: center;
+  color: var(--sl-color-text-primary);
+}
+
+.symbol {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--sl-color-action-primary);
+  stroke-width: 2;
+}
+
+.lens {
+  fill: none;
+  stroke: var(--sl-color-action-primary);
+  stroke-width: 1.5;
+}
+
+.pupil {
+  fill: var(--sl-color-accent-default);
+}
+
+.wordmark {
+  font-size: var(--sl-text-h2-size);
+  font-weight: 700;
+  line-height: 1;
+}

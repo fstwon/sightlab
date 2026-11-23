@@ -1,16 +1,13 @@
-// 공용 Sass는 단일 파일 진입점으로 불러온다 (Turbopack은 다른 패키지 Sass 안의 상대 경로 @forward를 찾지 못함).
 @use '@sightlab/tokens/sass/breakpoints' as *;
-@use '@sightlab/ui/sass/focus-ring' as *;
 
+// 레이아웃과 같은 좌우 여백·최대 폭
 .page {
-  padding: var(--sl-layout-gutter-mobile);
+  box-sizing: border-box;
+  max-width: var(--sl-layout-content-max);
+  padding: var(--sl-spacing-xl) var(--sl-layout-gutter-mobile);
+  margin: 0 auto;
 
   @include media-up(md) {
     padding: var(--sl-spacing-xl);
-  }
-
-  // 본문 바로가기 링크로 이동했을 때 보이는 focus 표시
-  &:focus-visible {
-    @include focus-ring;
   }
 }

@@ -1,0 +1,36 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 값: Figma Component / Navigation (node 39:14). 높이 72px, 안쪽 최대 1200px(좌우 32px 포함).
+// 테두리를 포함해 72px (Figma는 안쪽 테두리)
+.header {
+  box-sizing: border-box;
+  height: 4.5rem;
+  background-color: var(--sl-color-bg-surface);
+  border-block: 1px solid var(--sl-color-border-default);
+}
+
+.inner {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--sl-layout-content-max);
+  height: 100%;
+  padding: 0 var(--sl-layout-gutter-mobile);
+  margin: 0 auto;
+
+  @include media-up(md) {
+    padding: 0 var(--sl-spacing-xl);
+  }
+}
+
+.logoLink {
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: var(--sl-radius-sm);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

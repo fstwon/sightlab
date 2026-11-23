@@ -1,0 +1,30 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 내용이 짧아도 푸터가 화면 아래에 붙도록 세로로 채운다.
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+// Figma Brand / Top Rule: 4px. 데스크톱은 헤더와 20px(16 + 4) 띄운다.
+// 모바일 시안은 헤더가 화면 맨 위에 붙어 띠가 보이지 않는다.
+.topRule {
+  display: none;
+
+  @include media-up(md) {
+    display: block;
+    height: 4px;
+    margin-bottom: calc(var(--sl-spacing-md) + var(--sl-spacing-2xs));
+    background-color: var(--sl-color-action-primary);
+  }
+}
+
+.main {
+  flex: 1;
+
+  // 본문 바로가기로 이동할 때 받는 focus. 영역 전체에 링을 그리지 않는다 (직접 Tab으로는 오지 않음).
+  &:focus {
+    outline: none;
+  }
+}
