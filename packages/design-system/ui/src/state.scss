@@ -1,0 +1,113 @@
+// State UI (Figma 02 Components / State UI, node 68:51)
+// 마크업·상태·접근성 규칙: Storybook "Components/State" 문서 (apps/storybook/src/state/state.mdx)
+// 목록 영역의 로딩·빈 결과·오류를 같은 높이로 보여 준다. 문구와 버튼 동작은 앱이 정한다.
+
+// Figma 주석: 스켈레톤 줄 투명도 1 → 0.5 → 1 반복 (1.6초, ease-in-out)
+@keyframes sl-state-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.sl-state {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-md);
+  align-items: center;
+  justify-content: center;
+  min-height: 18.75rem;
+  padding: var(--sl-spacing-xl) var(--sl-spacing-lg);
+  font-family: var(--sl-font-family-sans);
+  text-align: center;
+  background: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-border-default);
+  border-radius: var(--sl-radius-lg);
+
+  &__skeleton {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sl-spacing-sm);
+    width: 100%;
+    max-width: 21.25rem;
+    height: 8.25rem;
+    padding: var(--sl-spacing-md);
+    background: var(--sl-color-bg-subtle);
+    border-radius: var(--sl-radius-md);
+  }
+
+  &__line {
+    width: 100%;
+    height: 0.75rem;
+    background: var(--sl-color-border-default);
+    border-radius: var(--sl-radius-full);
+    animation: sl-state-pulse 1.6s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  // 줄 길이는 Figma 폭(180·304·240px)의 비율
+  &__line--title {
+    width: 59%;
+    height: 1.125rem;
+  }
+
+  &__line--short {
+    width: 79%;
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--sl-radius-full);
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sl-spacing-xs);
+    align-items: center;
+    max-width: 20rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--sl-text-body-lg-size);
+    font-weight: 600;
+    line-height: 1.375rem;
+    color: var(--sl-color-text-primary);
+  }
+
+  &__description {
+    margin: 0;
+    font-size: var(--sl-text-body-sm-size);
+    line-height: var(--sl-text-body-sm-line-height);
+    color: var(--sl-color-text-secondary);
+  }
+
+  &--empty &__icon {
+    color: var(--sl-color-action-primary);
+    background: var(--sl-color-bg-brand-soft);
+  }
+
+  &--error &__icon {
+    color: var(--sl-color-status-danger);
+    background: var(--sl-color-bg-accent-soft);
+  }
+
+  &--error &__title {
+    color: var(--sl-color-status-danger);
+  }
+}
