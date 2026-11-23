@@ -1,0 +1,96 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 값: Figma Featured Note Card (node 442:747), 모바일은 MOBILE-01 / Home의 Featured Note.
+// 테두리 action-primary 1px + 왼쪽 4px, 모서리 lg, 요소 사이 12. hover는 그림자 md.
+.card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-sm);
+
+  // Figma 모바일 여백 18px = 16 + 2
+  padding: calc(var(--sl-spacing-md) + 2px);
+  background-color: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-action-primary);
+  border-left-width: 4px;
+  border-radius: var(--sl-radius-lg);
+  transition: box-shadow 0.15s ease;
+
+  @include media-up(md) {
+    // Figma 위·아래 26 = 24 + 2, 오른쪽 28 = 24 + 4, 왼쪽 24 (굵은 테두리 4px는 별도)
+    padding: calc(var(--sl-spacing-lg) + 2px) calc(var(--sl-spacing-lg) + 4px);
+    padding-left: var(--sl-spacing-lg);
+  }
+
+  &:hover {
+    box-shadow: var(--sl-shadow-md);
+  }
+
+  &:has(.link:focus-visible) {
+    @include focus-ring;
+  }
+}
+
+// Figma 12px mono, 자간 0.5px. 대문자는 CSS로 바꿔 화면 낭독기가 낱글자가 아닌 단어로 읽게 한다.
+.eyebrow {
+  margin: 0;
+  font-family: var(--sl-font-family-mono);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  margin: 0;
+
+  // Figma 모바일 24px는 맞는 토큰이 없어 h2(28px)에서 4px를 뺀다
+  font-size: calc(var(--sl-text-h2-size) - 4px);
+  font-weight: var(--sl-text-h2-weight);
+  line-height: var(--sl-text-h2-line-height);
+  letter-spacing: var(--sl-text-h2-letter-spacing);
+
+  @include media-up(md) {
+    font-size: var(--sl-text-h2-size);
+  }
+}
+
+.link {
+  color: var(--sl-color-text-primary);
+  text-decoration: none;
+
+  // 누르는 영역을 카드 전체로 넓힌다
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+// Figma 15px(모바일 13px)는 토큰이 없어 body(16)·label(13) 크기를 쓴다
+.summary {
+  margin: 0;
+  font-size: var(--sl-text-label-size);
+  line-height: var(--sl-text-body-sm-line-height);
+  color: var(--sl-color-text-secondary);
+
+  @include media-up(md) {
+    font-size: var(--sl-text-body-size);
+    line-height: var(--sl-text-body-line-height);
+  }
+}
+
+.date {
+  font-size: var(--sl-text-label-size);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-secondary);
+}
