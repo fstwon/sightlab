@@ -62,6 +62,7 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 | Breadcrumb    | `breadcrumb.scss`    | `sl-breadcrumb`    | `--compact` (요소 `__item`, `__link`, `__current`)                                                              |
 | Button        | `button.scss`        | `sl-button`        | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled`                                                 |
 | Filter Select | `filter-select.scss` | `sl-filter-select` | `--open`, `--disabled` (요소 `__icon`)                                                                          |
+| Mobile TOC    | `mobile-toc.scss`    | `sl-mobile-toc`    | 펼침은 `[open]` (요소 `__header`, `__icon`, `__body`, `__list`)                                                 |
 | Pagination    | `pagination.scss`    | `sl-pagination`    | 요소 `__item`(`--current`, `--disabled`), `__icon`, `__ellipsis`                                                |
 | Search        | `search.scss`        | `sl-search`        | `--disabled` (요소 `__icon`, `__input`)                                                                         |
 | State         | `state.scss`         | `sl-state`         | `--loading`, `--empty`, `--error` (요소 `__skeleton`, `__line`, `__icon`, `__copy`, `__title`, `__description`) |
