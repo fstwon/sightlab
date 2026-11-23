@@ -1,0 +1,52 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as ToTocStories from './to-toc.stories';
+
+<Meta of={ToTocStories} />
+
+# To TOC Action
+
+모바일 노트 상세에서 목차로 돌아가는 떠 있는 링크. 화면 오른쪽 아래(24px, 아래는 기기 안전 영역만큼 더)에 고정된다.
+원본: `@sightlab/ui` `to-toc.scss` · Figma 02 Components / To TOC Action (node 185:78)
+
+<Canvas of={ToTocStories.Default} />
+
+<Controls of={ToTocStories.Default} />
+
+미리보기는 모바일 화면 크기(390px)의 틀 안에서 보여 준다.
+
+## 마크업
+
+```html
+<a class="sl-to-toc" href="#note-toc">
+  <svg class="sl-to-toc__icon" aria-hidden="true"><!-- @sightlab/icons arrow-up.svg --></svg>
+  <span>목차</span>
+</a>
+```
+
+| 요소                    | 필수 | 설명                                                     |
+| ----------------------- | ---- | -------------------------------------------------------- |
+| `<a class="sl-to-toc">` | 필수 | 목차(Mobile TOC)의 `id`로 이동하는 링크. 화면에 고정된다 |
+| `sl-to-toc__icon`       | 필수 | `arrow-up.svg` 인라인, `aria-hidden="true"`, 16×16       |
+| 라벨 `<span>`           | 필수 | 보이는 이름 ("목차")                                     |
+
+## 상태
+
+| 상태         | 표현                                                                       |
+| ------------ | -------------------------------------------------------------------------- |
+| 기본         | 배경 `bg-surface`, 1px `text-brand` 테두리, 그림자 `shadow-md`, 글자 500   |
+| 눌림         | `:active`. 배경 `bg-brand-soft`, 글자·아이콘 `text-brand` 600, 그림자 없음 |
+| 키보드 focus | `:focus-visible` 외곽 링                                                   |
+
+## 앱이 할 일
+
+- 모바일 폭에서만 보여 준다 (breakpoint는 앱이 정함).
+- 목차가 화면 밖으로 나갔을 때만 보여 주는 등 표시 시점을 정한다.
+- 누르면 목차로 이동한 뒤 Mobile TOC를 펼친다 (`<details>`에 `open` 추가). 링크라서 JS가 없어도 이동은 된다.
+
+## 접근성
+
+- 높이 48px로 최소 터치 영역을 충족한다.
+- 라벨이 보이는 텍스트라 별도 `aria-label`이 필요 없다.
+- 기기 아래 안전 영역(`env(safe-area-inset-bottom)`)만큼 위로 띄워 홈 표시줄에 가리지 않는다. 이 값을 쓰려면 앱의 viewport 메타에 `viewport-fit=cover`가 필요하다.
+- 아이콘·라벨 간격은 Figma를 토큰에 맞춰 `--sl-spacing-xs`(8px)로 수정했다.
