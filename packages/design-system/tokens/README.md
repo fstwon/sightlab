@@ -47,17 +47,42 @@ import '@sightlab/tokens';
 }
 ```
 
+### 4. breakpoint: 미디어 쿼리 (출력 없음)
+
+미디어 쿼리에는 CSS 변수를 쓸 수 없어 breakpoint는 Sass 값과 mixin으로만 제공한다 (Figma 06 Responsive 주석 기준).
+
+| 이름 | 값    | 용도                                         |
+| ---- | ----- | -------------------------------------------- |
+| `md` | 768px | 이상은 데스크톱 헤더·가로 푸터 (모바일 우선) |
+
+```scss
+// Next.js(Turbopack) 앱: 단일 파일 진입점 (다른 파일을 불러오지 않음)
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+.page {
+  padding: var(--sl-layout-gutter-mobile);
+
+  @include media-up(md) {
+    padding: var(--sl-spacing-xl);
+  }
+}
+```
+
+Turbopack은 다른 패키지에서 불러온 Sass 파일 안의 상대 경로 `@forward`를 찾지 못해 `./sass`(여러 파일을 모으는 진입점)가 실패한다.
+그래서 앱이 직접 쓰는 Sass는 단일 파일 진입점으로 따로 공개한다. `./sass`에도 같은 내용이 포함되어 `pkg:` 사용처(Vite 등)는 그대로 쓴다.
+
 Sass에서 `@use 'pkg:@sightlab/tokens'`로 토큰 CSS를 불러오지 않는다.
 Sass는 `url()`을 재작성하지 않아 글꼴 경로가 깨진다 (Vite에서 확인). 토큰 CSS는 1번 방식으로만 불러온다.
 
 ## exports
 
-| 진입점                                       | 파일                   | 출력                                 |
-| -------------------------------------------- | ---------------------- | ------------------------------------ |
-| `@sightlab/tokens`                           | `dist/index.css`       | 글꼴 + 모든 토큰 (앱 진입점에서 1회) |
-| `@sightlab/tokens/<종류>.css`                | `dist/<종류>.css`      | 종류별 토큰 (선택)                   |
-| `@sightlab/tokens/sass`                      | `src/sass/_index.scss` | 없음 (Sass map)                      |
-| `@sightlab/tokens/fonts/<글꼴>/<파일>.woff2` | `fonts/…`              | 글꼴 파일 (preload 등 직접 참조)     |
+| 진입점                                       | 파일                         | 출력                                         |
+| -------------------------------------------- | ---------------------------- | -------------------------------------------- |
+| `@sightlab/tokens`                           | `dist/index.css`             | 글꼴 + 모든 토큰 (앱 진입점에서 1회)         |
+| `@sightlab/tokens/<종류>.css`                | `dist/<종류>.css`            | 종류별 토큰 (선택)                           |
+| `@sightlab/tokens/sass`                      | `src/sass/_index.scss`       | 없음 (Sass map)                              |
+| `@sightlab/tokens/sass/breakpoints`          | `src/sass/_breakpoints.scss` | 없음 (`$breakpoints`, `media-up`, 단일 파일) |
+| `@sightlab/tokens/fonts/<글꼴>/<파일>.woff2` | `fonts/…`                    | 글꼴 파일 (preload 등 직접 참조)             |
 
 Vite 8(JS·CSS import)과 Next.js 16 Turbopack(JS import, `./<종류>.css` 포함)에서
 `dist` CSS로 연결되고 글꼴 파일이 함께 내보내지는 것을 확인했다.

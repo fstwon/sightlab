@@ -30,6 +30,8 @@
       "default": "./dist/index.css"
     },
     "./*.css": "./dist/*.css",
-    "./sass": "./src/sass/_index.scss"
+    "./sass": "./src/sass/_index.scss",
+    "./sass/focus-ring": "./src/sass/_focus-ring.scss",
+    "./sass/breadcrumb-compact": "./src/sass/_breadcrumb-compact.scss"
   }
 }

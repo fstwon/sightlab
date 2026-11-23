@@ -1,0 +1,22 @@
+// 화면 폭 기준(breakpoint). 미디어 쿼리에는 CSS 변수를 쓸 수 없어 Sass 값으로만 둔다 (CSS 출력 없음).
+// Figma 06 Responsive 주석: 768px 미만은 모바일 헤더·메뉴, 이상은 데스크톱 헤더.
+// 앱(Next Turbopack)이 직접 불러오는 단일 파일 진입점이라 다른 파일을 @use·@forward 하지 않는다.
+//   @use '@sightlab/tokens/sass/breakpoints' as *;
+//   .x { @include media-up(md) { … } }
+@use 'sass:map';
+
+$breakpoints: (
+  // 태블릿 이상 (데스크톱 헤더·가로 푸터)
+  md: 768px,
+);
+
+// $name 폭 이상에서만 적용 (모바일 우선)
+@mixin media-up($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'breakpoint "#{$name}"가 없습니다. 사용 가능: #{map.keys($breakpoints)}';
+  }
+
+  @media (width >= map.get($breakpoints, $name)) {
+    @content;
+  }
+}
