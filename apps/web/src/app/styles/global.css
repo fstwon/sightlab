@@ -1,0 +1,9 @@
+/* 앱 전체 기본 스타일. 값은 토큰(var(--sl-*))만 쓴다. */
+body {
+  margin: 0;
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-body-size);
+  line-height: var(--sl-text-body-line-height);
+  color: var(--sl-color-text-primary);
+  background-color: var(--sl-color-bg-canvas);
+}

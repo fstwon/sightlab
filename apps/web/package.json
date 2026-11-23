@@ -1,0 +1,33 @@
+{
+  "name": "@sightlab/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sightlab 블로그 웹 앱 (Next.js App Router + FSD)",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "lint": "eslint .",
+    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@sightlab/tokens": "workspace:*",
+    "@sightlab/ui": "workspace:*",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@sightlab/eslint-config": "workspace:*",
+    "@sightlab/stylelint-config": "workspace:*",
+    "@sightlab/typescript-config": "workspace:*",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "stylelint": "^17.16.0",
+    "typescript": "^6.0.3"
+  }
+}
