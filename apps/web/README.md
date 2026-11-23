@@ -24,7 +24,9 @@ src/                  FSD 계층
 
 - 경로 별칭: `@/*` → `src/*` (`@/pages/home`, `@/shared/ui`)
 - Next 필수 파일(`app/layout.tsx`, `app/page.tsx` 등)만 default export, 나머지는 named export (D10)
-- 스타일 값은 토큰(`var(--sl-*)`)만 쓴다. 화면 스타일은 CSS Modules(`*.module.css`, 클래스 camelCase)
+- 스타일 값은 토큰(`var(--sl-*)`)만 쓴다. 화면 스타일은 CSS Modules(`*.module.scss`, 클래스 camelCase)
+- 공용 Sass는 단일 파일 진입점으로 불러온다: `@use '@sightlab/tokens/sass/breakpoints' as *;`(`media-up(md)`),
+  `@use '@sightlab/ui/sass/focus-ring' as *;`. Turbopack은 여러 파일을 모으는 `./sass` 진입점을 해석하지 못한다
 
 ## 설정
 

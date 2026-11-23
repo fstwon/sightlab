@@ -45,13 +45,26 @@ import '@sightlab/ui';
 }
 ```
 
+**Next.js(Turbopack) 앱은 mixin별 단일 파일 진입점을 쓴다.** Turbopack은 다른 패키지에서 불러온 Sass 파일 안의
+상대 경로 `@forward`를 찾지 못해 `./sass`(여러 파일을 모으는 진입점)가 실패한다. 단일 파일 진입점은 다른 파일을 불러오지 않는다.
+
+```scss
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+.noteLink:focus-visible {
+  @include focus-ring;
+}
+```
+
 ## exports
 
-| 진입점                        | 파일                   | 출력                              |
-| ----------------------------- | ---------------------- | --------------------------------- |
-| `@sightlab/ui`                | `dist/index.css`       | 모든 컴포넌트 (앱 진입점에서 1회) |
-| `@sightlab/ui/<컴포넌트>.css` | `dist/<컴포넌트>.css`  | 컴포넌트 하나                     |
-| `@sightlab/ui/sass`           | `src/sass/_index.scss` | 없음 (mixin)                      |
+| 진입점                                 | 파일                                | 출력                               |
+| -------------------------------------- | ----------------------------------- | ---------------------------------- |
+| `@sightlab/ui`                         | `dist/index.css`                    | 모든 컴포넌트 (앱 진입점에서 1회)  |
+| `@sightlab/ui/<컴포넌트>.css`          | `dist/<컴포넌트>.css`               | 컴포넌트 하나                      |
+| `@sightlab/ui/sass`                    | `src/sass/_index.scss`              | 없음 (mixin 전체, `pkg:` 사용처용) |
+| `@sightlab/ui/sass/focus-ring`         | `src/sass/_focus-ring.scss`         | 없음 (단일 파일, Next 앱용)        |
+| `@sightlab/ui/sass/breadcrumb-compact` | `src/sass/_breadcrumb-compact.scss` | 없음 (단일 파일, Next 앱용)        |
 
 TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검사를 통과하도록 `"."`에 빈 타입 선언(`index.d.ts`, `types` 조건)을 둔다.
 

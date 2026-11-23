@@ -28,6 +28,7 @@
       "default": "./dist/index.css"
     },
     "./sass": "./src/sass/_index.scss",
+    "./sass/breakpoints": "./src/sass/_breakpoints.scss",
     "./*.css": "./dist/*.css",
     "./fonts/*": "./fonts/*"
   }
