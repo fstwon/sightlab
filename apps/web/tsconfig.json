@@ -1,0 +1,9 @@
+{
+  "extends": "@sightlab/typescript-config/nextjs.json",
+  "compilerOptions": {
+    // FSD 계층을 경로에 그대로 드러낸다: @/pages/home, @/shared/ui
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next"]
+}
