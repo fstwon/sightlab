@@ -1,0 +1,151 @@
+{
+  "object": "page",
+  "id": "00000000-0000-4000-8000-00000000b002",
+  "created_time": "2026-11-23T10:38:00.000Z",
+  "last_edited_time": "2026-11-23T10:42:00.000Z",
+  "created_by": {
+    "object": "user",
+    "id": "00000000-0000-4000-8000-000000000001"
+  },
+  "last_edited_by": {
+    "object": "user",
+    "id": "00000000-0000-4000-8000-000000000001"
+  },
+  "cover": null,
+  "icon": null,
+  "parent": {
+    "type": "data_source_id",
+    "data_source_id": "00000000-0000-4000-8000-0000000000d6",
+    "database_id": "00000000-0000-4000-8000-0000000000dc"
+  },
+  "in_trash": false,
+  "is_archived": false,
+  "is_locked": false,
+  "properties": {
+    "Role": {
+      "id": "%3CxtU",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "Progress": {
+      "id": "%40tnP",
+      "type": "select",
+      "select": {
+        "id": "aae49249-8508-4b6b-bc01-fbd086b2616a",
+        "name": "In progress",
+        "color": "blue"
+      }
+    },
+    "Slug": {
+      "id": "F%5BvK",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "sightlab",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "sightlab",
+          "href": null
+        }
+      ]
+    },
+    "Notes": {
+      "id": "HY%3Ef",
+      "type": "relation",
+      "relation": [
+        {
+          "id": "00000000-0000-4000-8000-00000000a001"
+        }
+      ],
+      "has_more": false
+    },
+    "Stack": {
+      "id": "X%7DY%3A",
+      "type": "multi_select",
+      "multi_select": [
+        {
+          "id": "f9d25bbc-887d-4595-b11d-3741eba5badf",
+          "name": "Monorepo",
+          "color": "gray"
+        },
+        {
+          "id": "5600bda1-d906-43f2-9f0d-f3faa2e1426d",
+          "name": "AI",
+          "color": "pink"
+        }
+      ]
+    },
+    "Status": {
+      "id": "%5EUb%3B",
+      "type": "select",
+      "select": {
+        "id": "bfbc96f8-9eea-4a79-b568-100724481575",
+        "name": "Published",
+        "color": "green"
+      }
+    },
+    "Preview": {
+      "id": "i~%3AI",
+      "type": "files",
+      "files": [
+        {
+          "name": "cover.png",
+          "type": "file",
+          "file": {
+            "url": "https://files.example.com/project/cover.png",
+            "expiry_time": "2026-11-23T11:45:01.812Z"
+          }
+        }
+      ]
+    },
+    "Summary": {
+      "id": "o%3Ep%5C",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "PublishedAt": {
+      "id": "%7BmkT",
+      "type": "date",
+      "date": {
+        "start": "2026-11-16",
+        "end": null,
+        "time_zone": null
+      }
+    },
+    "Title": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "AI로 블로그 개발",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "AI로 블로그 개발",
+          "href": null
+        }
+      ]
+    }
+  },
+  "url": "https://www.notion.so/0000000000004000800000000000b002",
+  "public_url": null
+}

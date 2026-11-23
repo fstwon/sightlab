@@ -24,3 +24,23 @@ export type NoteSummary = {
   // 연결 프로젝트(최대 1개)의 Notion 페이지 id
   projectId: string | null;
 };
+
+// 프로젝트 목록·카드에 필요한 값 (D5 Projects 속성표)
+export type ProjectSummary = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  // 발행일 (YYYY-MM-DD)
+  publishedAt: string;
+  // 마지막 수정 시각 (ISO 8601, sitemap lastmod)
+  updatedAt: string;
+  role: string;
+  stack: Label[];
+  // 진행 상태 (In progress, Completed, On hold). 시안의 Status
+  progress: Label;
+  // 미리보기 이미지(첫 파일). Notion 주소는 1시간 뒤 만료되므로 화면 연결 전에 복사 방식을 정한다
+  preview: { name: string; url: string } | null;
+  // 연결 노트의 Notion 페이지 id
+  noteIds: string[];
+};
