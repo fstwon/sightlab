@@ -1,0 +1,75 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as StateStories from './state.stories';
+
+<Meta of={StateStories} />
+
+# State
+
+목록 영역의 로딩·빈 결과·오류를 같은 높이(최소 300px)와 같은 배치로 보여 준다. **모양만 제공**하며, 문구와 버튼 동작은 앱이 정한다.
+원본: `@sightlab/ui` `state.scss` · Figma 02 Components / State UI (node 68:51)
+
+<Canvas of={StateStories.Loading} />
+
+<Controls of={StateStories.Loading} />
+
+## 마크업
+
+```html
+<!-- 로딩 -->
+<div class="sl-state sl-state--loading" role="status">
+  <div class="sl-state__skeleton" aria-hidden="true">
+    <span class="sl-state__line sl-state__line--title"></span>
+    <span class="sl-state__line"></span>
+    <span class="sl-state__line sl-state__line--short"></span>
+  </div>
+  <div class="sl-state__copy">
+    <p class="sl-state__title">노트를 불러오는 중입니다</p>
+    <p class="sl-state__description">잠시만 기다리면 학습 기록을 확인할 수 있습니다.</p>
+  </div>
+</div>
+
+<!-- 오류 (빈 결과는 sl-state--empty, role="status", search.svg, sl-button--secondary) -->
+<div class="sl-state sl-state--error" role="alert">
+  <span class="sl-state__icon">
+    <svg aria-hidden="true"><!-- @sightlab/icons alert.svg --></svg>
+  </span>
+  <div class="sl-state__copy">
+    <p class="sl-state__title">노트를 불러오지 못했습니다</p>
+    <p class="sl-state__description">네트워크 상태를 확인한 뒤 다시 시도해주세요.</p>
+  </div>
+  <button type="button" class="sl-button sl-button--primary">다시 시도</button>
+</div>
+```
+
+| 요소                     | 필수         | 설명                                                              |
+| ------------------------ | ------------ | ----------------------------------------------------------------- |
+| `sl-state` + 상태 수정자 | 필수         | 루트. 폭은 앱 레이아웃이 정한다 (Figma 예시 420px)                |
+| `sl-state__skeleton`     | 로딩         | 줄 3개(`__line`, `--title`, `--short`)를 담는 상자. `aria-hidden` |
+| `sl-state__icon`         | 빈 결과·오류 | 64px 원 안에 아이콘 SVG(32px) 인라인, `aria-hidden="true"`        |
+| `sl-state__copy`         | 필수         | 제목(`__title`)과 설명(`__description`)                           |
+| `sl-button`              | 선택         | 후속 동작 하나. 빈 결과는 `--secondary`, 오류는 `--primary`       |
+
+## 상태
+
+| 수정자              | 위쪽 요소    | 표현                                                               |
+| ------------------- | ------------ | ------------------------------------------------------------------ |
+| `sl-state--loading` | 스켈레톤     | 줄이 투명도 1 → 0.5 → 1로 반복 (1.6초). 움직임 줄이기 설정 시 정지 |
+| `sl-state--empty`   | `search.svg` | 원 배경 `bg-brand-soft`, 아이콘 `action-primary`                   |
+| `sl-state--error`   | `alert.svg`  | 원 배경 `bg-accent-soft`, 아이콘·제목 `status-danger`              |
+
+<Canvas of={StateStories.Empty} />
+<Canvas of={StateStories.Error} />
+
+## 앱이 할 일
+
+- 데이터 요청 상태에 맞는 수정자와 문구를 고른다.
+- 버튼 동작(필터 초기화, 다시 시도)을 구현한다. 버튼은 하나만 둔다.
+- 상태가 바뀌어도 같은 자리에 같은 높이로 그려 목록이 흔들리지 않게 한다.
+
+## 접근성
+
+- 로딩·빈 결과는 `role="status"`, 오류는 `role="alert"`로 바뀐 내용을 낭독한다.
+- 스켈레톤과 아이콘은 장식이므로 `aria-hidden="true"`로 숨긴다.
+- 로딩 모션은 `prefers-reduced-motion: reduce`에서 멈춘다.
+- 좌우 여백은 `--sl-spacing-lg`(24px), 스켈레톤 안쪽 여백은 `--sl-spacing-md`(16px)를 쓴다 (Figma 28px·18px에 맞는 토큰이 없음).

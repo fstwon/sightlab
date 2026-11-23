@@ -57,14 +57,15 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 
 ## 컴포넌트
 
-| 컴포넌트      | 원본                 | 루트 클래스        | 수정자                                                           |
-| ------------- | -------------------- | ------------------ | ---------------------------------------------------------------- |
-| Breadcrumb    | `breadcrumb.scss`    | `sl-breadcrumb`    | `--compact` (요소 `__item`, `__link`, `__current`)               |
-| Button        | `button.scss`        | `sl-button`        | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled`  |
-| Filter Select | `filter-select.scss` | `sl-filter-select` | `--open`, `--disabled` (요소 `__icon`)                           |
-| Pagination    | `pagination.scss`    | `sl-pagination`    | 요소 `__item`(`--current`, `--disabled`), `__icon`, `__ellipsis` |
-| Search        | `search.scss`        | `sl-search`        | `--disabled` (요소 `__icon`, `__input`)                          |
-| Tag           | `tag.scss`           | `sl-tag`           | `--brand`, `--accent`, `--selected`                              |
+| 컴포넌트      | 원본                 | 루트 클래스        | 수정자                                                                                                          |
+| ------------- | -------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------- |
+| Breadcrumb    | `breadcrumb.scss`    | `sl-breadcrumb`    | `--compact` (요소 `__item`, `__link`, `__current`)                                                              |
+| Button        | `button.scss`        | `sl-button`        | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled`                                                 |
+| Filter Select | `filter-select.scss` | `sl-filter-select` | `--open`, `--disabled` (요소 `__icon`)                                                                          |
+| Pagination    | `pagination.scss`    | `sl-pagination`    | 요소 `__item`(`--current`, `--disabled`), `__icon`, `__ellipsis`                                                |
+| Search        | `search.scss`        | `sl-search`        | `--disabled` (요소 `__icon`, `__input`)                                                                         |
+| State         | `state.scss`         | `sl-state`         | `--loading`, `--empty`, `--error` (요소 `__skeleton`, `__line`, `__icon`, `__copy`, `__title`, `__description`) |
+| Tag           | `tag.scss`           | `sl-tag`           | `--brand`, `--accent`, `--selected`                                                                             |
 
 마크업·변형·상태·접근성 규칙은 Storybook Docs(`apps/storybook`)가 정식 문서다. 각 SCSS 파일 상단 주석에 해당 문서 위치를 적는다.
 
