@@ -6,30 +6,31 @@
   color: var(--sl-color-text-primary);
 }
 
+// 원·타원 색은 currentColor라 여기서 정한다 (가운데 점은 SVG가 accent 토큰을 씀)
 .symbol {
   flex-shrink: 0;
   width: 2.25rem;
   height: 2.25rem;
-}
-
-.ring {
-  fill: none;
-  stroke: var(--sl-color-action-primary);
-  stroke-width: 2;
-}
-
-.lens {
-  fill: none;
-  stroke: var(--sl-color-action-primary);
-  stroke-width: 1.5;
-}
-
-.pupil {
-  fill: var(--sl-color-accent-default);
+  color: var(--sl-color-action-primary);
 }
 
 .wordmark {
   font-size: var(--sl-text-h2-size);
   font-weight: 700;
   line-height: 1;
+}
+
+// Type=Compact (node 54:11): 심볼 28px, 글자 20px(h3 크기) 600
+.logoCompact {
+  gap: var(--sl-spacing-xs);
+
+  .symbol {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .wordmark {
+    font-size: var(--sl-text-h3-size);
+    font-weight: 600;
+  }
 }

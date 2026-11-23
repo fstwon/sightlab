@@ -95,6 +95,19 @@ import searchIconUrl from '@sightlab/icons/search.svg?url';
 - 파일 이름은 kebab-case, Figma `Icon/<Name>`에 대응 (`Icon/ChevronDown` → `chevron-down.svg`)
 - 새 아이콘은 Figma Icon Library에 먼저 추가하고 같은 규칙으로 내보낸다
 
+## 브랜드 심볼 (`brand/`)
+
+아이콘 목록과 성격이 달라(색 두 가지, Figma Brand / Logo Final) 폴더를 나눈다.
+
+| 파일                    | Figma                                              | 진입점                                  |
+| ----------------------- | -------------------------------------------------- | --------------------------------------- |
+| `brand/logo-symbol.svg` | Logo / Observation, Observation Symbol (node 54:7) | `@sightlab/icons/brand/logo-symbol.svg` |
+
+- 원·타원은 `currentColor`: 쓰는 곳에서 `color: var(--sl-color-action-primary)`로 지정한다
+- 가운데 점은 `style="fill: var(--sl-color-accent-default, #f2a74b)"`: 인라인 SVG는 토큰 색, `<img>` 등 단독 사용은 괄호 안 기본값
+- Figma 내보내기는 타원의 안쪽 테두리를 mask로 표현한다. 한 화면에 여러 번 쓰면 mask `id`가 겹치므로, 같은 모양의 일반 선(가운데 기준)으로 바꿔 저장했다
+- "Sightlab" 글자는 SVG에 넣지 않는다. 화면에서는 HTML 텍스트(사이트 글꼴, 낭독·검색 가능)로 쓴다
+
 ## 접근성
 
 - 의미가 있는 아이콘(텍스트 없는 버튼 등)은 버튼에 `aria-label`을 붙이거나 숨김 텍스트를 함께 둔다
