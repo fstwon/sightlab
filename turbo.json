@@ -15,5 +15,6 @@
     },
     "typecheck": {},
     "test": {}
-  }
+  },
+  "globalDependencies": [".github/workflows/**"]
 }

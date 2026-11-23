@@ -1,0 +1,59 @@
+# PR 검사 (브리프 D14). 로컬 hook(husky)은 건너뛸 수 있어 병합 전 최종 관문은 이 워크플로가 맡는다.
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+# 같은 PR에 새 커밋이 오면 이전 실행을 취소한다.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+# 검사만 하므로 읽기 권한만 준다.
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint · Typecheck · Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # turbo --affected가 main과 비교하려면 전체 이력이 필요하다 (얕으면 모든 패키지를 검사).
+      # blob:none은 파일 내용을 필요할 때만 받아 내려받는 양을 줄인다.
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          filter: blob:none
+
+      # 버전 입력 없이 package.json의 packageManager(pnpm)를 쓴다.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      # cache: pnpm은 pnpm이 먼저 설치되어 있어야 해서 pnpm 설정 다음에 둔다.
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Format
+        run: pnpm format:check
+
+      # 바뀐 패키지와 그 패키지를 쓰는 패키지만 검사한다.
+      # 워크플로 파일은 turbo.json globalDependencies에 있어, CI 설정이 바뀌면 전체를 검사한다.
+      - name: Lint · Typecheck · Build
+        run: pnpm turbo run lint lint:css typecheck build --affected
+
+      # hook을 건너뛴 커밋에 대비해 PR에 포함된 커밋 메시지를 다시 검사한다.
+      - name: Commit messages
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: pnpm exec commitlint --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
