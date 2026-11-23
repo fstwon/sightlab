@@ -1,0 +1,5 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="2"/>
+<ellipse cx="18" cy="18" rx="10.05" ry="6.45" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="18" cy="18" r="3.06" style="fill: var(--sl-color-accent-default, #f2a74b)"/>
+</svg>

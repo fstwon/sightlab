@@ -1,6 +1,6 @@
 import { IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
 
-import { ICONS } from './icons';
+import { BRAND_SYMBOLS, ICONS } from './icons';
 
 <Meta title="Foundations/Icons" />
 
@@ -12,6 +12,22 @@ import { ICONS } from './icons';
   {ICONS.map(({ name, svg }) => (
     <IconItem key={name} name={name}>
       <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: svg }} />
+    </IconItem>
+  ))}
+</IconGallery>
+
+## 브랜드 심볼
+
+`@sightlab/icons/brand/`의 SVG. 원·타원은 `currentColor`(쓰는 곳에서 `action-primary` 지정), 가운데 점은 `accent-default` 토큰 색이다. 로고 글자 "Sightlab"은 SVG에 넣지 않고 HTML 텍스트로 쓴다.
+
+<IconGallery>
+  {BRAND_SYMBOLS.map(({ name, svg }) => (
+    <IconItem key={name} name={name}>
+      <span
+        aria-hidden="true"
+        style={{ color: 'var(--sl-color-action-primary)' }}
+        dangerouslySetInnerHTML={{ __html: svg }}
+      />
     </IconItem>
   ))}
 </IconGallery>

@@ -4,6 +4,7 @@ import alert from '@sightlab/icons/alert.svg?raw';
 import arrowLeft from '@sightlab/icons/arrow-left.svg?raw';
 import arrowRight from '@sightlab/icons/arrow-right.svg?raw';
 import arrowUp from '@sightlab/icons/arrow-up.svg?raw';
+import logoSymbol from '@sightlab/icons/brand/logo-symbol.svg?raw';
 import check from '@sightlab/icons/check.svg?raw';
 import chevronDown from '@sightlab/icons/chevron-down.svg?raw';
 import chevronLeft from '@sightlab/icons/chevron-left.svg?raw';
@@ -39,3 +40,6 @@ export const ICONS: Icon[] = [
   { name: 'refresh', svg: refresh },
   { name: 'search', svg: search },
 ];
+
+// 브랜드 심볼 (brand/). 원·타원은 currentColor라 쓰는 곳에서 action-primary 색을 지정한다.
+export const BRAND_SYMBOLS: Icon[] = [{ name: 'brand/logo-symbol', svg: logoSymbol }];

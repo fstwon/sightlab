@@ -1,4 +1,5 @@
 import ArrowRightSvg from '@sightlab/icons/arrow-right.svg';
+import LogoSymbolSvg from '@sightlab/icons/brand/logo-symbol.svg';
 import CloseSvg from '@sightlab/icons/close.svg';
 import MenuSvg from '@sightlab/icons/menu.svg';
 import type { ComponentType, SVGProps } from 'react';
@@ -10,3 +11,6 @@ export type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 export const ArrowRightIcon = ArrowRightSvg as IconComponent;
 export const CloseIcon = CloseSvg as IconComponent;
 export const MenuIcon = MenuSvg as IconComponent;
+
+// 브랜드 심볼: 원·타원은 currentColor, 가운데 점은 accent 토큰 색
+export const LogoSymbol = LogoSymbolSvg as IconComponent;
