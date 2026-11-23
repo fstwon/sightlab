@@ -1,0 +1,51 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma Component / Footer (node 435:202). 콘텐츠 최대 1200px, 위 테두리.
+.footer {
+  padding: 0 var(--sl-layout-gutter-mobile);
+
+  @include media-up(md) {
+    padding: 0 var(--sl-spacing-xl);
+  }
+}
+
+.inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-2xs);
+  max-width: var(--sl-layout-content-max);
+
+  // 아래 여백: Figma 푸터 높이(96px)와 화면 아래 여백(24px)을 합친 공간에 맞춘다
+  padding: var(--sl-spacing-lg) 0 var(--sl-spacing-2xl);
+  margin: 0 auto;
+  border-top: 1px solid var(--sl-color-border-default);
+
+  @include media-up(md) {
+    flex-direction: row;
+    justify-content: space-between;
+
+    // Figma 위 여백 28px = 24 + 4
+    padding-top: calc(var(--sl-spacing-lg) + var(--sl-spacing-2xs));
+  }
+}
+
+.brand,
+.tagline {
+  margin: 0;
+}
+
+.brand {
+  font-size: var(--sl-text-body-sm-size);
+  font-weight: 600;
+  color: var(--sl-color-text-primary);
+}
+
+.tagline {
+  font-size: var(--sl-text-label-size);
+  color: var(--sl-color-text-secondary);
+
+  @include media-up(md) {
+    font-size: var(--sl-text-body-sm-size);
+  }
+}

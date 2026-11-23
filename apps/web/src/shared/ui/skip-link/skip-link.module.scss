@@ -1,0 +1,29 @@
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 화면 위쪽 밖으로 밀어 두었다가 focus를 받으면 왼쪽 위(16px)에 나타난다.
+// display: none·visibility: hidden은 Tab 순서에서 빠지므로 쓰지 않는다.
+.skipLink {
+  position: fixed;
+  top: var(--sl-spacing-md);
+  left: var(--sl-spacing-md);
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  height: var(--sl-layout-touch-target);
+  padding: 0 var(--sl-spacing-md);
+  font-size: var(--sl-text-body-sm-size);
+  font-weight: 600;
+  color: var(--sl-color-text-primary);
+  text-decoration: none;
+  background-color: var(--sl-color-bg-surface);
+  border-radius: var(--sl-radius-sm);
+  transform: translateY(calc(-100% - var(--sl-spacing-md) * 2));
+
+  &:focus {
+    transform: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

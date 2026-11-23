@@ -3,6 +3,8 @@ import '@/app/styles';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
+import { BaseLayout } from '@/app/layouts/base-layout';
+
 export const metadata: Metadata = {
   title: 'Sightlab',
   description: '배우고 기록하고 다시 보는 학습 블로그',
@@ -12,7 +14,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <BaseLayout>{children}</BaseLayout>
+      </body>
     </html>
   );
 }
