@@ -1,0 +1,29 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma Recent Notes·Recent Projects Section. 제목과 내용 사이 24px (Figma 21·24px를 하나로).
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-lg);
+}
+
+// 제목 왼쪽, 동작(버튼) 오른쪽
+.header {
+  display: flex;
+  gap: var(--sl-spacing-md);
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Figma 22(모바일)·24(데스크톱) Bold. 맞는 토큰이 없어 h3·h2 크기에서 계산한다.
+.title {
+  margin: 0;
+  font-size: calc(var(--sl-text-h3-size) + 2px);
+  font-weight: var(--sl-text-h2-weight);
+  line-height: 1.75rem;
+
+  @include media-up(md) {
+    font-size: calc(var(--sl-text-h2-size) - 4px);
+    line-height: 1.875rem;
+  }
+}

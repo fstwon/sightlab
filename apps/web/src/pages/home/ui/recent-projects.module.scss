@@ -1,0 +1,20 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma Recent Projects Section. 모바일 1열·간격 16, 데스크톱 3열·간격 48 (카드 368px).
+.grid {
+  display: grid;
+  gap: var(--sl-spacing-md);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include media-up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sl-spacing-2xl);
+  }
+}
+
+// 한 줄의 카드 높이를 맞춘다
+.item {
+  display: grid;
+}

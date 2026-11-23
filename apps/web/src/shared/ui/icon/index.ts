@@ -1,1 +1,8 @@
-export { ArrowRightIcon, CloseIcon, type IconComponent, LogoSymbol, MenuIcon } from './icons';
+export {
+  ArrowRightIcon,
+  CloseIcon,
+  type IconComponent,
+  LogoSymbol,
+  MenuIcon,
+  SearchIcon,
+} from './icons';
