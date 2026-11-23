@@ -1,0 +1,64 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as TocItemStories from './toc-item.stories';
+
+<Meta of={TocItemStories} />
+
+# TOC Item
+
+노트 상세 목차의 항목 하나. H2·H3 두 단계와 현재 위치를 표시한다. **항목 모양만 제공**하며, 목록 배치와 현재 위치 계산은 앱이 한다.
+원본: `@sightlab/ui` `toc-item.scss` · Figma 02 Components / TOC Item (node 183:47)
+
+<Canvas of={TocItemStories.Default} />
+
+<Controls of={TocItemStories.Default} />
+
+## 마크업
+
+```html
+<nav aria-label="목차">
+  <ol>
+    <li><a class="sl-toc-item" href="#context-split">Context를 분리한 기준</a></li>
+    <li>
+      <a
+        class="sl-toc-item sl-toc-item--h3 sl-toc-item--active"
+        href="#update-scope"
+        aria-current="location"
+        >상태 변경 범위</a
+      >
+    </li>
+  </ol>
+</nav>
+```
+
+| 요소                      | 필수      | 설명                                                  |
+| ------------------------- | --------- | ----------------------------------------------------- |
+| `<nav aria-label>`        | 필수      | 목차 영역. 이름(`aria-label`) 필수                    |
+| `<ol>`                    | 필수      | 목록. 배치·간격은 앱 레이아웃이 정한다                |
+| `<a class="sl-toc-item">` | 필수      | 본문 제목으로 이동하는 링크. `href="#제목 id"`        |
+| `sl-toc-item--h3`         | H3 제목   | 왼쪽으로 8px 들여쓴다                                 |
+| `sl-toc-item--active`     | 현재 위치 | 지금 읽고 있는 제목. `aria-current="location"`과 함께 |
+
+## 상태
+
+| 상태         | 표현                                                          |
+| ------------ | ------------------------------------------------------------- |
+| 기본         | 글자 `text-secondary`                                         |
+| hover        | 배경 `bg-subtle`, 글자 `text-primary` (현재 위치 항목은 제외) |
+| 키보드 focus | `:focus-visible` 외곽 링 (공용 focus-ring)                    |
+| 현재 위치    | 배경 `bg-brand-soft`, 글자 `text-brand` 600, 왼쪽 막대 3×20px |
+| 긴 제목      | 줄바꿈. 최소 높이 36px, 위아래 여백 8px                       |
+
+<Canvas of={TocItemStories.LongLabel} />
+
+## 앱이 할 일
+
+- 본문 H2·H3에서 목차를 만들고 각 제목에 `id`를 붙인다.
+- 스크롤 위치에 따라 현재 위치 항목을 바꾼다 (`--active` 수정자와 `aria-current`를 함께 옮김).
+- 데스크톱 목차의 위치(사이드 고정 등)와 항목 사이 간격을 정한다.
+
+## 접근성
+
+- 현재 위치는 `aria-current="location"`으로 알린다. 스타일은 `--active` 수정자로만 건다.
+- 항목 최소 높이는 36px이다. 목차 링크는 본문 옆 보조 탐색이라 44px 대신 Figma 높이를 따른다.
+- H3 들여쓰기는 `--sl-spacing-sm` + `--sl-spacing-xs`(12 + 8 = 20px)로 Figma 값과 같다.

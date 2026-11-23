@@ -66,6 +66,7 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 | Search        | `search.scss`        | `sl-search`        | `--disabled` (요소 `__icon`, `__input`)                                                                         |
 | State         | `state.scss`         | `sl-state`         | `--loading`, `--empty`, `--error` (요소 `__skeleton`, `__line`, `__icon`, `__copy`, `__title`, `__description`) |
 | Tag           | `tag.scss`           | `sl-tag`           | `--brand`, `--accent`, `--selected`                                                                             |
+| TOC Item      | `toc-item.scss`      | `sl-toc-item`      | `--h3`, `--active`                                                                                              |
 
 마크업·변형·상태·접근성 규칙은 Storybook Docs(`apps/storybook`)가 정식 문서다. 각 SCSS 파일 상단 주석에 해당 문서 위치를 적는다.
 
