@@ -1,0 +1,36 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 모바일: 누름 영역 높이 44px, 좌우 8px (로고가 화면 왼쪽 24px에 오도록)
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--sl-layout-touch-target);
+  padding: 0 var(--sl-spacing-xs);
+  text-decoration: none;
+  border-radius: var(--sl-radius-sm);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  @include media-up(md) {
+    padding: 0;
+  }
+}
+
+.desktop {
+  display: none;
+
+  @include media-up(md) {
+    display: block;
+  }
+}
+
+.mobile {
+  display: block;
+
+  @include media-up(md) {
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sl-layout-touch-target);
+  height: var(--sl-layout-touch-target);
+  padding: 0;
+  color: var(--sl-color-text-primary);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: var(--sl-radius-sm);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}

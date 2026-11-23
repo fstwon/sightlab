@@ -1,8 +1,7 @@
 @use '@sightlab/tokens/sass/breakpoints' as *;
-@use '@sightlab/ui/sass/focus-ring' as *;
 
 // 모바일(MOBILE Header): 높이 64px, 아래 테두리. 데스크톱(Navigation 39:14): 72px, 위아래 테두리.
-// 높이는 테두리를 포함한다 (Figma는 안쪽 테두리).
+// 높이는 테두리를 포함한다 (Figma는 안쪽 테두리). 모바일 메뉴 패널의 기준 위치라 position: relative.
 .header {
   position: relative;
   box-sizing: border-box;
@@ -29,40 +28,5 @@
 
   @include media-up(md) {
     padding: 0 var(--sl-spacing-xl);
-  }
-}
-
-// 모바일: 누름 영역 높이 44px, 좌우 8px (로고가 화면 왼쪽 24px에 오도록)
-.logoLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--sl-layout-touch-target);
-  padding: 0 var(--sl-spacing-xs);
-  text-decoration: none;
-  border-radius: var(--sl-radius-sm);
-
-  &:focus-visible {
-    @include focus-ring;
-  }
-
-  @include media-up(md) {
-    padding: 0;
-  }
-}
-
-.logoDesktop,
-.desktopNav {
-  display: none;
-
-  @include media-up(md) {
-    display: block;
-  }
-}
-
-.logoMobile {
-  display: block;
-
-  @include media-up(md) {
-    display: none;
   }
 }
