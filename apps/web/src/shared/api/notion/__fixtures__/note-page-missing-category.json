@@ -1,0 +1,185 @@
+{
+  "object": "page",
+  "id": "00000000-0000-4000-8000-00000000a002",
+  "created_time": "2026-11-17T08:15:00.000Z",
+  "last_edited_time": "2026-11-17T09:40:00.000Z",
+  "created_by": {
+    "object": "user",
+    "id": "00000000-0000-4000-8000-000000000001"
+  },
+  "last_edited_by": {
+    "object": "user",
+    "id": "00000000-0000-4000-8000-000000000001"
+  },
+  "cover": null,
+  "icon": null,
+  "parent": {
+    "type": "data_source_id",
+    "data_source_id": "00000000-0000-4000-8000-0000000000d5",
+    "database_id": "00000000-0000-4000-8000-0000000000db"
+  },
+  "in_trash": false,
+  "is_archived": false,
+  "is_locked": false,
+  "properties": {
+    "Status": {
+      "id": "%3CrRH",
+      "type": "select",
+      "select": {
+        "id": "d87f2e19-ecac-4f02-a258-6a64409ae273",
+        "name": "Published",
+        "color": "gray"
+      }
+    },
+    "PublishedAt": {
+      "id": "J%7B%5C%3B",
+      "type": "date",
+      "date": {
+        "start": "2026-11-22",
+        "end": null,
+        "time_zone": null
+      }
+    },
+    "SourceUrl": {
+      "id": "MKEl",
+      "type": "url",
+      "url": null
+    },
+    "Slug": {
+      "id": "Q%3ES~",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "notion-image-expiry-vercel-blob",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "notion-image-expiry-vercel-blob",
+          "href": null
+        }
+      ]
+    },
+    "Project": {
+      "id": "%5Cyh%3F",
+      "type": "relation",
+      "relation": [],
+      "has_more": false
+    },
+    "Type": {
+      "id": "%60LdP",
+      "type": "select",
+      "select": {
+        "id": "62aa5fc6-9760-4be6-a2de-2ed91253fc75",
+        "name": "Troubleshooting",
+        "color": "red"
+      }
+    },
+    "Tags": {
+      "id": "aOiI",
+      "type": "multi_select",
+      "multi_select": [
+        {
+          "id": "c92afc2b-279e-4b4e-9ff9-c4107cf86f93",
+          "name": "Notion",
+          "color": "default"
+        },
+        {
+          "id": "85f3ec64-1676-4ece-ab90-1c64143a992d",
+          "name": "Vercel",
+          "color": "default"
+        },
+        {
+          "id": "15f19be1-a170-4bef-8da0-fca8521f506a",
+          "name": "이미지",
+          "color": "default"
+        }
+      ]
+    },
+    "SeriesOrder": {
+      "id": "dHWD",
+      "type": "number",
+      "number": 5
+    },
+    "Summary": {
+      "id": "eG%3Ag",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "만료되는 Notion 파일 URL 문제를 Blob 복사와 프록시 방식으로 비교해 해결 방향을 정함",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "만료되는 Notion 파일 URL 문제를 Blob 복사와 프록시 방식으로 비교해 해결 방향을 정함",
+          "href": null
+        }
+      ]
+    },
+    "Series": {
+      "id": "f%40VB",
+      "type": "select",
+      "select": {
+        "id": "f0833621-40e7-4389-9c37-708c915089f1",
+        "name": "AI로 블로그 개발",
+        "color": "purple"
+      }
+    },
+    "DemoUrl": {
+      "id": "hYbj",
+      "type": "url",
+      "url": null
+    },
+    "Category": {
+      "id": "q%3AKT",
+      "type": "select",
+      "select": null
+    },
+    "References": {
+      "id": "xNXX",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "Title": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "Notion 이미지는 1시간 뒤 만료된다: Vercel Blob을 고른 이유",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "Notion 이미지는 1시간 뒤 만료된다: Vercel Blob을 고른 이유",
+          "href": null
+        }
+      ]
+    }
+  },
+  "url": "https://www.notion.so/0000000000004000800000000000a002",
+  "public_url": null
+}
