@@ -13,6 +13,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@sightlab/icons": "workspace:*",
     "@sightlab/tokens": "workspace:*",
     "@sightlab/ui": "workspace:*",
     "next": "^16.4.6",
@@ -23,6 +24,7 @@
     "@sightlab/eslint-config": "workspace:*",
     "@sightlab/stylelint-config": "workspace:*",
     "@sightlab/typescript-config": "workspace:*",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

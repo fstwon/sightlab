@@ -33,3 +33,18 @@
   font-weight: 700;
   line-height: 1;
 }
+
+// Type=Compact (node 54:11): 심볼 28px, 글자 20px(h3 크기) 600
+.logoCompact {
+  gap: var(--sl-spacing-xs);
+
+  .symbol {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .wordmark {
+    font-size: var(--sl-text-h3-size);
+    font-weight: 600;
+  }
+}
