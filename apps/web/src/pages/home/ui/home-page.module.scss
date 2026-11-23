@@ -1,13 +1,16 @@
 @use '@sightlab/tokens/sass/breakpoints' as *;
 
-// 레이아웃과 같은 좌우 여백·최대 폭
+// 콘텐츠 폭 최대 1200px(푸터 안쪽과 같음), 좌우 여백은 그 바깥 (content-box).
+// 위 여백: Figma 헤더 아래부터 히어로까지 모바일 40px(32 + 8)·데스크톱 44px(48 - 4).
 .page {
-  box-sizing: border-box;
+  box-sizing: content-box;
   max-width: var(--sl-layout-content-max);
-  padding: var(--sl-spacing-xl) var(--sl-layout-gutter-mobile);
+  padding: calc(var(--sl-spacing-xl) + var(--sl-spacing-xs)) var(--sl-layout-gutter-mobile)
+    var(--sl-spacing-2xl);
   margin: 0 auto;
 
   @include media-up(md) {
-    padding: var(--sl-spacing-xl);
+    padding: calc(var(--sl-spacing-2xl) - var(--sl-spacing-2xs)) var(--sl-spacing-xl)
+      var(--sl-spacing-3xl);
   }
 }
