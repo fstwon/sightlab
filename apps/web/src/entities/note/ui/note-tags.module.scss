@@ -1,0 +1,9 @@
+// 값: Figma Note Card Tag Row (node 247:77). 태그 사이 8px.
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
