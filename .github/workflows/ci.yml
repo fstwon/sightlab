@@ -49,6 +49,11 @@ jobs:
       # 워크플로 파일은 turbo.json globalDependencies에 있어, CI 설정이 바뀌면 전체를 검사한다.
       - name: Lint · Typecheck · Test · Build
         run: pnpm turbo run lint lint:css typecheck test build --affected
+        # 빌드 때 Notion에서 글을 가져온다 (값은 저장소 Actions secrets에 등록).
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_NOTES_DATA_SOURCE_ID: ${{ secrets.NOTION_NOTES_DATA_SOURCE_ID }}
+          NOTION_PROJECTS_DATA_SOURCE_ID: ${{ secrets.NOTION_PROJECTS_DATA_SOURCE_ID }}
 
       # hook을 건너뛴 커밋에 대비해 PR에 포함된 커밋 메시지를 다시 검사한다.
       - name: Commit messages
