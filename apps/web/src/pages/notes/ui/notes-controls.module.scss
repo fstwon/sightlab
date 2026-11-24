@@ -1,0 +1,29 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-02 / Notes. 검색 줄과 결과 개수 사이 32px.
+.explorer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-xl);
+}
+
+// 모바일은 세로로 화면 폭 전체, 데스크톱은 가로로 (검색 420px, 다음 단계의 태그 필터와 간격 20)
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-md);
+
+  @include media-up(md) {
+    flex-direction: row;
+
+    // Figma 간격 20px = 16 + 4
+    gap: calc(var(--sl-spacing-md) + var(--sl-spacing-2xs));
+    align-items: center;
+  }
+}
+
+.search {
+  @include media-up(md) {
+    flex: 0 1 420px;
+  }
+}
