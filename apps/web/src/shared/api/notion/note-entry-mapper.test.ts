@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import missingCategoryFixture from './__fixtures__/note-page-missing-category.json';
 import publishedFixture from './__fixtures__/note-page-published.json';
-import { mapNoteDetailPage } from './note-detail-mapper';
+import { mapNoteEntry } from './note-entry-mapper';
 import { readLinks } from './properties';
 
 const publishedPage = publishedFixture as unknown as PageObjectResponse;
@@ -63,18 +63,17 @@ describe('readLinks', () => {
   });
 });
 
-describe('mapNoteDetailPage', () => {
-  it('목록 값에 본문·참고 자료·실험 앱 링크를 더한다 (출처는 www. 뺀 도메인)', () => {
+describe('mapNoteEntry', () => {
+  it('목록 값(summary)과 상세 전용 값(extras: 참고 자료·실험 앱 링크)을 함께 만든다 (출처는 www. 뺀 도메인)', () => {
     const page = withProperties(publishedPage, {
       References: referencesProperty,
       DemoUrl: { id: 'demo', type: 'url', url: 'https://sightlab-red.vercel.app/' },
     });
-    const result = mapNoteDetailPage(page, '## 본문');
+    const result = mapNoteEntry(page);
     if (!result.ok) throw new Error('매핑 실패');
 
-    expect(result.value.slug).toBe('repository-pattern-over-hexagonal');
-    expect(result.value.markdown).toBe('## 본문');
-    expect(result.value.references).toEqual([
+    expect(result.value.summary.slug).toBe('repository-pattern-over-hexagonal');
+    expect(result.value.extras.references).toEqual([
       {
         title: 'Intersection Observer API',
         url: 'https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API',
@@ -87,12 +86,12 @@ describe('mapNoteDetailPage', () => {
       },
       { title: '잘못된 주소', url: 'not a url', source: '' },
     ]);
-    expect(result.value.demoUrl).toBe('https://sightlab-red.vercel.app/');
-    expect(result.value.sourceUrl).toBeNull();
+    expect(result.value.extras.demoUrl).toBe('https://sightlab-red.vercel.app/');
+    expect(result.value.extras.sourceUrl).toBeNull();
   });
 
   it('필수 속성이 빠지면 목록 매퍼와 같이 빠진 속성을 돌려준다', () => {
     const page = missingCategoryFixture as unknown as PageObjectResponse;
-    expect(mapNoteDetailPage(page, '')).toEqual({ ok: false, missing: ['Category'] });
+    expect(mapNoteEntry(page)).toEqual({ ok: false, missing: ['Category'] });
   });
 });
