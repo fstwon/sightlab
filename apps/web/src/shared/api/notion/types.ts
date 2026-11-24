@@ -44,3 +44,21 @@ export type ProjectSummary = {
   // 연결 노트의 Notion 페이지 id
   noteIds: string[];
 };
+
+// 참고 자료 한 줄 (D5 References: 링크 글자 = 제목, 주소의 도메인 = 출처)
+export type Reference = {
+  title: string;
+  url: string;
+  // 예: developer.mozilla.org (www. 제외)
+  source: string;
+};
+
+// 노트 상세에 필요한 값 = 목록 값 + 본문·참고 자료·실험 앱 링크 (F4)
+export type NoteDetail = NoteSummary & {
+  // Notion 마크다운 API(v2)로 받은 본문
+  markdown: string;
+  references: Reference[];
+  // 실험 앱 데모·소스 주소 (없으면 null)
+  demoUrl: string | null;
+  sourceUrl: string | null;
+};
