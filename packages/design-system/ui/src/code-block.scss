@@ -1,0 +1,91 @@
+// Code Block (Figma 02 Components / Code Block, node 77:71)
+// 마크업·상태·접근성 규칙: Storybook "Components/Code Block" 문서 (apps/storybook/src/code-block/code-block.mdx)
+// 머리줄(언어 + 복사 버튼)과 줄 번호가 붙은 코드 영역. 글자 색(문법 강조)과 복사 동작은 앱이 정한다.
+@use 'sass/focus-ring' as *;
+
+.sl-code-block {
+  overflow: hidden;
+  font-family: var(--sl-font-family-mono);
+  color: var(--sl-color-text-inverse);
+  background-color: var(--sl-color-bg-code);
+  border-radius: var(--sl-radius-md);
+
+  // Figma 높이 48, 좌우 18 = 16 + 2, mono 12 (label 크기)
+  &__header {
+    display: flex;
+    gap: var(--sl-spacing-sm);
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    padding: 0 calc(var(--sl-spacing-md) + 2px);
+    font-size: var(--sl-text-label-size);
+    font-weight: var(--sl-text-label-weight);
+    line-height: var(--sl-text-label-line-height);
+  }
+
+  &__copy {
+    position: relative;
+    display: inline-flex;
+    gap: var(--sl-spacing-2xs);
+    align-items: center;
+    padding: var(--sl-spacing-2xs) var(--sl-spacing-xs);
+    margin-right: calc(var(--sl-spacing-xs) * -1);
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: var(--sl-radius-sm);
+
+    // 겉모습은 작게 두고 누르는 영역만 최소 터치 영역까지 넓힌다
+    &::before {
+      position: absolute;
+      inset: calc((var(--sl-layout-touch-target) - 100%) / -2) 0;
+      content: '';
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  // Figma 안쪽 여백 18, 가로로 넘치면 코드 영역만 스크롤
+  &__body {
+    padding: calc(var(--sl-spacing-md) + 2px);
+    overflow-x: auto;
+
+    &:focus-visible {
+      @include focus-ring;
+
+      outline-offset: -3px;
+    }
+  }
+
+  // Figma 14/27 (code 크기), 줄 번호는 CSS 카운터로 그린다 (복사·낭독에 섞이지 않음)
+  &__code {
+    margin: 0;
+    font-family: inherit;
+    font-size: var(--sl-text-code-size);
+    line-height: 1.6875rem;
+    tab-size: 2;
+    counter-reset: line;
+  }
+
+  &__line {
+    counter-increment: line;
+
+    &::before {
+      display: inline-block;
+      width: 2ch;
+      margin-right: calc(var(--sl-spacing-md) + 2px);
+      color: var(--sl-color-text-secondary);
+      text-align: right;
+      user-select: none;
+      content: counter(line);
+    }
+  }
+}

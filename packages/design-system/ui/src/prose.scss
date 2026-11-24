@@ -1,0 +1,201 @@
+// Prose (Figma 02 Components / Markdown Content, node 77:37)
+// 마크업·규칙: Storybook "Components/Prose" 문서 (apps/storybook/src/prose/prose.mdx)
+// 마크다운 등으로 만든 글 본문을 감싸 기본 HTML 요소(h2, p, ul, blockquote, table …)에 스타일을 준다.
+// 본문 HTML은 변환기가 만들어 클래스를 붙이기 어려우므로, 이 컴포넌트만 루트 클래스 아래의 요소 선택자를 쓴다.
+@use 'sass/focus-ring' as *;
+
+// 체크된 체크박스의 흰 체크 표시 (check.svg와 같은 모양)
+$check-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 12.5L9.5 17L19 7' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+.sl-prose {
+  // Figma 모바일 15px: 맞는 토큰이 없어 body(16px)에서 1px를 뺀다
+  font-family: var(--sl-font-family-sans);
+  font-size: calc(var(--sl-text-body-size) - 1px);
+  line-height: 1.75rem;
+  color: var(--sl-color-text-primary);
+  overflow-wrap: break-word;
+
+  @media (width >= 768px) {
+    font-size: var(--sl-text-body-size);
+  }
+
+  // 블록 사이 기본 간격
+  > * {
+    margin: 0;
+  }
+
+  > * + * {
+    margin-top: var(--sl-spacing-md);
+  }
+
+  // Figma Heading 2: 28/36 Bold (h2 토큰)
+  h2 {
+    margin-top: var(--sl-spacing-2xl);
+    font-size: var(--sl-text-h2-size);
+    font-weight: var(--sl-text-h2-weight);
+    line-height: var(--sl-text-h2-line-height);
+    letter-spacing: var(--sl-text-h2-letter-spacing);
+  }
+
+  // H3: 20/28 (h3 토큰)
+  h3 {
+    margin-top: var(--sl-spacing-xl);
+    font-size: var(--sl-text-h3-size);
+    font-weight: var(--sl-text-h3-weight);
+    line-height: var(--sl-text-h3-line-height);
+  }
+
+  // 제목 바로 아래는 조금 좁게
+  h2 + *,
+  h3 + * {
+    margin-top: var(--sl-spacing-sm);
+  }
+
+  // 목차 링크로 이동했을 때 고정 헤더에 가리지 않도록 위 여백을 둔다
+  h2,
+  h3 {
+    scroll-margin-top: var(--sl-spacing-2xl);
+  }
+
+  a {
+    color: var(--sl-color-text-brand);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  // 인라인 코드 (코드 블록 안의 code는 Code Block이 정한다). 위아래 2px · 좌우 4px, code 크기(14px)
+  :not(pre) > code {
+    padding: calc(var(--sl-spacing-2xs) / 2) var(--sl-spacing-2xs);
+    font-family: var(--sl-font-family-mono);
+    font-size: var(--sl-text-code-size);
+    background-color: var(--sl-color-bg-subtle);
+    border-radius: var(--sl-radius-sm);
+  }
+
+  // Figma List: 16/30
+  ul,
+  ol {
+    padding-left: var(--sl-spacing-lg);
+    line-height: 1.875rem;
+  }
+
+  li + li,
+  li > ul,
+  li > ol {
+    margin-top: var(--sl-spacing-2xs);
+  }
+
+  // Figma Quote: 바탕 brand-soft, 왼쪽 선 action-primary, 18/28, 여백 18 · 24
+  blockquote {
+    padding: calc(var(--sl-spacing-md) + 2px) var(--sl-spacing-lg);
+    font-size: var(--sl-text-body-lg-size);
+    line-height: 1.75rem;
+    background-color: var(--sl-color-bg-brand-soft);
+    border-left: 3px solid var(--sl-color-action-primary);
+
+    > * {
+      margin: 0;
+    }
+
+    > * + * {
+      margin-top: var(--sl-spacing-xs);
+    }
+  }
+
+  // Figma Task List: 체크박스 18px · 모서리 4 · 글자와 12, 줄 사이 10. 체크된 항목 글자는 text-secondary
+  ul:has(> li > input[type='checkbox']) {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  li:has(> input[type='checkbox']) {
+    display: flex;
+    gap: var(--sl-spacing-sm);
+    align-items: center;
+    line-height: 1.75rem;
+  }
+
+  li:has(> input[type='checkbox']:checked) {
+    color: var(--sl-color-text-secondary);
+  }
+
+  input[type='checkbox'] {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    appearance: none;
+    background-color: var(--sl-color-bg-surface);
+    border: 1px solid var(--sl-color-border-default);
+
+    // Figma 4px: sm(6px)에서 2px를 뺀다
+    border-radius: calc(var(--sl-radius-sm) - 2px);
+  }
+
+  input[type='checkbox']:checked {
+    background: $check-mark center / 14px no-repeat var(--sl-color-text-brand);
+    border-color: var(--sl-color-text-brand);
+  }
+
+  // 표: 가는 테두리, 머리 칸 bg-subtle. 열 너비는 내용에 맞춘다
+  table {
+    width: 100%;
+    font-size: var(--sl-text-body-sm-size);
+    line-height: var(--sl-text-body-sm-line-height);
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: var(--sl-spacing-xs) var(--sl-spacing-sm);
+    vertical-align: top;
+    text-align: left;
+    border: 1px solid var(--sl-color-border-default);
+  }
+
+  th {
+    font-weight: 600;
+    background-color: var(--sl-color-bg-subtle);
+  }
+
+  // Figma Image: 모서리 12, 테두리 border-default, 캡션 14/22 text-secondary (모바일 13)
+  figure {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--sl-color-border-default);
+    border-radius: var(--sl-radius-md);
+  }
+
+  figcaption {
+    margin-top: var(--sl-spacing-sm);
+    font-size: var(--sl-text-label-size);
+    line-height: var(--sl-text-body-sm-line-height);
+    color: var(--sl-color-text-secondary);
+
+    @media (width >= 768px) {
+      font-size: var(--sl-text-body-sm-size);
+    }
+  }
+
+  hr {
+    margin: var(--sl-spacing-xl) 0;
+    border: 0;
+    border-top: 1px solid var(--sl-color-border-default);
+  }
+}

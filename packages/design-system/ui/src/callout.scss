@@ -1,0 +1,111 @@
+// Callout (Figma 02 Components / Callout, node 77:100)
+// 마크업·변형·접근성 규칙: Storybook "Components/Callout" 문서 (apps/storybook/src/callout/callout.mdx)
+// 본문 중간의 안내 상자: 원형 아이콘 + 제목 + 내용. 종류(수정자)마다 색이 바뀐다.
+
+.sl-callout {
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--sl-spacing-md);
+
+  // Figma 여백 20px = 24 - 4
+  padding: calc(var(--sl-spacing-lg) - var(--sl-spacing-2xs));
+  font-family: var(--sl-font-family-sans);
+  color: var(--sl-color-text-primary);
+  border: 1px solid;
+  border-radius: var(--sl-radius-md);
+
+  // 32px 원, 안의 아이콘 18px 흰색
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--sl-color-text-inverse);
+    border-radius: var(--sl-radius-full);
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // Figma 제목과 내용 사이 6px = 8 - 2
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: calc(var(--sl-spacing-xs) - 2px);
+    min-width: 0;
+
+    // 원형 아이콘(32px)과 제목 줄의 가운데를 맞춘다
+    padding-top: var(--sl-spacing-2xs);
+  }
+
+  // Figma 15px Semi Bold: 맞는 토큰이 없어 body(16px)에서 1px를 뺀다
+  &__title {
+    margin: 0;
+    font-size: calc(var(--sl-text-body-size) - 1px);
+    font-weight: 600;
+    line-height: var(--sl-text-body-sm-line-height);
+  }
+
+  // Figma 14/22. 안에 문단·목록이 여러 개 올 수 있다
+  &__content {
+    font-size: var(--sl-text-body-sm-size);
+    line-height: var(--sl-text-body-sm-line-height);
+
+    > * {
+      margin: 0;
+    }
+
+    > * + * {
+      margin-top: var(--sl-spacing-xs);
+    }
+  }
+
+  &--info {
+    background-color: var(--sl-color-bg-brand-soft);
+    border-color: var(--sl-color-action-primary);
+  }
+
+  &--info &__icon {
+    background-color: var(--sl-color-action-primary);
+  }
+
+  &--info &__title {
+    color: var(--sl-color-text-brand);
+  }
+
+  &--tip {
+    background-color: var(--sl-color-bg-subtle);
+    border-color: var(--sl-color-status-success);
+  }
+
+  &--tip &__icon {
+    background-color: var(--sl-color-status-success);
+  }
+
+  &--warning {
+    background-color: var(--sl-color-bg-accent-soft);
+    border-color: var(--sl-color-accent-default);
+  }
+
+  &--warning &__icon {
+    background-color: var(--sl-color-accent-default);
+  }
+
+  &--error {
+    background-color: var(--sl-color-bg-accent-soft);
+    border-color: var(--sl-color-status-danger);
+  }
+
+  &--error &__icon {
+    background-color: var(--sl-color-status-danger);
+  }
+
+  &--error &__title {
+    color: var(--sl-color-status-danger);
+  }
+}
