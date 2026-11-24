@@ -74,6 +74,9 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 | ------------- | -------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------- |
 | Breadcrumb    | `breadcrumb.scss`    | `sl-breadcrumb`    | `--compact` (요소 `__item`, `__link`, `__current`)                                                              |
 | Button        | `button.scss`        | `sl-button`        | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled`                                                 |
+| Filter Chip   | `filter-chip.scss`   | `sl-filter-chip`   | (요소 `__icon`)                                                                                                 |
+| Filter Option | `filter-option.scss` | `sl-filter-option` | 선택은 체크박스 `:checked` (요소 `__input`, `__box`, `__check`, `__label`, `__count`)                           |
+| Filter Panel  | `filter-panel.scss`  | `sl-filter-panel`  | (요소 `__group`, `__legend`)                                                                                    |
 | Filter Select | `filter-select.scss` | `sl-filter-select` | `--open`, `--disabled` (요소 `__icon`)                                                                          |
 | Mobile TOC    | `mobile-toc.scss`    | `sl-mobile-toc`    | 펼침은 `[open]` (요소 `__header`, `__icon`, `__body`, `__list`)                                                 |
 | Pagination    | `pagination.scss`    | `sl-pagination`    | 요소 `__item`(`--current`, `--disabled`), `__icon`, `__ellipsis`                                                |

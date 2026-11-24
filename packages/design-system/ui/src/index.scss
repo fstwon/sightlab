@@ -1,6 +1,9 @@
 // 공용 UI 전체 진입점. 토큰은 포함하지 않으므로 앱 진입점에서 tokens → ui 순서로 한 번만 불러온다.
 @use 'breadcrumb';
 @use 'button';
+@use 'filter-chip';
+@use 'filter-option';
+@use 'filter-panel';
 @use 'filter-select';
 @use 'mobile-toc';
 @use 'pagination';

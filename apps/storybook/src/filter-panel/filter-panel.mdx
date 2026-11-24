@@ -1,0 +1,64 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as FilterPanelStories from './filter-panel.stories';
+
+<Meta of={FilterPanelStories} />
+
+# Filter Panel
+
+Filter Select를 누르면 펼쳐지는 상자. 안에 **Filter Option 여러 줄**을 담아 여러 값을 고른다.
+원본: `@sightlab/ui` `filter-panel.scss` · Figma 02 Components / Filter Panel (node 451:269)
+
+<Canvas of={FilterPanelStories.Default} />
+
+<Controls of={FilterPanelStories.Default} />
+
+## 마크업
+
+```html
+<button
+  type="button"
+  class="sl-filter-select sl-filter-select--open"
+  aria-expanded="true"
+  aria-controls="tag-filter-panel"
+>
+  …
+</button>
+
+<div class="sl-filter-panel" id="tag-filter-panel">
+  <fieldset class="sl-filter-panel__group">
+    <legend class="sl-filter-panel__legend">태그</legend>
+    <!-- sl-filter-option 여러 줄 -->
+  </fieldset>
+</div>
+```
+
+| 요소                                        | 필수 | 설명                                                                          |
+| ------------------------------------------- | ---- | ----------------------------------------------------------------------------- |
+| `<div class="sl-filter-panel" id>`          | 필수 | 루트. `id`는 Filter Select의 `aria-controls`와 같게 둔다                      |
+| `<fieldset class="sl-filter-panel__group">` | 필수 | 체크박스 묶음                                                                 |
+| `<legend class="sl-filter-panel__legend">`  | 필수 | 묶음 이름. 화면에는 숨기고 화면 낭독기에만 읽힌다 ("태그, 그룹")              |
+| `sl-filter-option`                          | 필수 | 고를 값 한 줄씩 ([Filter Option](?path=/docs/components-filter-option--docs)) |
+
+<Canvas of={FilterPanelStories.WithSelect} />
+
+## 모양
+
+| 항목      | 값                                                                      |
+| --------- | ----------------------------------------------------------------------- |
+| 상자      | 흰 바탕, 1px 테두리 `border-default`, 모서리 `md`, 그림자 `md`          |
+| 안쪽 여백 | `spacing-xs` (8px)                                                      |
+| 높이      | 내용만큼, 최대 320px. 넘치면 패널 안에서 스크롤                         |
+| 폭·위치   | 앱이 정한다 (Figma 데스크톱 280px · 버튼 아래 8px, 모바일 화면 폭 전체) |
+
+## 앱이 할 일
+
+- 열기·닫기: Filter Select의 `aria-expanded`와 `sl-filter-select--open`을 함께 바꾸고, 닫히면 패널을 그리지 않는다.
+- Esc를 누르거나 패널·버튼 바깥을 누르면 닫고, focus를 Filter Select로 돌려준다.
+- 체크박스가 바뀌면 바로 적용한다 (적용 버튼 없음). 선택한 값은 목록 위 Filter Chip으로 보여 준다.
+
+## 접근성
+
+- 묶음 이름(`legend`)이 있어 화면 낭독기가 "태그 그룹 안의 React 체크박스"처럼 읽는다.
+- 안의 체크박스는 Tab으로 이동하고 Space로 고른다 (기본 동작 그대로).
+- 패널은 대화 상자(dialog)가 아니므로 focus를 가두지 않는다. Tab으로 패널을 지나 다음 요소로 갈 수 있다.

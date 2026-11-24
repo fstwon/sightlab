@@ -1,0 +1,53 @@
+// Filter Chip (Figma 02 Components / Filter Chip, node 451:183)
+// 마크업·상태·접근성 규칙: Storybook "Components/Filter Chip" 문서 (apps/storybook/src/filter-chip/filter-chip.mdx)
+// 선택한 필터 값 하나를 보여 주고, 누르면 그 값을 필터에서 뺀다.
+@use 'sass/focus-ring' as *;
+
+// Figma 안쪽 테두리 2px
+$border-width: 2px;
+
+.sl-filter-chip {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: var(--sl-spacing-2xs);
+  align-items: center;
+  height: 32px;
+
+  // Figma 왼쪽 12 · 오른쪽 8 (테두리 2px 포함)
+  padding: 0 calc(var(--sl-spacing-xs) - #{$border-width}) 0
+    calc(var(--sl-spacing-sm) - #{$border-width});
+  font-family: var(--sl-font-family-sans);
+  font-size: var(--sl-text-label-size);
+  font-weight: var(--sl-text-label-weight);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-brand);
+  letter-spacing: var(--sl-text-label-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: var(--sl-color-bg-brand-soft);
+  border: $border-width solid var(--sl-color-action-primary);
+  border-radius: var(--sl-radius-full);
+
+  // 겉모습(32px)은 그대로 두고 누르는 영역만 최소 터치 영역까지 넓힌다 (button.sl-tag와 같음).
+  &::before {
+    position: absolute;
+    inset: calc((var(--sl-layout-touch-target) - 100%) / -2) 0;
+    content: '';
+  }
+
+  // Figma에 없어 추가: Filter Select와 같은 hover 투명도
+  &:hover {
+    opacity: 0.86;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+}
