@@ -1,0 +1,48 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as FilterChipStories from './filter-chip.stories';
+
+<Meta of={FilterChipStories} />
+
+# Filter Chip
+
+선택한 필터 값 하나를 보여 주는 칩. **누르면 그 값을 필터에서 뺀다.**
+원본: `@sightlab/ui` `filter-chip.scss` · Figma 02 Components / Filter Chip (node 451:183)
+
+<Canvas of={FilterChipStories.Default} />
+
+<Controls of={FilterChipStories.Default} />
+
+## 마크업
+
+```html
+<button type="button" class="sl-filter-chip" aria-label="React 필터 해제">
+  <span>React</span>
+  <svg class="sl-filter-chip__icon" aria-hidden="true"><!-- @sightlab/icons close.svg --></svg>
+</button>
+```
+
+| 요소                                            | 필수 | 설명                                                                         |
+| ----------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| `<button type="button" class="sl-filter-chip">` | 필수 | 루트. 누르면 해당 값을 필터에서 뺀다 (동작은 앱이 구현)                      |
+| 라벨 `<span>`                                   | 필수 | 선택한 값 이름                                                               |
+| `sl-filter-chip__icon`                          | 필수 | `close.svg` 인라인, `aria-hidden="true"`, 14×14                              |
+| `aria-label`                                    | 필수 | 누르면 무엇이 일어나는지 (`React 필터 해제`). 화면 낭독기는 이 이름만 읽는다 |
+
+<Canvas of={FilterChipStories.LongLabel} />
+<Canvas of={FilterChipStories.Row} />
+
+## 상태
+
+| 상태         | 표현                                                                 |
+| ------------ | -------------------------------------------------------------------- |
+| 기본         | 배경 `bg-brand-soft`, 2px 테두리 `action-primary`, 글자 `text-brand` |
+| hover        | 투명도 0.86 (Figma에 없어 Filter Select와 같게 추가)                 |
+| 키보드 focus | `:focus-visible` 외곽 링                                             |
+
+## 접근성
+
+- 겉모습은 높이 32px이지만, 보이지 않는 영역으로 누르는 범위를 44px(최소 터치 영역)까지 넓힌다.
+- 이름(`aria-label`)에 값과 동작을 함께 적는다. "React"만 읽히면 누를 때 무엇이 일어나는지 알 수 없다.
+- 칩이 사라지면 focus가 갈 곳을 앱이 정한다 (예: 다음 칩, 없으면 필터 버튼).
+- 글자는 `label` 역할(13/18, 굵기 500)을 쓴다.

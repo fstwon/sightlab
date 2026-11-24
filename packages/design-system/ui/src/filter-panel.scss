@@ -1,0 +1,38 @@
+// Filter Panel (Figma 02 Components / Filter Panel, node 451:269)
+// 마크업·상태·접근성 규칙: Storybook "Components/Filter Panel" 문서 (apps/storybook/src/filter-panel/filter-panel.mdx)
+// Filter Select를 누르면 펼쳐지는 상자. 안에 Filter Option 여러 줄을 담는다.
+// 위치(버튼 아래)·폭·열고 닫기는 앱이 정한다. 여기서는 상자 모양과 스크롤만 정한다.
+
+.sl-filter-panel {
+  box-sizing: border-box;
+
+  // 목록이 길면 최대 높이에서 스크롤한다
+  max-height: 20rem;
+  padding: var(--sl-spacing-xs);
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-border-default);
+  border-radius: var(--sl-radius-md);
+  box-shadow: var(--sl-shadow-md);
+
+  // fieldset 기본 여백·테두리를 없앤다 (그룹 이름은 legend로 화면 낭독기에만 알림)
+  &__group {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  // 화면에는 숨기고 화면 낭독기에는 읽히게 한다
+  &__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+}

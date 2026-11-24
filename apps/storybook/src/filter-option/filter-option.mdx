@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+
+import * as FilterOptionStories from './filter-option.stories';
+
+<Meta of={FilterOptionStories} />
+
+# Filter Option
+
+Filter Panel 안의 한 줄. **체크박스 + 이름 + 개수**로, 여러 개를 고를 수 있다.
+원본: `@sightlab/ui` `filter-option.scss` · Figma 02 Components / Filter Option (node 451:268)
+
+<Canvas of={FilterOptionStories.Default} />
+
+<Controls of={FilterOptionStories.Default} />
+
+## 마크업
+
+```html
+<label class="sl-filter-option">
+  <input class="sl-filter-option__input" type="checkbox" name="tags" value="react" />
+  <span class="sl-filter-option__box" aria-hidden="true">
+    <svg class="sl-filter-option__check" aria-hidden="true"><!-- @sightlab/icons check.svg --></svg>
+  </span>
+  <span class="sl-filter-option__label">React</span>
+  <span class="sl-filter-option__count">8</span>
+</label>
+```
+
+| 요소                                                      | 필수 | 설명                                                                      |
+| --------------------------------------------------------- | ---- | ------------------------------------------------------------------------- |
+| `<label class="sl-filter-option">`                        | 필수 | 루트. 줄 어디를 눌러도 체크박스가 바뀐다. 높이 44px                       |
+| `<input class="sl-filter-option__input" type="checkbox">` | 필수 | 실제 체크박스. 화면에는 숨기고 키보드·화면 낭독기에는 남긴다              |
+| `sl-filter-option__box`                                   | 필수 | 보이는 체크박스(20px). 안에 `check.svg`(`sl-filter-option__check`) 인라인 |
+| `sl-filter-option__label`                                 | 필수 | 이름. 체크박스의 이름이 된다 (label 안의 글자)                            |
+| `sl-filter-option__count`                                 | 선택 | 해당 값을 가진 항목 수                                                    |
+
+## 상태
+
+| 상태         | 표현                                                            |
+| ------------ | --------------------------------------------------------------- |
+| 해제         | 흰 바탕 + 1.5px 테두리 `border-default`                         |
+| 선택         | 체크박스 `checked` → 바탕·테두리 `action-primary`, 흰 체크 표시 |
+| hover        | 줄 배경 `bg-subtle` (Figma에 없어 추가)                         |
+| 키보드 focus | 체크박스가 focus를 받고, 링은 줄 전체 안쪽에 그린다             |
+
+<Canvas of={FilterOptionStories.Checked} />
+
+선택 상태는 BEM 수정자 대신 **체크박스의 `:checked`**로 표현한다. 체크박스가 스스로 상태를 가지므로
+JS로 클래스를 맞출 필요가 없다 (Mobile TOC가 `<details>`의 `[open]`을 따르는 것과 같은 예외).
+
+## 접근성
+
+- 실제 `<input type="checkbox">`를 쓰므로 Tab으로 이동하고 Space로 선택한다. 화면 낭독기는 "React, 체크박스, 선택됨"처럼 읽는다.
+- 체크박스는 `display: none`이 아닌 방식으로 숨긴다 (`display: none`이면 키보드·화면 낭독기에서도 사라짐).
+- 개수는 이름 뒤에 함께 읽힌다 ("React 8").
+- 이름은 `body-sm`(14/22), 개수는 `label` 크기(13)를 쓴다.
