@@ -1,6 +1,8 @@
 export {
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckIcon,
+  ChevronDownIcon,
   CloseIcon,
   type IconComponent,
   LogoSymbol,

@@ -4,20 +4,20 @@ import type { ReactNode } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/shared/ui/icon';
 
 import { getPageItems } from '../lib/get-page-items';
-import { buildNotesHref } from '../lib/notes-query';
+import { buildNotesHref, type NotesFilters } from '../lib/notes-query';
 import styles from './notes-pagination.module.scss';
 
 type NotesPaginationProps = {
   current: number;
   total: number;
-  // 페이지를 옮겨도 검색어를 유지한다
-  query: string;
+  // 페이지를 옮겨도 검색어·태그를 유지한다
+  filters: NotesFilters;
 };
 
 // 공용 sl-pagination 마크업 (Storybook "Components/Pagination" 규칙).
 // 번호 목록은 데스크톱(현재 앞뒤 1개)·모바일(현재만) 두 벌을 그리고 CSS로 하나만 보인다.
 // 숨긴 쪽은 display: none이라 화면 낭독기에도 읽히지 않는다.
-export function NotesPagination({ current, total, query }: NotesPaginationProps) {
+export function NotesPagination({ current, total, filters }: NotesPaginationProps) {
   if (total <= 1) return null;
 
   return (
@@ -25,14 +25,14 @@ export function NotesPagination({ current, total, query }: NotesPaginationProps)
       <PageList
         current={current}
         total={total}
-        query={query}
+        filters={filters}
         siblings={1}
         className={styles.desktop}
       />
       <PageList
         current={current}
         total={total}
-        query={query}
+        filters={filters}
         siblings={0}
         className={styles.mobile}
       />
@@ -45,11 +45,11 @@ type PageListProps = NotesPaginationProps & {
   className: string | undefined;
 };
 
-function PageList({ current, total, query, siblings, className }: PageListProps) {
+function PageList({ current, total, filters, siblings, className }: PageListProps) {
   return (
     <ol className={['sl-pagination', className].filter(Boolean).join(' ')}>
       <li>
-        <StepLink query={query} page={current - 1} disabled={current <= 1} label="이전 페이지">
+        <StepLink filters={filters} page={current - 1} disabled={current <= 1} label="이전 페이지">
           <ArrowLeftIcon className="sl-pagination__icon" aria-hidden="true" />
         </StepLink>
       </li>
@@ -59,7 +59,7 @@ function PageList({ current, total, query, siblings, className }: PageListProps)
             <span className="sl-pagination__ellipsis">…</span>
           ) : (
             <Link
-              href={buildNotesHref({ q: query, page: item })}
+              href={buildNotesHref({ ...filters, page: item })}
               className={
                 item === current
                   ? 'sl-pagination__item sl-pagination__item--current'
@@ -73,7 +73,12 @@ function PageList({ current, total, query, siblings, className }: PageListProps)
         </li>
       ))}
       <li>
-        <StepLink query={query} page={current + 1} disabled={current >= total} label="다음 페이지">
+        <StepLink
+          filters={filters}
+          page={current + 1}
+          disabled={current >= total}
+          label="다음 페이지"
+        >
           <ArrowRightIcon className="sl-pagination__icon" aria-hidden="true" />
         </StepLink>
       </li>
@@ -82,7 +87,7 @@ function PageList({ current, total, query, siblings, className }: PageListProps)
 }
 
 type StepLinkProps = {
-  query: string;
+  filters: NotesFilters;
   page: number;
   disabled: boolean;
   label: string;
@@ -90,7 +95,7 @@ type StepLinkProps = {
 };
 
 // 이전·다음. 이동할 수 없으면 href 없는 링크 + aria-disabled (공용 규칙)
-function StepLink({ query, page, disabled, label, children }: StepLinkProps) {
+function StepLink({ filters, page, disabled, label, children }: StepLinkProps) {
   if (disabled) {
     return (
       // 공용 Pagination 규칙: 이동할 수 없는 항목은 href 없이 role="link" + aria-disabled로 알린다.
@@ -109,7 +114,7 @@ function StepLink({ query, page, disabled, label, children }: StepLinkProps) {
 
   return (
     <Link
-      href={buildNotesHref({ q: query, page })}
+      href={buildNotesHref({ ...filters, page })}
       className="sl-pagination__item"
       aria-label={label}
     >
