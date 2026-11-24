@@ -2,4 +2,4 @@
 // 'use cache' 함수가 클라이언트 컴포넌트의 import 경로에 섞이면 빌드가 실패하기 때문에 나눈다.
 export { FeaturedNoteCard } from './ui/featured-note-card';
 export { NoteCard } from './ui/note-card';
-export type { NoteSummary } from '@/shared/api/notion';
+export type { NoteDetail, NoteSummary, Reference } from '@/shared/api/notion';

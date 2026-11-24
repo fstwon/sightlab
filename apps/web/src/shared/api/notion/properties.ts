@@ -73,3 +73,24 @@ export function readFiles(
     })) ?? []
   );
 }
+
+// rich_text 속성 안의 링크 목록 (글자 = 링크 이름). 링크 없는 글자는 버린다.
+// 굵게 등 서식 때문에 한 링크가 여러 조각으로 나뉘면 이어 붙인다 (같은 주소가 연달아 올 때).
+export function readLinks(
+  properties: PageProperties,
+  name: string,
+): { text: string; url: string }[] {
+  const items = getProperty(properties, name, 'rich_text')?.rich_text ?? [];
+  const links: { text: string; url: string }[] = [];
+  let previousUrl: string | null = null;
+  for (const item of items) {
+    const url = item.href;
+    const last = links.at(-1);
+    if (url && last && url === previousUrl) last.text += item.plain_text;
+    else if (url) links.push({ text: item.plain_text, url });
+    previousUrl = url;
+  }
+  return links
+    .map((link) => ({ ...link, text: link.text.trim() }))
+    .filter((link) => link.text !== '');
+}
