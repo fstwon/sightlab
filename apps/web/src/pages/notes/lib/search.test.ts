@@ -35,9 +35,10 @@ describe('readNotesQuery', () => {
   it('검색어는 앞뒤 공백을 빼고, 없으면 빈 문자열이다', () => {
     expect(readNotesQuery(new URLSearchParams('q=%20react%20&page=2'))).toEqual({
       q: 'react',
+      tags: [],
       page: '2',
     });
-    expect(readNotesQuery(null)).toEqual({ q: '', page: null });
+    expect(readNotesQuery(null)).toEqual({ q: '', tags: [], page: null });
   });
 });
 

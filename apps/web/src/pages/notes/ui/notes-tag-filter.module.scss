@@ -1,0 +1,25 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-02A(데스크톱)·MOBILE-02A(모바일). 버튼 180px·패널 280px, 모바일은 둘 다 화면 폭 전체.
+.filter {
+  position: relative;
+  display: grid;
+
+  @include media-up(md) {
+    width: 180px;
+  }
+}
+
+// 버튼 아래 8px에 겹쳐 띄운다 (목록을 밀어내지 않음)
+.panel {
+  position: absolute;
+  top: calc(100% + var(--sl-spacing-xs));
+  right: 0;
+  left: 0;
+  z-index: 10;
+
+  @include media-up(md) {
+    right: auto;
+    width: 280px;
+  }
+}

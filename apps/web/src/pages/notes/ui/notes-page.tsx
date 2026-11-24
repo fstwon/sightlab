@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { getNotes } from '@/entities/note/server';
 import { PageHeader } from '@/shared/ui/page-header';
 
+import { getTagOptions } from '../lib/tag-filter';
 import { NotesControls } from './notes-controls';
 import { NotesExplorer } from './notes-explorer';
 import styles from './notes-page.module.scss';
@@ -22,8 +23,13 @@ export async function NotesPage() {
       />
       <Suspense
         fallback={
-          <NotesControls query="">
-            <NotesResults notes={notes} page={1} query="" hasAnyNotes={notes.length > 0} />
+          <NotesControls query="" tagOptions={getTagOptions(notes)} selectedTags={[]}>
+            <NotesResults
+              notes={notes}
+              page={1}
+              filters={{ q: '', tags: [] }}
+              hasAnyNotes={notes.length > 0}
+            />
           </NotesControls>
         }
       >

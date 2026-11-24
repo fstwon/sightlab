@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { NoteCard, type NoteSummary } from '@/entities/note';
 import { SearchIcon } from '@/shared/ui/icon';
 
+import type { NotesFilters } from '../lib/notes-query';
 import { getTotalPages, paginate } from '../lib/paginate';
 import { NotesPagination } from './notes-pagination';
 import styles from './notes-results.module.scss';
@@ -12,15 +13,15 @@ type NotesResultsProps = {
   notes: NoteSummary[];
   // 1 ~ 전체 페이지 수 사이로 정리된 값
   page: number;
-  // 현재 검색어. 페이지 번호 링크가 유지한다.
-  query: string;
+  // 현재 검색어·태그. 페이지 번호 링크가 유지한다.
+  filters: NotesFilters;
   // 공개된 노트가 하나라도 있는지 (결과 없음과 "아직 노트 없음"을 구분)
   hasAnyNotes: boolean;
 };
 
 // 결과 개수 + 카드 목록 + 페이지 번호. 빌드 때(Suspense fallback, 1페이지)와
-// 브라우저(URL의 ?q=, ?page=)에서 같은 컴포넌트로 그린다.
-export function NotesResults({ notes, page, query, hasAnyNotes }: NotesResultsProps) {
+// 브라우저(URL의 ?tags=, ?q=, ?page=)에서 같은 컴포넌트로 그린다.
+export function NotesResults({ notes, page, filters, hasAnyNotes }: NotesResultsProps) {
   const totalPages = getTotalPages(notes.length);
   const items = paginate(notes, page);
 
@@ -49,7 +50,7 @@ export function NotesResults({ notes, page, query, hasAnyNotes }: NotesResultsPr
           description="첫 노트가 발행되면 이곳에 표시됩니다."
         />
       )}
-      <NotesPagination current={page} total={totalPages} query={query} />
+      <NotesPagination current={page} total={totalPages} filters={filters} />
     </div>
   );
 }

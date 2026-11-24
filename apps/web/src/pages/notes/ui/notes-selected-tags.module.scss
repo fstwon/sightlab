@@ -1,0 +1,16 @@
+// 값: Figma PUBLIC-02 Selected Filters. 칩 사이 8px, 칩 줄과 초기화 버튼 사이 8px, 넘치면 줄바꿈.
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  align-items: center;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
