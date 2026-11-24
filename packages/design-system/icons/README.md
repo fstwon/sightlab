@@ -87,11 +87,13 @@ import searchIconUrl from '@sightlab/icons/search.svg?url';
 | `refresh.svg`       | Icon/Refresh      |
 | `more.svg`          | Icon/More         |
 | `alert.svg`         | Icon/Alert        |
+| `info.svg`          | Icon/Info         |
+| `exclamation.svg`   | Icon/Exclamation  |
 
 ## 제작 규칙
 
 - `viewBox="0 0 24 24"`, `width`·`height` 24
-- 선 아이콘: `fill="none"`, `stroke="currentColor"`, `stroke-width="1.75"` (점 부분은 `fill="currentColor"`: `more`의 점, `alert`의 느낌표 점)
+- 선 아이콘: `fill="none"`, `stroke="currentColor"`, `stroke-width="1.75"` (점 부분은 `fill="currentColor"`: `more`의 점, `alert`·`exclamation`의 느낌표 점, `info`의 i 점)
 - 파일 이름은 kebab-case, Figma `Icon/<Name>`에 대응 (`Icon/ChevronDown` → `chevron-down.svg`)
 - 새 아이콘은 Figma Icon Library에 먼저 추가하고 같은 규칙으로 내보낸다
 

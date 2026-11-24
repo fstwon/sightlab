@@ -74,12 +74,15 @@ TypeScript 앱에서 `import '@sightlab/ui'`(side-effect import)가 타입 검�
 | ------------- | -------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------- |
 | Breadcrumb    | `breadcrumb.scss`    | `sl-breadcrumb`    | `--compact` (요소 `__item`, `__link`, `__current`)                                                              |
 | Button        | `button.scss`        | `sl-button`        | `--primary`, `--secondary`, `--ghost`, `--danger`, `--disabled`                                                 |
+| Callout       | `callout.scss`       | `sl-callout`       | `--info`, `--tip`, `--warning`, `--error` (요소 `__icon`, `__body`, `__title`, `__content`)                     |
+| Code Block    | `code-block.scss`    | `sl-code-block`    | `--copied` (요소 `__header`, `__copy`, `__body`, `__code`, `__line`)                                            |
 | Filter Chip   | `filter-chip.scss`   | `sl-filter-chip`   | (요소 `__icon`)                                                                                                 |
 | Filter Option | `filter-option.scss` | `sl-filter-option` | 선택은 체크박스 `:checked` (요소 `__input`, `__box`, `__check`, `__label`, `__count`)                           |
 | Filter Panel  | `filter-panel.scss`  | `sl-filter-panel`  | (요소 `__group`, `__legend`)                                                                                    |
 | Filter Select | `filter-select.scss` | `sl-filter-select` | `--open`, `--disabled` (요소 `__icon`)                                                                          |
 | Mobile TOC    | `mobile-toc.scss`    | `sl-mobile-toc`    | 펼침은 `[open]` (요소 `__header`, `__icon`, `__body`, `__list`)                                                 |
 | Pagination    | `pagination.scss`    | `sl-pagination`    | 요소 `__item`(`--current`, `--disabled`), `__icon`, `__ellipsis`                                                |
+| Prose         | `prose.scss`         | `sl-prose`         | 루트 아래 요소 선택자(h2, p, 목록, 인용, 체크리스트, 표, figure)                                                |
 | Search        | `search.scss`        | `sl-search`        | `--disabled` (요소 `__icon`, `__input`)                                                                         |
 | State         | `state.scss`         | `sl-state`         | `--loading`, `--empty`, `--error` (요소 `__skeleton`, `__line`, `__icon`, `__copy`, `__title`, `__description`) |
 | Tag           | `tag.scss`           | `sl-tag`           | `--brand`, `--accent`, `--selected`                                                                             |
