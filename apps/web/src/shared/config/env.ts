@@ -28,3 +28,14 @@ export function getServerEnv(): ServerEnv {
     notionProjectsDataSourceId: readRequired('NOTION_PROJECTS_DATA_SOURCE_ID'),
   };
 }
+
+// 로컬 개발·빌드에서 쓰는 사이트 주소 (Vercel 밖에서는 아래 변수가 없다)
+const LOCAL_SITE_URL = 'http://localhost:3000';
+
+// 사이트의 대표 주소. canonical·Open Graph·sitemap의 전체 주소를 만들 때 쓴다.
+// VERCEL_PROJECT_PRODUCTION_URL은 Vercel이 빌드 때 자동으로 넣는 프로덕션 도메인(https:// 없이 이름만)이라
+// 직접 등록할 필요가 없다. PR 미리보기 배포에도 프로덕션 도메인이 들어가서 대표 주소가 미리보기 주소로 바뀌지 않는다.
+export function getSiteUrl(): string {
+  const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  return productionHost ? `https://${productionHost}` : LOCAL_SITE_URL;
+}
