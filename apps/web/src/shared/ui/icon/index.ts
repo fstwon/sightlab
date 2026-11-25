@@ -1,6 +1,7 @@
 export {
   ArrowLeftIcon,
   ArrowRightIcon,
+  ArrowUpIcon,
   CheckIcon,
   ChevronDownIcon,
   CloseIcon,
