@@ -1,5 +1,7 @@
 import { getReadingTime, type NoteDetail } from '@/entities/note';
 import { formatDate } from '@/shared/lib/format-date';
+import { ExternalLinkButton } from '@/shared/ui/button';
+import { CodeIcon, GlobeIcon } from '@/shared/ui/icon';
 
 import styles from './note-detail-header.module.scss';
 
@@ -7,7 +9,7 @@ type NoteDetailHeaderProps = {
   note: NoteDetail;
 };
 
-// 노트 머리말: 제목(h1) → 발행일 · 읽는 시간 → Category · Tags (Figma PUBLIC-03 / MOBILE-03)
+// 노트 머리말: 제목(h1) → 발행일 · 읽는 시간 → Category · Tags → Demo · Source (Figma PUBLIC-03 / MOBILE-03)
 export function NoteDetailHeader({ note }: NoteDetailHeaderProps) {
   return (
     <header className={styles.header}>
@@ -36,6 +38,22 @@ export function NoteDetailHeader({ note }: NoteDetailHeaderProps) {
           </div>
         )}
       </dl>
+
+      {/* 실험 앱 링크: 값이 있는 버튼만, 둘 다 없으면 줄을 그리지 않는다 */}
+      {(note.demoUrl || note.sourceUrl) && (
+        <div className={styles.links}>
+          {note.demoUrl && (
+            <ExternalLinkButton className={styles.link} href={note.demoUrl} icon={GlobeIcon}>
+              Demo
+            </ExternalLinkButton>
+          )}
+          {note.sourceUrl && (
+            <ExternalLinkButton className={styles.link} href={note.sourceUrl} icon={CodeIcon}>
+              Source
+            </ExternalLinkButton>
+          )}
+        </div>
+      )}
     </header>
   );
 }

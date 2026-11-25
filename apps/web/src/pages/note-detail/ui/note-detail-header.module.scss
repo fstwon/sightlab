@@ -91,3 +91,19 @@
 .values {
   margin: 0;
 }
+
+// Category · Tags 아래 24px, 버튼 사이 16px
+.links {
+  display: flex;
+  gap: var(--sl-spacing-md);
+  margin-top: var(--sl-spacing-lg);
+}
+
+// 모바일은 두 버튼이 폭을 나눠 채우고(Figma FILL), 데스크톱은 글자 길이만큼
+.link {
+  flex: 1;
+
+  @include media-up(md) {
+    flex: none;
+  }
+}

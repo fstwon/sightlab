@@ -31,9 +31,9 @@
   margin-top: calc(var(--sl-spacing-xl) - 2px);
 
   @include media-up(md) {
+    display: flex;
+    justify-content: center;
     margin-top: var(--sl-spacing-xl);
-
-    @include indent;
   }
 
   @include media-up(lg) {
