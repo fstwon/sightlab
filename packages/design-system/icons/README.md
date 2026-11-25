@@ -89,6 +89,8 @@ import searchIconUrl from '@sightlab/icons/search.svg?url';
 | `alert.svg`         | Icon/Alert        |
 | `info.svg`          | Icon/Info         |
 | `exclamation.svg`   | Icon/Exclamation  |
+| `code.svg`          | Icon/Code         |
+| `globe.svg`         | Icon/Globe        |
 
 ## 제작 규칙
 
