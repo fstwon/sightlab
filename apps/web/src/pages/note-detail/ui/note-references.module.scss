@@ -1,0 +1,114 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+@use '@sightlab/ui/sass/focus-ring' as *;
+
+// 값: Figma PUBLIC-03 / MOBILE-03 References.
+// 본문 끝에서 모바일 48px·데스크톱 54px 아래. 제목 아래 1px 구분선.
+.references {
+  margin-top: var(--sl-spacing-2xl);
+
+  @include media-up(md) {
+    // Figma 54px = 48 + 6
+    margin-top: calc(var(--sl-spacing-2xl) + 6px);
+  }
+}
+
+// Figma Semi Bold 20/28 (h3 토큰)
+.title {
+  padding-bottom: 0;
+  margin: 0;
+  font-size: var(--sl-text-h3-size);
+  font-weight: 600;
+  line-height: var(--sl-text-h3-line-height);
+  border-bottom: 1px solid var(--sl-color-border-default);
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+// 행: 높이 모바일 76·데스크톱 78(내용은 세로 가운데), 위아래 여백 12·14, 번호와 내용 사이 10·16
+.item {
+  box-sizing: border-box;
+  display: flex;
+  gap: calc(var(--sl-spacing-xs) + 2px);
+  align-items: center;
+
+  // 76px = 64 + 12
+  min-height: calc(var(--sl-spacing-3xl) + var(--sl-spacing-sm));
+  padding: var(--sl-spacing-sm) 0;
+
+  @include media-up(md) {
+    gap: var(--sl-spacing-md);
+
+    // 78px = 64 + 12 + 2
+    min-height: calc(var(--sl-spacing-3xl) + var(--sl-spacing-sm) + 2px);
+
+    // Figma 14px = 12 + 2
+    padding: calc(var(--sl-spacing-sm) + 2px) 0;
+  }
+}
+
+// 번호·출처: Figma Medium 12(모바일)·13(데스크톱). 12px 이하 표기는 label 크기로 통일한다.
+.number,
+.source {
+  font-size: var(--sl-text-label-size);
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--sl-color-text-secondary);
+}
+
+// 번호 칸 폭: 모바일 24·데스크톱 28
+.number {
+  flex-shrink: 0;
+  width: var(--sl-spacing-lg);
+
+  @include media-up(md) {
+    width: calc(var(--sl-spacing-lg) + var(--sl-spacing-2xs));
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--sl-spacing-2xs) / 2);
+  min-width: 0;
+}
+
+.source {
+  margin: 0;
+}
+
+// 제목 링크: Figma Medium 14/20(모바일)·15/23(데스크톱), brand 색. 15px 토큰이 없어 body(16)에서 1px를 뺀다.
+.link {
+  font-size: var(--sl-text-body-sm-size);
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--sl-color-text-brand);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+
+  @include media-up(md) {
+    font-size: calc(var(--sl-text-body-size) - 1px);
+    line-height: 23px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+// 화면에서는 숨기고 화면 낭독기에만 읽힌다
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}

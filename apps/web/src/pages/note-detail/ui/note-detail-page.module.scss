@@ -15,8 +15,17 @@
   }
 }
 
-// 본문(+ 넓은 화면의 목차) 영역. 브레드크럼과 제목 사이 모바일 30px·데스크톱 32px.
 // 데스크톱은 Figma처럼 브레드크럼보다 120px 안쪽에서 시작하고, 화면이 좁아 남는 폭이 없으면 들여쓰기를 줄인다.
+@mixin indent {
+  // 120px = 64 + 48 + 8
+  margin-left: clamp(
+    0px,
+    100% - var(--sl-layout-prose-max),
+    var(--sl-spacing-3xl) + var(--sl-spacing-2xl) + var(--sl-spacing-xs)
+  );
+}
+
+// 본문(+ 넓은 화면의 목차) 영역. 브레드크럼과 제목 사이 모바일 30px·데스크톱 32px.
 // lg 이상: 본문 720 + 간격 40 + 목차 280 두 칸 (Figma PUBLIC-03)
 .layout {
   margin-top: calc(var(--sl-spacing-xl) - 2px);
@@ -24,12 +33,7 @@
   @include media-up(md) {
     margin-top: var(--sl-spacing-xl);
 
-    // 120px = 64 + 48 + 8
-    margin-left: clamp(
-      0px,
-      100% - var(--sl-layout-prose-max),
-      var(--sl-spacing-3xl) + var(--sl-spacing-2xl) + var(--sl-spacing-xs)
-    );
+    @include indent;
   }
 
   @include media-up(lg) {
@@ -50,5 +54,12 @@
 .aside {
   @include media-up(lg) {
     align-self: stretch;
+  }
+}
+
+// 본문 아래 영역 (관련 노트). 본문과 같은 들여쓰기. 목차 칸 밖이라 목차는 본문 끝에서 멈춘다.
+.bottom {
+  @include media-up(md) {
+    @include indent;
   }
 }
