@@ -1,0 +1,24 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-03 Reading Progress (높이 3px, 바탕 border-default, 채움 accent).
+// 모바일(MOBILE-03)은 바탕 없이 채움만 있다.
+.track {
+  position: fixed;
+  inset: 0 0 auto;
+
+  // 모바일 메뉴(10) 위, 건너뛰기 링크(100) 아래
+  z-index: 20;
+  height: 3px;
+  pointer-events: none;
+
+  @include media-up(md) {
+    background: var(--sl-color-border-default);
+  }
+}
+
+// 왼쪽을 기준으로 가로 비율만큼 늘린다
+.value {
+  height: 100%;
+  background: var(--sl-color-accent-default);
+  transform-origin: left;
+}
