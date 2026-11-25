@@ -1,0 +1,42 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 노트 상세의 404·오류 화면 배치 (Figma PUBLIC-03B·03C / MOBILE-03D·03E).
+// 카드는 본문 열(720px, 120px 들여쓰기) 가운데에 놓는다. 모바일은 화면 폭 전체.
+// 헤더 아래부터 카드까지 모바일 106px·데스크톱 164px (페이지 위 여백 + 카드 위 여백).
+.page {
+  box-sizing: content-box;
+  max-width: var(--sl-layout-content-max);
+  padding: var(--sl-spacing-xl) var(--sl-layout-gutter-mobile) var(--sl-spacing-2xl);
+  margin: 0 auto;
+
+  @include media-up(md) {
+    // Figma 60px = 48 + 12
+    padding: calc(var(--sl-spacing-2xl) + var(--sl-spacing-sm)) var(--sl-spacing-xl)
+      var(--sl-spacing-3xl);
+  }
+}
+
+.column {
+  // 모바일 74px = 64 + 8 + 2
+  margin-top: calc(var(--sl-spacing-3xl) + var(--sl-spacing-xs) + 2px);
+
+  @include media-up(md) {
+    max-width: var(--sl-layout-prose-max);
+
+    // 104px = 64 + 32 + 8
+    margin-top: calc(var(--sl-spacing-3xl) + var(--sl-spacing-xl) + var(--sl-spacing-xs));
+
+    // 본문과 같은 들여쓰기: 120px = 64 + 48 + 8, 화면이 좁으면 줄인다
+    margin-left: clamp(
+      0px,
+      100% - var(--sl-layout-prose-max),
+      var(--sl-spacing-3xl) + var(--sl-spacing-2xl) + var(--sl-spacing-xs)
+    );
+  }
+}
+
+// 카드 폭: Figma 420px
+.state {
+  max-width: 420px;
+  margin: 0 auto;
+}
