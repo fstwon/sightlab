@@ -1,4 +1,4 @@
-import { FeaturedNoteCard } from '@/entities/note';
+import { FeaturedNoteCard, groupNotesByProject } from '@/entities/note';
 import { getNotes } from '@/entities/note/server';
 import { getProjects } from '@/entities/project/server';
 
@@ -22,7 +22,7 @@ export async function HomePage() {
         {featured && <FeaturedNoteCard note={featured} />}
       </div>
       {(featured === null || recent.length > 0) && <RecentNotes notes={recent} />}
-      <RecentProjects projects={projects.slice(0, 3)} />
+      <RecentProjects projects={projects.slice(0, 3)} notesByProject={groupNotesByProject(notes)} />
     </div>
   );
 }

@@ -1,0 +1,77 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-05 Project Meta(440×340, 여백 24, 모서리 18) / MOBILE-05 Project Info(여백 18, 모서리 12).
+.info {
+  box-sizing: border-box;
+
+  // Figma 모바일 18 = 16 + 2
+  padding: calc(var(--sl-spacing-md) + 2px);
+  background: var(--sl-color-bg-surface);
+  border: 1px solid var(--sl-color-border-default);
+  border-radius: var(--sl-radius-md);
+
+  @include media-up(md) {
+    padding: var(--sl-spacing-lg);
+    border-radius: var(--sl-radius-lg);
+  }
+}
+
+// "PROJECT INFO": JetBrains Mono Medium 11(모바일)·12(데스크톱). 12px 이하 표기는 label 크기로 통일한다.
+// 첫 줄까지 모바일 25·데스크톱 30
+.title {
+  margin: 0 0 calc(var(--sl-spacing-lg) + 1px);
+  font-family: var(--sl-font-family-mono);
+  font-size: var(--sl-text-label-size);
+  font-weight: 500;
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-brand);
+  text-transform: uppercase;
+
+  @include media-up(md) {
+    margin-bottom: calc(var(--sl-spacing-lg) + 6px);
+  }
+}
+
+// 줄 사이: 모바일 28(줄 간격 44 − 글자 16), 데스크톱 40(줄 간격 56 − 글자 16)
+.list {
+  display: grid;
+  gap: calc(var(--sl-spacing-lg) + var(--sl-spacing-2xs));
+  margin: 0;
+
+  @include media-up(md) {
+    gap: calc(var(--sl-spacing-xl) + var(--sl-spacing-xs));
+  }
+}
+
+// 이름 칸 폭 모바일 110·데스크톱 116 (Figma 값 위치 128·140 − 왼쪽 여백 18·24)
+.row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: baseline;
+
+  @include media-up(md) {
+    grid-template-columns: 116px minmax(0, 1fr);
+  }
+}
+
+// 이름: Medium 12(모바일)·13(데스크톱) secondary. 12px 이하는 label 크기로 통일한다.
+.term {
+  font-size: var(--sl-text-label-size);
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--sl-color-text-secondary);
+}
+
+// 값: Semi Bold 13(모바일)·14(데스크톱) primary
+.value {
+  margin: 0;
+  font-size: calc(var(--sl-text-body-sm-size) - 1px);
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--sl-color-text-primary);
+  overflow-wrap: anywhere;
+
+  @include media-up(md) {
+    font-size: var(--sl-text-body-sm-size);
+  }
+}

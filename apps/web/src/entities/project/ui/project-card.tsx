@@ -10,13 +10,15 @@ type ProjectCardProps = {
   project: ProjectSummary;
   // 목록 안 순서 (1부터). 미리보기 자리에 01, 02처럼 표시한다.
   index: number;
+  // 연결된 공개 노트 수 (Draft 노트는 세지 않도록 화면에서 계산해 넘긴다)
+  connectedNotes: number;
 };
 
 // 프로젝트 목록 카드 (Figma Project Card, node 143:58). 제목은 섹션 제목(h2) 아래라 h3.
 // 미리보기는 번호·진행 상태 자리 표시만 쓴다: Notion 이미지 주소는 1시간 뒤 만료되어,
 // 이미지는 Blob에 복사하는 작업(D0-2 ② asset-storage) 이후에 붙인다.
 // 읽는 순서는 제목이 먼저, 화면에서는 미리보기가 위 (CSS order). 링크·focus 처리는 NoteCard와 같다.
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project, index, connectedNotes }: ProjectCardProps) {
   return (
     <article className={styles.card}>
       <h3 className={styles.title}>
@@ -32,7 +34,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
       <p className={styles.summary}>{project.summary}</p>
       <ProjectStack stack={project.stack} />
-      <p className={styles.notes}>{formatConnectedNotes(project.noteIds.length)}</p>
+      <p className={styles.notes}>{formatConnectedNotes(connectedNotes)}</p>
     </article>
   );
 }
