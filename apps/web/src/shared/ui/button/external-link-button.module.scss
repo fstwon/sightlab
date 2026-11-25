@@ -1,0 +1,16 @@
+// 아이콘 20px (Figma Button 아이콘 자리). 글자와의 간격 8px은 .sl-button gap에 있다.
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+// 화면에서는 숨기고 화면 낭독기에만 읽힌다
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
