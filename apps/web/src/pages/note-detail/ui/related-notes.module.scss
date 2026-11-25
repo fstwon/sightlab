@@ -1,0 +1,40 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-03 Related Notes / MOBILE-03.
+// 참고 자료(또는 본문) 아래 모바일 52px·데스크톱 72px, 폭은 카드 2개(420 + 24 + 420 = 864px).
+.related {
+  max-width: calc(840px + var(--sl-spacing-lg));
+  margin-top: calc(var(--sl-spacing-2xl) + var(--sl-spacing-2xs));
+
+  @include media-up(md) {
+    margin-top: calc(var(--sl-spacing-3xl) + var(--sl-spacing-xs));
+  }
+}
+
+// Figma Bold 22(모바일)·Semi Bold 28(데스크톱, h2 토큰). 제목과 카드 사이 16·24
+.title {
+  margin: 0 0 var(--sl-spacing-md);
+  font-size: calc(var(--sl-text-h2-size) - 6px);
+  font-weight: var(--sl-text-h2-weight);
+  line-height: 1.25;
+  letter-spacing: var(--sl-text-h2-letter-spacing);
+
+  @include media-up(md) {
+    margin-bottom: var(--sl-spacing-lg);
+    font-size: var(--sl-text-h2-size);
+    line-height: var(--sl-text-h2-line-height);
+  }
+}
+
+// 모바일은 세로 한 줄, md 이상은 두 칸. 카드 사이 24px
+.list {
+  display: grid;
+  gap: var(--sl-spacing-lg);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include media-up(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
