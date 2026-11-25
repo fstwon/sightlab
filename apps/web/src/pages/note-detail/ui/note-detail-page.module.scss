@@ -15,11 +15,10 @@
   }
 }
 
-// 본문 폭 최대 720px. 브레드크럼과 제목 사이 모바일 30px·데스크톱 32px.
+// 본문(+ 넓은 화면의 목차) 영역. 브레드크럼과 제목 사이 모바일 30px·데스크톱 32px.
 // 데스크톱은 Figma처럼 브레드크럼보다 120px 안쪽에서 시작하고, 화면이 좁아 남는 폭이 없으면 들여쓰기를 줄인다.
-// 오른쪽에는 목차(D4)가 들어갈 자리가 남는다.
-.article {
-  max-width: var(--sl-layout-prose-max);
+// lg 이상: 본문 720 + 간격 40 + 목차 280 두 칸 (Figma PUBLIC-03)
+.layout {
   margin-top: calc(var(--sl-spacing-xl) - 2px);
 
   @include media-up(md) {
@@ -31,5 +30,25 @@
       100% - var(--sl-layout-prose-max),
       var(--sl-spacing-3xl) + var(--sl-spacing-2xl) + var(--sl-spacing-xs)
     );
+  }
+
+  @include media-up(lg) {
+    display: grid;
+    grid-template-columns: minmax(0, var(--sl-layout-prose-max)) 280px;
+
+    // Figma 간격 40px = 32 + 8
+    gap: calc(var(--sl-spacing-xl) + var(--sl-spacing-xs));
+    align-items: start;
+  }
+}
+
+.article {
+  max-width: var(--sl-layout-prose-max);
+}
+
+// 목차 칸. 목차 카드가 이 칸 안에서 화면에 붙어 따라오도록(sticky) 칸 높이를 본문과 같게 둔다.
+.aside {
+  @include media-up(lg) {
+    align-self: stretch;
   }
 }

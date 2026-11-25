@@ -1,0 +1,16 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma MOBILE-03. 목차 아래 본문까지 52px (48 + 4).
+// lg 이상에서는 본문 옆 목차(note-toc-desktop)를 쓰므로 "목차로" 버튼까지 함께 숨긴다.
+.wrapper {
+  margin-bottom: calc(var(--sl-spacing-2xl) + var(--sl-spacing-2xs));
+
+  @include media-up(lg) {
+    display: none;
+  }
+}
+
+// "목차로"로 이동했을 때 화면 맨 위에 붙지 않게 조금 띄운다
+.toc {
+  scroll-margin-top: var(--sl-spacing-md);
+}

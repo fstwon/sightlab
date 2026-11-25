@@ -1,0 +1,38 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-03 Desktop TOC (280px 카드, 여백 20, 모서리 12, 항목 간격 4).
+// lg 미만에서는 접는 목차(note-toc-mobile)를 쓰므로 숨긴다.
+.toc {
+  display: none;
+
+  @include media-up(lg) {
+    position: sticky;
+    top: var(--sl-spacing-xl);
+    box-sizing: border-box;
+    display: block;
+
+    // Figma 여백 20px = 16 + 4
+    padding: calc(var(--sl-spacing-md) + var(--sl-spacing-2xs));
+    background: var(--sl-color-bg-surface);
+    border: 1px solid var(--sl-color-border-default);
+    border-radius: var(--sl-radius-md);
+  }
+}
+
+// Figma "ON THIS PAGE" Semi Bold 13 secondary. 제목과 첫 항목 사이 16px (4 + 8 + 4)
+.title {
+  margin: 0 0 var(--sl-spacing-md);
+  font-size: var(--sl-text-label-size);
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--sl-color-text-secondary);
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+  gap: var(--sl-spacing-2xs);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

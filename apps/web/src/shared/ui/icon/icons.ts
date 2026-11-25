@@ -1,5 +1,6 @@
 import ArrowLeftSvg from '@sightlab/icons/arrow-left.svg';
 import ArrowRightSvg from '@sightlab/icons/arrow-right.svg';
+import ArrowUpSvg from '@sightlab/icons/arrow-up.svg';
 import LogoSymbolSvg from '@sightlab/icons/brand/logo-symbol.svg';
 import CheckSvg from '@sightlab/icons/check.svg';
 import ChevronDownSvg from '@sightlab/icons/chevron-down.svg';
@@ -17,6 +18,7 @@ export type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
 export const ArrowLeftIcon = ArrowLeftSvg as IconComponent;
 export const ArrowRightIcon = ArrowRightSvg as IconComponent;
+export const ArrowUpIcon = ArrowUpSvg as IconComponent;
 export const CheckIcon = CheckSvg as IconComponent;
 export const ChevronDownIcon = ChevronDownSvg as IconComponent;
 export const CloseIcon = CloseSvg as IconComponent;
