@@ -28,6 +28,12 @@ $check-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' v
     margin-top: var(--sl-spacing-md);
   }
 
+  // 첫 블록은 위 간격을 두지 않는다 (제목 h2의 큰 위 간격이 본문 앞 여백에 더해지지 않게).
+  // 본문 위 간격은 Prose를 놓는 화면이 정한다.
+  > :first-child {
+    margin-top: 0;
+  }
+
   // Figma Heading 2: 28/36 Bold (h2 토큰)
   h2 {
     margin-top: var(--sl-spacing-2xl);

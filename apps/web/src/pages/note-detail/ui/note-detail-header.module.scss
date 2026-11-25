@@ -1,0 +1,93 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-03 / Note Detail, 모바일은 MOBILE-03.
+// 머리말 아래 본문까지 모바일 40px·데스크톱 38px.
+.header {
+  margin-bottom: calc(var(--sl-spacing-xl) + var(--sl-spacing-xs));
+
+  @include media-up(md) {
+    margin-bottom: calc(var(--sl-spacing-xl) + 6px);
+  }
+}
+
+// Figma 32(모바일)·42(데스크톱) Bold. 맞는 토큰이 없어 h1·display 크기에서 계산한다.
+.title {
+  margin: 0 0 var(--sl-spacing-sm);
+  font-size: calc(var(--sl-text-h1-size) - 6px);
+  font-weight: var(--sl-text-display-weight);
+  line-height: 1.2;
+  letter-spacing: var(--sl-text-h1-letter-spacing);
+  overflow-wrap: break-word;
+
+  @include media-up(md) {
+    // Figma 14px = 12 + 2
+    margin-bottom: calc(var(--sl-spacing-sm) + 2px);
+    font-size: calc(var(--sl-text-display-size) - 6px);
+  }
+}
+
+// Figma mono 11(모바일)·13(데스크톱). 12px 이하 표기는 label 크기로 통일한다 (머리말 eyebrow와 같음).
+.meta {
+  margin: 0 0 var(--sl-spacing-md);
+  font-family: var(--sl-font-family-mono);
+  font-size: var(--sl-text-label-size);
+  line-height: var(--sl-text-label-line-height);
+  color: var(--sl-color-text-secondary);
+
+  @include media-up(md) {
+    margin-bottom: var(--sl-spacing-lg);
+  }
+}
+
+// 모바일: 라벨 없이 카테고리·태그 배지를 한 흐름으로 줄바꿈 (간격 8)
+// 데스크톱: "Category [배지]   Tags [배지 …]" 한 줄, 묶음 사이 40px
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-xs);
+  margin: 0;
+
+  @include media-up(md) {
+    gap: var(--sl-spacing-xs) calc(var(--sl-spacing-xl) + var(--sl-spacing-xs));
+  }
+}
+
+.group {
+  display: contents;
+
+  @include media-up(md) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sl-spacing-xs);
+    align-items: center;
+  }
+}
+
+// 모바일은 화면에서 숨기고 화면 낭독기에만 읽힌다
+.term {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+
+  @include media-up(md) {
+    position: static;
+    width: auto;
+    height: auto;
+
+    // 라벨과 첫 배지 사이 12px = 8(묶음 간격) + 4
+    margin-right: var(--sl-spacing-2xs);
+    overflow: visible;
+    font-size: var(--sl-text-label-size);
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--sl-color-text-secondary);
+    clip-path: none;
+  }
+}
+
+.values {
+  margin: 0;
+}

@@ -1,0 +1,26 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 모바일은 한 줄로 두고 넘치는 제목만 "…"로 줄인다 (Figma MOBILE-03 "Notes / React / Context API…")
+.breadcrumb {
+  :global(.sl-breadcrumb) {
+    flex-wrap: nowrap;
+
+    @include media-up(md) {
+      flex-wrap: wrap;
+    }
+  }
+
+  :global(.sl-breadcrumb__item:last-child) {
+    min-width: 0;
+  }
+
+  :global(.sl-breadcrumb__current) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include media-up(md) {
+      white-space: normal;
+    }
+  }
+}
