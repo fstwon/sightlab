@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/notes/[slug]'>): Promise<Metadata> {
   const { slug } = await params;
   const note = await getNoteDetail(slug);
-  if (!note) return {};
+  if (!note) return { title: 'Note를 찾을 수 없습니다' };
   return { title: note.title, description: note.summary };
 }
 
