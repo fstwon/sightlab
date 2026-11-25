@@ -4,7 +4,12 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "storybook-static/**"],
-      "env": ["NOTION_TOKEN", "NOTION_NOTES_DATA_SOURCE_ID", "NOTION_PROJECTS_DATA_SOURCE_ID"]
+      "env": [
+        "NOTION_TOKEN",
+        "NOTION_NOTES_DATA_SOURCE_ID",
+        "NOTION_PROJECTS_DATA_SOURCE_ID",
+        "VERCEL_PROJECT_PRODUCTION_URL"
+      ]
     },
     "dev": {
       "cache": false,
