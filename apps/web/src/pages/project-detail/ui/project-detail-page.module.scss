@@ -1,0 +1,128 @@
+@use '@sightlab/tokens/sass/breakpoints' as *;
+
+// 값: Figma PUBLIC-05 / MOBILE-05. 콘텐츠 폭 최대 1200px (노트 상세와 같은 위 여백).
+.page {
+  box-sizing: content-box;
+  max-width: var(--sl-layout-content-max);
+  padding: var(--sl-spacing-xl) var(--sl-layout-gutter-mobile) var(--sl-spacing-2xl);
+  margin: 0 auto;
+
+  @include media-up(md) {
+    // Figma 60px = 48 + 12
+    padding: calc(var(--sl-spacing-2xl) + var(--sl-spacing-sm)) var(--sl-spacing-xl)
+      var(--sl-spacing-3xl);
+  }
+}
+
+// 모바일은 한 줄로 두고 넘치는 제목만 "…"로 줄인다 (노트 상세와 같음)
+.breadcrumb {
+  :global(.sl-breadcrumb) {
+    flex-wrap: nowrap;
+
+    @include media-up(md) {
+      flex-wrap: wrap;
+    }
+  }
+
+  :global(.sl-breadcrumb__item:last-child) {
+    min-width: 0;
+  }
+
+  :global(.sl-breadcrumb__current) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include media-up(md) {
+      white-space: normal;
+    }
+  }
+}
+
+// 브레드크럼과 제목 사이 모바일 22·데스크톱 36, 소개 문장 아래 미리보기까지 40·36
+.header {
+  margin: calc(var(--sl-spacing-lg) - 2px) 0 calc(var(--sl-spacing-xl) + var(--sl-spacing-xs));
+
+  @include media-up(md) {
+    margin: calc(var(--sl-spacing-xl) + var(--sl-spacing-2xs)) 0;
+  }
+}
+
+// Figma Bold 34(모바일)·44(데스크톱). 맞는 토큰이 없어 h1·display 크기에서 계산한다.
+.title {
+  margin: 0 0 var(--sl-spacing-sm);
+  font-size: calc(var(--sl-text-h1-size) - 4px);
+  font-weight: var(--sl-text-display-weight);
+  line-height: 1.2;
+  letter-spacing: var(--sl-text-h1-letter-spacing);
+  overflow-wrap: break-word;
+
+  @include media-up(md) {
+    font-size: calc(var(--sl-text-display-size) - 4px);
+  }
+}
+
+// Figma 14(모바일)·17(데스크톱). 17px 토큰이 없어 body-lg(18)를 쓴다 (공용 머리말과 같음).
+.summary {
+  margin: 0;
+  font-size: var(--sl-text-body-sm-size);
+  line-height: var(--sl-text-body-sm-line-height);
+  color: var(--sl-color-text-secondary);
+
+  @include media-up(md) {
+    font-size: var(--sl-text-body-lg-size);
+    line-height: var(--sl-text-body-lg-line-height);
+  }
+}
+
+// 미리보기 + 정보 카드: 모바일 세로(사이 28), 데스크톱 720 : 440 한 줄(사이 40)
+.overview {
+  display: grid;
+  gap: calc(var(--sl-spacing-lg) + var(--sl-spacing-2xs));
+
+  @include media-up(md) {
+    grid-template-columns: minmax(0, 720fr) minmax(0, 440fr);
+    gap: calc(var(--sl-spacing-xl) + var(--sl-spacing-xs));
+  }
+}
+
+// 위 영역에서 모바일 48·데스크톱 60 아래
+.connected {
+  margin-top: var(--sl-spacing-2xl);
+
+  @include media-up(md) {
+    margin-top: calc(var(--sl-spacing-2xl) + var(--sl-spacing-sm));
+  }
+}
+
+// Figma Bold 22(모바일)·24(데스크톱). 제목과 카드 사이 16·20
+.connectedTitle {
+  margin: 0 0 var(--sl-spacing-md);
+  font-size: calc(var(--sl-text-h2-size) - 6px);
+  font-weight: var(--sl-text-display-weight);
+  line-height: 1.2;
+
+  @include media-up(md) {
+    margin-bottom: calc(var(--sl-spacing-md) + var(--sl-spacing-2xs));
+    font-size: calc(var(--sl-text-h2-size) - 4px);
+  }
+}
+
+// 모바일 세로·간격 24, 데스크톱 3칸·간격 32
+.grid {
+  display: grid;
+  gap: var(--sl-spacing-lg);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include media-up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--sl-spacing-xl);
+  }
+}
+
+// 한 줄의 카드 높이를 맞춘다
+.item {
+  display: grid;
+}

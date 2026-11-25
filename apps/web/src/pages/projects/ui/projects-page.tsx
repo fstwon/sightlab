@@ -1,3 +1,5 @@
+import { groupNotesByProject } from '@/entities/note';
+import { getNotes } from '@/entities/note/server';
 import { ProjectCard } from '@/entities/project';
 import { getProjects } from '@/entities/project/server';
 import { SearchIcon } from '@/shared/ui/icon';
@@ -9,7 +11,8 @@ import styles from './projects-page.module.scss';
 // 데이터는 빌드 때 캐시 층에서 받는다. 페이지 나누기는 두지 않는다 (F6 "카드 목록").
 // 공개 프로젝트가 없으면 빈 상태 (Figma PUBLIC-04A / MOBILE-04A).
 export async function ProjectsPage() {
-  const projects = await getProjects();
+  const [projects, notes] = await Promise.all([getProjects(), getNotes()]);
+  const notesByProject = groupNotesByProject(notes);
 
   return (
     <div className={styles.page}>
@@ -27,7 +30,11 @@ export async function ProjectsPage() {
           <ul className={styles.grid}>
             {projects.map((project, index) => (
               <li key={project.id} className={styles.item}>
-                <ProjectCard project={project} index={index + 1} />
+                <ProjectCard
+                  project={project}
+                  index={index + 1}
+                  connectedNotes={notesByProject.get(project.id)?.length ?? 0}
+                />
               </li>
             ))}
           </ul>
