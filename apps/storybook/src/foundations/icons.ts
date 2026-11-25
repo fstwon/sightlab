@@ -11,9 +11,11 @@ import chevronLeft from '@sightlab/icons/chevron-left.svg?raw';
 import chevronRight from '@sightlab/icons/chevron-right.svg?raw';
 import chevronUp from '@sightlab/icons/chevron-up.svg?raw';
 import close from '@sightlab/icons/close.svg?raw';
+import code from '@sightlab/icons/code.svg?raw';
 import copy from '@sightlab/icons/copy.svg?raw';
 import externalLink from '@sightlab/icons/external-link.svg?raw';
 import filter from '@sightlab/icons/filter.svg?raw';
+import globe from '@sightlab/icons/globe.svg?raw';
 import menu from '@sightlab/icons/menu.svg?raw';
 import more from '@sightlab/icons/more.svg?raw';
 import refresh from '@sightlab/icons/refresh.svg?raw';
@@ -39,6 +41,8 @@ export const ICONS: Icon[] = [
   { name: 'more', svg: more },
   { name: 'refresh', svg: refresh },
   { name: 'search', svg: search },
+  { name: 'code', svg: code },
+  { name: 'globe', svg: globe },
 ];
 
 // 브랜드 심볼 (brand/). 원·타원은 currentColor라 쓰는 곳에서 action-primary 색을 지정한다.
