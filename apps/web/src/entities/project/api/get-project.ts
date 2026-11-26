@@ -8,7 +8,7 @@ import { getProjects } from './get-projects';
 // 공개 목록에 없는 slug면 null (404).
 export async function getProject(slug: string): Promise<ProjectSummary | null> {
   'use cache';
-  cacheLife('max');
+  cacheLife('days');
   cacheTag('projects');
   return (await getProjects()).find((project) => project.slug === slug) ?? null;
 }
@@ -16,7 +16,7 @@ export async function getProject(slug: string): Promise<ProjectSummary | null> {
 // 빌드 때 미리 만들 프로젝트 상세 주소 목록 (generateStaticParams)
 export async function getProjectSlugs(): Promise<string[]> {
   'use cache';
-  cacheLife('max');
+  cacheLife('days');
   cacheTag('projects');
   return (await getProjects()).map((project) => project.slug);
 }

@@ -15,7 +15,7 @@ async function withStoredPreview(project: ProjectSummary): Promise<ProjectSummar
 // 캐시 안에서 이미지를 복사하므로 빌드 중 한 번만 복사한다.
 export async function getProjects(): Promise<ProjectSummary[]> {
   'use cache';
-  cacheLife('max');
+  cacheLife('days');
   cacheTag('projects');
   return Promise.all((await getPublishedProjects()).map(withStoredPreview));
 }
