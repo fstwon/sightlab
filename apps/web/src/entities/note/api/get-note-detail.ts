@@ -12,7 +12,7 @@ import { getNoteEntries } from './get-note-entries';
 // 공개 목록에 있는 노트만 찾으므로 비공개·예약 글은 상세도 열리지 않는다. 없는 slug면 null (404).
 export async function getNoteDetail(slug: string): Promise<NoteDetail | null> {
   'use cache';
-  cacheLife('max');
+  cacheLife('days');
   cacheTag('notes');
   const entry = (await getNoteEntries()).find((item) => item.summary.slug === slug);
   if (!entry) return null;
@@ -27,7 +27,7 @@ export async function getNoteDetail(slug: string): Promise<NoteDetail | null> {
 // 빌드 때 미리 만들 노트 상세 주소 목록 (generateStaticParams)
 export async function getNoteSlugs(): Promise<string[]> {
   'use cache';
-  cacheLife('max');
+  cacheLife('days');
   cacheTag('notes');
   return (await getNoteEntries()).map((entry) => entry.summary.slug);
 }

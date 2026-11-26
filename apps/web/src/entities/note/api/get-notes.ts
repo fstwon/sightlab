@@ -8,7 +8,7 @@ import { getNoteEntries } from './get-note-entries';
 // 캐시 기간·이름표를 정한 이유는 get-note-entries.ts와 같다.
 export async function getNotes(): Promise<NoteSummary[]> {
   'use cache';
-  cacheLife('max');
+  cacheLife('days');
   cacheTag('notes');
   return (await getNoteEntries()).map((entry) => entry.summary);
 }
