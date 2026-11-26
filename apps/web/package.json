@@ -33,6 +33,7 @@
     "shiki": "4.6.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.1",
     "@playwright/test": "^1.65.1",
     "@sightlab/eslint-config": "workspace:*",
     "@sightlab/stylelint-config": "workspace:*",
