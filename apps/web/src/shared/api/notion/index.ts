@@ -11,3 +11,5 @@ export type {
   ProjectSummary,
   Reference,
 } from './types';
+export type { NotionWebhookRequest } from './webhook';
+export { readNotionWebhook } from './webhook';

@@ -35,6 +35,13 @@ export function getBlobToken(): string | undefined {
   return process.env.BLOB_READ_WRITE_TOKEN || undefined;
 }
 
+// Notion 웹훅 구독의 verification_token (서명 확인 비밀값). 구독을 처음 등록할 때 받는다.
+// 없으면 /api/revalidate가 확인 요청만 받고 이벤트는 거절한다.
+// 빌드가 아니라 요청 때 읽으므로 turbo.json build.env에는 넣지 않는다 (값이 바뀌어도 빌드 캐시가 유지됨).
+export function getNotionWebhookSecret(): string | undefined {
+  return process.env.NOTION_WEBHOOK_SECRET || undefined;
+}
+
 // 로컬 개발·빌드에서 쓰는 사이트 주소 (Vercel 밖에서는 아래 변수가 없다)
 const LOCAL_SITE_URL = 'http://localhost:3000';
 
