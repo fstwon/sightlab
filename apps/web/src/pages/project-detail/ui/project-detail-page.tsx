@@ -46,7 +46,7 @@ export async function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
       </header>
 
       <div className={styles.overview}>
-        <ProjectPreview title={project.title} />
+        <ProjectPreview title={project.title} imageUrl={project.preview?.url ?? null} />
         <ProjectInfo project={project} connectedNotes={connectedNotes.length} />
       </div>
 

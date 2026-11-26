@@ -39,7 +39,7 @@ export type ProjectSummary = {
   stack: Label[];
   // 진행 상태 (In progress, Completed, On hold). 시안의 Status
   progress: Label;
-  // 미리보기 이미지(첫 파일). Notion 주소는 1시간 뒤 만료되므로 화면 연결 전에 복사 방식을 정한다
+  // 미리보기 이미지(첫 파일). Notion 주소는 1시간 뒤 만료되므로 entities 캐시 층에서 Blob 주소로 바꾼다
   preview: { name: string; url: string } | null;
   // 연결 노트의 Notion 페이지 id
   noteIds: string[];
