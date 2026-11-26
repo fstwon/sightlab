@@ -29,6 +29,12 @@ export function getServerEnv(): ServerEnv {
   };
 }
 
+// Vercel Blob 읽기·쓰기 토큰. Blob 스토어를 프로젝트에 연결할 때 Vercel이 넣어 준다.
+// 없으면(로컬에 아직 받지 않은 경우) 이미지를 복사하지 않고 Notion 주소를 그대로 쓴다 (asset-storage).
+export function getBlobToken(): string | undefined {
+  return process.env.BLOB_READ_WRITE_TOKEN || undefined;
+}
+
 // 로컬 개발·빌드에서 쓰는 사이트 주소 (Vercel 밖에서는 아래 변수가 없다)
 const LOCAL_SITE_URL = 'http://localhost:3000';
 

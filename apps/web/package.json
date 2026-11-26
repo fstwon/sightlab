@@ -19,6 +19,7 @@
     "@sightlab/icons": "workspace:*",
     "@sightlab/tokens": "workspace:*",
     "@sightlab/ui": "workspace:*",
+    "@vercel/blob": "^2.9.0",
     "github-slugger": "2.0.0",
     "next": "^16.4.6",
     "react": "^19.3.1",
