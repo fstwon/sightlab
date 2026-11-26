@@ -127,6 +127,9 @@ pnpm --filter @sightlab/tokens dev     # 변경 감시
 | SUIT Variable       | 본문·UI 주 글꼴       | `@sun-typeface/suit` 2.0.5 `fonts/variable/woff2`           | 단일 파일 (약 610KB)                              |
 | Pretendard Variable | SUIT에 없는 글자 대체 | `pretendard` 1.3.9 `dist/web/variable/woff2-dynamic-subset` | 범위별 92개, `unicode-range`로 필요한 범위만 받음 |
 | JetBrains Mono      | 코드                  | `@fontsource-variable/jetbrains-mono` 5.3.0 `files`         | latin·latin-ext 정체 2개                          |
+| SUIT (OTF)          | OG 이미지 전용        | `sun-typeface/SUIT` 2.0.5 릴리스 `SUIT-otf.zip`             | Medium·Bold 2개 (각 약 350KB)                     |
+
+- SUIT OTF는 `@font-face`에 넣지 않는다. 웹 앱의 OG 이미지(`next/og`, Satori)가 woff2를 읽지 못해 파일을 직접 읽는다.
 
 - 라이선스: 모두 SIL Open Font License 1.1, 각 `fonts/<글꼴>/LICENSE`.
 - 갱신: 위 패키지의 새 버전에서 woff2를 같은 이름으로 복사하고, Pretendard·JetBrains Mono는 공식 CSS의 `unicode-range`를 `src/_font-*.scss`에 반영한다. 이 표의 버전을 함께 수정한다.

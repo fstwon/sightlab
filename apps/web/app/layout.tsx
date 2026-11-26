@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   // openGraph를 정하지 않은 페이지(404 등)에 쓰이는 기본값
   openGraph: { ...OPEN_GRAPH_BASE, type: 'website' },
+  // X는 이 값이 있어야 링크 미리보기를 큰 이미지 카드로 보여 준다 (이미지는 og:image를 그대로 씀)
+  twitter: { card: 'summary_large_image' },
 };
 
 // Next 필수 파일이라 default export (D10 named export 규칙의 예외)
