@@ -21,7 +21,11 @@
       "dependsOn": ["^build"]
     },
     "typecheck": {},
-    "test": {}
+    "test": {},
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "cache": false
+    }
   },
   "globalDependencies": [".github/workflows/**"]
 }
