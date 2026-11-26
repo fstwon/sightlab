@@ -16,9 +16,10 @@ permissions:
 
 jobs:
   check:
+    # E2E도 이 작업에서 실행하지만, 브랜치 보호의 필수 검사 이름이 바뀌지 않게 이름은 그대로 둔다.
     name: Lint · Typecheck · Build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       # turbo --affected가 main과 비교하려면 전체 이력이 필요하다 (얕으면 모든 패키지를 검사).
       # blob:none은 파일 내용을 필요할 때만 받아 내려받는 양을 줄인다.
@@ -54,6 +55,59 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_NOTES_DATA_SOURCE_ID: ${{ secrets.NOTION_NOTES_DATA_SOURCE_ID }}
           NOTION_PROJECTS_DATA_SOURCE_ID: ${{ secrets.NOTION_PROJECTS_DATA_SOURCE_ID }}
+
+      # E2E는 web(또는 web이 쓰는 패키지)이 바뀐 PR에서만 실행한다 (브라우저 설치 시간 절약).
+      # turbo ls --affected는 위 단계와 같은 기준(main과 비교)으로 바뀐 패키지를 알려 준다.
+      - name: Check web affected
+        id: web
+        run: |
+          if pnpm -s turbo ls --affected --output=json | jq -e '.packages.items[] | select(.name == "@sightlab/web")' > /dev/null; then
+            echo "affected=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "affected=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 브라우저 캐시 키에 Playwright 버전을 넣어, 버전을 올리면 새로 받는다.
+      - name: Playwright version
+        id: playwright
+        if: steps.web.outputs.affected == 'true'
+        run: echo "version=$(pnpm --filter @sightlab/web exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browser
+        id: playwright-cache
+        if: steps.web.outputs.affected == 'true'
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}-chromium
+
+      # 캐시가 없으면 브라우저와 시스템 라이브러리를 함께 설치하고, 있으면 시스템 라이브러리만 설치한다.
+      - name: Install Playwright browser
+        if: steps.web.outputs.affected == 'true' && steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm --filter @sightlab/web exec playwright install --with-deps chromium
+
+      - name: Install Playwright system dependencies
+        if: steps.web.outputs.affected == 'true' && steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm --filter @sightlab/web exec playwright install-deps chromium
+
+      # test:e2e는 build 다음 작업이라, 위 단계의 빌드 결과를 turbo 캐시에서 그대로 쓴다.
+      # Notion 값은 빌드 캐시 키를 위 단계와 같게 맞추고, 없는 주소를 그릴 때 목록을 조회하는 데 쓴다.
+      - name: E2E · Accessibility
+        if: steps.web.outputs.affected == 'true'
+        run: pnpm turbo run test:e2e --affected
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_NOTES_DATA_SOURCE_ID: ${{ secrets.NOTION_NOTES_DATA_SOURCE_ID }}
+          NOTION_PROJECTS_DATA_SOURCE_ID: ${{ secrets.NOTION_PROJECTS_DATA_SOURCE_ID }}
+
+      # 실패했을 때만 보고서(스크린샷·trace 포함)를 올린다. Actions 실행 화면의 Artifacts에서 받는다.
+      - name: Upload Playwright report
+        if: failure() && steps.web.outputs.affected == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/
+          retention-days: 7
 
       # hook을 건너뛴 커밋에 대비해 PR에 포함된 커밋 메시지를 다시 검사한다.
       - name: Commit messages
