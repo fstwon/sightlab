@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "lint:css": "stylelint \"src/**/*.{css,scss}\"",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@notionhq/client": "^5.31.1",
@@ -32,6 +33,7 @@
     "shiki": "4.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@sightlab/eslint-config": "workspace:*",
     "@sightlab/stylelint-config": "workspace:*",
     "@sightlab/typescript-config": "workspace:*",
