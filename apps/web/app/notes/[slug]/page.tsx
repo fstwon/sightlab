@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getNoteDetail, getNoteSlugs } from '@/entities/note/server';
 import { NoteDetailPage } from '@/pages/note-detail';
 import { OPEN_GRAPH_BASE } from '@/shared/config/site';
+import { OG_IMAGE_SIZE } from '@/shared/ui/og-image';
 
 // 공개 노트가 하나도 없을 때 대신 넣는 주소. 목록에 없는 slug라 404 페이지로 만들어진다.
 const EMPTY_FALLBACK_SLUG = 'no-published-notes';
@@ -35,6 +36,8 @@ export async function generateMetadata({ params }: PageProps<'/notes/[slug]'>): 
       publishedTime: note.publishedAt,
       modifiedTime: note.updatedAt,
       tags: note.tags.map((tag) => tag.name),
+      // 페이지의 openGraph가 같은 폴더의 opengraph-image보다 우선하므로 노트 이미지를 직접 알려 준다
+      images: [{ url: `${url}/opengraph-image`, ...OG_IMAGE_SIZE, alt: note.title }],
     },
   };
 }
