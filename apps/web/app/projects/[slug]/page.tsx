@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { getProject, getProjectSlugs } from '@/entities/project/server';
 import { ProjectDetailPage } from '@/pages/project-detail';
 import { OPEN_GRAPH_BASE } from '@/shared/config/site';
+import { OG_IMAGE_SIZE } from '@/shared/ui/og-image';
 
 // 공개 프로젝트가 하나도 없을 때 대신 넣는 주소. 목록에 없는 slug라 404 페이지로 만들어진다.
 const EMPTY_FALLBACK_SLUG = 'no-published-projects';
@@ -28,7 +29,13 @@ export async function generateMetadata({
     title: project.title,
     description: project.summary,
     alternates: { canonical: url },
-    openGraph: { ...OPEN_GRAPH_BASE, type: 'website', url },
+    openGraph: {
+      ...OPEN_GRAPH_BASE,
+      type: 'website',
+      url,
+      // 페이지의 openGraph가 같은 폴더의 opengraph-image보다 우선하므로 프로젝트 이미지를 직접 알려 준다
+      images: [{ url: `${url}/opengraph-image`, ...OG_IMAGE_SIZE, alt: project.title }],
+    },
   };
 }
 
