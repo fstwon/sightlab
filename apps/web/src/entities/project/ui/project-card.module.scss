@@ -66,10 +66,13 @@
 }
 
 // 이미지가 있을 때 (Figma Show Preview): 이미지가 미리보기 칸을 채우고 진행 상태는 왼쪽 위 배지
+// position이 있으면 HTML 순서상 제목 링크의 ::after(카드 전체 누르는 영역)보다 위에 그려져 클릭을 가로챈다.
+// 미리보기는 장식이라 누를 것이 없으므로 클릭이 아래의 링크로 통과하게 한다.
 .withImage {
   position: relative;
   padding: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .image {

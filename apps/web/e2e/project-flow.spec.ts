@@ -34,3 +34,19 @@ test('메뉴로 Projects 목록에 가서 첫 프로젝트 상세를 열고 목�
     .click();
   await expect(page).toHaveURL('/projects');
 });
+
+// 카드는 제목 링크의 누르는 영역을 카드 전체로 넓힌다. 맨 위 미리보기(이미지·번호 자리)를 눌러도 상세로 가야 한다.
+test('프로젝트 카드의 미리보기를 눌러도 상세로 간다', async ({ page }) => {
+  await page.goto('/projects');
+  const firstCard = page.getByRole('main').getByRole('article').first();
+  test.skip((await firstCard.count()) === 0, '공개된 프로젝트가 없어 건너뜀');
+
+  const title = (await firstCard.getByRole('heading', { level: 3 }).textContent())?.trim() ?? '';
+  const box = await firstCard.boundingBox();
+  if (!box) throw new Error('카드 위치를 알 수 없음');
+  // 카드 위쪽 여백(16·24px) 아래 미리보기 칸(130·160px)의 가운데
+  await firstCard.click({ position: { x: box.width / 2, y: 80 } });
+
+  await expect(page).toHaveURL(/\/projects\/[^/]+$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
+});
